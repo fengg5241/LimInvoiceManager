@@ -1,51 +1,27 @@
-[![Build Status](https://travis-ci.org/mledour/angular-admin-lte.svg?branch=master)](https://travis-ci.org/mledour/angular-admin-lte)
-[![npm version](https://badge.fury.io/js/angular-admin-lte.svg)](https://badge.fury.io/js/angular-admin-lte)
+# LimInvoiceManager
 
-# angular-admin-lte
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.2.1.
 
-Admin-lte implementation for Angular 4+
+## Development server
 
-## Doc & Demo
-[https://mledour.github.io/angular-admin-lte/branches/master](https://mledour.github.io/angular-admin-lte/branches/master)
+Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
+## Code scaffolding
 
-## Installation
+Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
 
-To install this library, run:
+## Build
 
-```bash
-$ npm install angular-admin-lte --save
-```
+Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
 
-## Install demo
-```bash
-$ git clone git://github.com/mledour/angular-admin-lte
-$ cd angular-admin-lte
-$ npm install
-```
+## Running unit tests
 
-## Run demo
-```bash
-$ ng serve
-```
+Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
 
-## Build demo
-```bash
-$ ng build --prod
-```
+## Running end-to-end tests
 
-## Build dist
-```bash
-$ npm run build:lib
-```
+Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
 
-## Dependencies
+## Further help
 
-* admin-lte-css
-
-## Todos
-
-* Vertical tabs
-
-https://www.jb51.net/article/105123.htm
-
+To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).

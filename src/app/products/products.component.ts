@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { LangService } from '../lang.service';
 
 @Component({
   selector: 'app-products',
@@ -7,9 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProductsComponent implements OnInit {
 
-  constructor() { }
+  $page_title = "Products";
+  constructor(private langService:LangService) { }
 
   ngOnInit() {
   }
+
+  lang(word){
+    return this.langService.lang(word);
+  }
+
 
 }

@@ -26,7 +26,8 @@
               "src/styles.css"
             ],
             "scripts": ["./node_modules/jquery/dist/jquery.min.js",
-                       "../dist/js/adminlte.js"]
+                       "./dist/js/adminlte.js",
+                       "./src/assets/js/jquery.dataTables.js"]
           },
           "configurations": {
             "production": {

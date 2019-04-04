@@ -27,10 +27,7 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
     this.init();
 
-    $(document).ready(function () {
-      
    
-    });
   }
 
   lang(word){

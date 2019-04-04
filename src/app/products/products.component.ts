@@ -37,7 +37,7 @@ export class ProductsComponent implements OnInit {
           // "pageLength": {{thisObject.$Settings.rows_per_page}},
           "pageLength": 10,
           "processing": true, "serverSide": true,
-          'ajax' : { url: 'http://igetpower.com/1/products/getdatatableajax', type: 'GET', "data": function ( d ) {
+          'ajax' : { url: '/1/products/getdatatableajax', type: 'POST', "data": function ( d ) {
               
           }},
           "buttons": [

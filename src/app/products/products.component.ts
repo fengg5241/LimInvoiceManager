@@ -36,10 +36,8 @@ export class ProductsComponent implements OnInit {
           "order": [[ 1, "asc" ]],
           // "pageLength": {{thisObject.$Settings.rows_per_page}},
           "pageLength": 10,
-          "processing": true, "serverSide": true,
-          'ajax' : { url: '/1/products/getdatatableajax', type: 'POST', "data": function ( d ) {
-              
-          }},
+          "processing": true, 
+          'ajax' : { url: './data/getProducts.txt', type: 'GET', "dataSrc": ""},
           "buttons": [
           { extend: 'copyHtml5', exportOptions: { columns: [ 0, 1, 2, 3 ] } },
           { extend: 'excelHtml5', 'footer': true, exportOptions: { columns: [ 0, 1, 2, 3 ] } },

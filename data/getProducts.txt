@@ -1,0 +1,11 @@
+ [
+    {
+      "pid": "1",
+      "product_name": "shanProduct1",
+      "details": "shanProduct1Details",
+      "price": "129.00",
+      "tax_rate": null,
+      "tax_method": null,
+      "Actions": "<center><div class='btn-group'><a class=\"tip btn btn-primary btn-xs\" title='Edit Product' href='http:\/\/igetpower.com\/1\/products\/edit?id=1'><i class=\"fa fa-edit\"><\/i><\/a> <a class=\"tip btn btn-danger btn-xs\" title='Delete Product' href='http:\/\/igetpower.com\/1\/products\/delete?id=1' onClick=\"return confirm('You are going to remove this product. Press OK to proceed and Cancel to Go Back')\"><i class=\"fa fa-trash-o\"><\/i><\/a><\/div><\/center>"
+    }
+  ]

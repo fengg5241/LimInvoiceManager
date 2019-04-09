@@ -28,7 +28,10 @@
             ],
             "scripts": ["./node_modules/jquery/dist/jquery.min.js",
                        "./dist/js/adminlte.js",
-                       "./src/assets/js/jquery.dataTables.js"]
+                       "./node_modules/datatables.net/js/jquery.dataTables.js",
+                       "./node_modules/datatables.net-bs/js/dataTables.bootstrap.js",
+                       "./node_modules/datatables.net-buttons/js/dataTables.buttons.js",
+                       "./node_modules/datatables.net-buttons/js/buttons.html5.js"]
           },
           "configurations": {
             "production": {

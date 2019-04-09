@@ -32,6 +32,7 @@
     "core-js": "^2.5.4",
     "datatables.net": "^1.10.19",
     "datatables.net-bs": "^1.10.19",
+    "datatables.net-buttons": "^1.5.6",
     "fastclick": "^1.0.6",
     "flot": "^0.8.3",
     "font-awesome": "^4.7.0",

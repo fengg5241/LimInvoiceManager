@@ -3,6 +3,9 @@ import { LangService } from '../lang.service';
 import * as $ from 'jquery';
 import 'datatables.net';
 import 'datatables.net-bs';
+import 'datatables.net-buttons';
+import 'datatables.net-buttons/js/buttons.html5';
+import 'datatables.net-buttons/js/buttons.html5';
 
 @Component({
   selector: 'app-products',
@@ -38,13 +41,13 @@ export class ProductsComponent implements OnInit {
           "pageLength": 10,
           "processing": true, 
           'ajax' : { url: './data/getProducts.txt', type: 'GET', "dataSrc": ""},
-          "buttons": [
+          buttons: [
           { extend: 'copyHtml5', exportOptions: { columns: [ 0, 1, 2, 3 ] } },
           { extend: 'excelHtml5', 'footer': true, exportOptions: { columns: [ 0, 1, 2, 3 ] } },
           { extend: 'csvHtml5', 'footer': true, exportOptions: { columns: [ 0, 1, 2, 3 ] } },
           { extend: 'pdfHtml5', orientation: 'landscape', pageSize: 'A4', 'footer': true,
           exportOptions: { columns: [ 0, 1, 2, 3 ] } },
-          { extend: 'colvis', text: 'Columns'},
+        //   { extend: 'colvis', text: 'Columns'},
           ],
           "columns": [
           { "data": "pid", "searchable": false, "visible": false },

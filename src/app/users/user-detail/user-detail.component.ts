@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { LangService } from '../lang.service';
 
 @Component({
   selector: 'app-user-detail',
@@ -7,9 +8,30 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UserDetailComponent implements OnInit {
 
-  constructor() { }
+  $page_title = "Add New User";
+  curUser = {
+    firstName:"",
+    lastName:"",
+    company:"",
+    phone:"",
+    email:"",
+    adminRole:"",
+    salesRole:"",
+    viewerRole:"",
+    password:"",
+    passwordConfirm:""
+  }
+  constructor(private langService:LangService) { }
 
   ngOnInit() {
+  }
+
+  lang(word){
+    return this.langService.lang(word);
+  }
+
+  createUser(){
+
   }
 
 }

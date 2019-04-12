@@ -1,96 +1,113 @@
 <div class="page-head">
-  <h2 class="pull-left"><?= $page_title; ?> <span class="page-meta"><?= lang("enter_info"); ?></span> </h2>
+  <h2 class="pull-left">{{ $page_title}} <span class="page-meta">{{ lang("enter_info")}}</span> </h2>
 </div>
 <div class="clearfix"></div>
 <div class="matter">
   <div class="container">
 
-      <?php $attrib = array('class' => 'form-horizontal'); echo form_open("customers/add");?>
+      <!-- <?php $attrib = array('class' => 'form-horizontal'); echo form_open("customers/add");?> -->
       <div class="row">
           <div class="col-md-6">
               <div class="form-group">
-                  <label for="company"><?= lang("company"); ?></label>
-                  <div class="controls"> <?= form_input('company', '', 'class="form-control" id="company"');?>
+                  <label for="company">{{ lang("company")}}</label>
+                  <div class="controls"> 
+                        <input class="form-control" id="company" [(ngModel)]="curCustomer.company" />
                   </div>
               </div>
               <div class="form-group">
-                  <label for="name"><?= lang("contact_person"); ?></label>
-                  <div class="controls"> <?= form_input('name', '', 'class="form-control" id="name"');?>
+                  <label for="name">{{ lang("contact_person")}}</label>
+                  <div class="controls">
+                        <input class="form-control" id="name" [(ngModel)]="curCustomer.name" />
                   </div>
               </div> 
               <div class="form-group">
-                  <label for="email_address"><?= lang("email_address"); ?></label>
-                  <div class="controls"> <?= form_input('email', '', 'class="form-control" id="email_address"');?>
+                  <label for="email_address">{{ lang("email_address")}}</label>
+                  <div class="controls">
+                        <input class="form-control" id="email_address" [(ngModel)]="curCustomer.email" />
+                      
                   </div>
               </div> 
               <div class="form-group">
-                  <label for="phone"><?= lang("phone"); ?></label>
-                  <div class="controls"> <?= form_input('phone', '', 'class="form-control" id="phone"');?>
+                  <label for="phone">{{ lang("phone")}}</label>
+                  <div class="controls">
+                        <input class="form-control" id="phone" [(ngModel)]="curCustomer.phone" />
                   </div>
               </div> 
               <div class="form-group">
-                  <label for="address"><?= lang("address"); ?></label>
-                  <div class="controls"> <?= form_input('address', '', 'class="form-control" id="address"');?>
+                  <label for="address">{{ lang("address")}}</label>
+                  <div class="controls">
+                        <input class="form-control" id="address" [(ngModel)]="curCustomer.address" />
                   </div>
               </div>  
               <div class="form-group">
-                  <label for="city"><?= lang("city"); ?></label>
-                  <div class="controls"> <?= form_input('city', '', 'class="form-control" id="city"');?>
+                  <label for="city">{{ lang("city")}}</label>
+                  <div class="controls">
+                        <input class="form-control" id="city" [(ngModel)]="curCustomer.city" />
                   </div>
               </div> 
               <div class="form-group">
-                  <label for="state"><?= lang("state"); ?></label>
-                  <div class="controls"> <?= form_input('state', '', 'class="form-control" id="state"');?>
+                  <label for="state">{{ lang("state")}}</label>
+                  <div class="controls"> 
+                        <input class="form-control" id="state" [(ngModel)]="curCustomer.state" />
                   </div>
               </div> 
               <div class="form-group">
-                  <label for="postal_code"><?= lang("postal_code"); ?></label>
-                  <div class="controls"> <?= form_input('postal_code', '', 'class="form-control" id="postal_code"');?>
+                  <label for="postal_code">{{ lang("postal_code")}}</label>
+                  <div class="controls"> 
+                        <input class="form-control" id="postal_code" [(ngModel)]="curCustomer.postalCode" />
+                        {{ form_input('postal_code', '', 'class="form-control" id="postal_code"');?>
                   </div>
               </div> 
               <div class="form-group">
-                  <label for="country"><?= lang("country"); ?></label>
-                  <div class="controls"> <?= form_input('country', '', 'class="form-control" id="country"');?>
+                  <label for="country">{{ lang("country")}}</label>
+                  <div class="controls"> 
+                        <input class="form-control" id="country" [(ngModel)]="curCustomer.country" />
                   </div>
               </div> 
           </div>
           <div class="col-md-6">
               <div class="form-group">
-                  <label for="cf1"><?= lang("ccf1"); ?></label>
-                  <div class="controls"> <?= form_input('cf1', '', 'class="form-control" id="cf1"');?>
+                  <label for="cf1">{{ lang("ccf1")}}</label>
+                  <div class="controls">
+                      <input class="form-control" id="cf1" [(ngModel)]="curCustomer.cf1" />
                   </div>
               </div> 
               <div class="form-group">
-                  <label for="cf2"><?= lang("ccf2"); ?></label>
-                  <div class="controls"> <?= form_input('cf2', '', 'class="form-control" id="cf2"');?>
+                  <label for="cf2">{{ lang("ccf2")}}</label>
+                  <div class="controls">
+                        <input class="form-control" id="cf2" [(ngModel)]="curCustomer.cf2" />
                   </div>
               </div> 
               <div class="form-group">
-                  <label for="cf3"><?= lang("ccf3"); ?></label>
-                  <div class="controls"> <?= form_input('cf3', '', 'class="form-control" id="cf3"');?>
+                  <label for="cf3">{{ lang("ccf3")}}</label>
+                  <div class="controls"> 
+                        <input class="form-control" id="ccf3" [(ngModel)]="curCustomer.ccf3" />
                   </div>
               </div> 
               <div class="form-group">
-                  <label for="cf4"><?= lang("ccf4"); ?></label>
-                  <div class="controls"> <?= form_input('cf4', '', 'class="form-control" id="cf4"');?>
+                  <label for="cf4">{{ lang("ccf4")}}</label>
+                  <div class="controls">
+                        <input class="form-control" id="cf4" [(ngModel)]="curCustomer.cf4" />
                   </div>
               </div> 
               <div class="form-group">
-                  <label for="cf5"><?= lang("ccf5"); ?></label>
-                  <div class="controls"> <?= form_input('cf5', '', 'class="form-control" id="cf5"');?>
+                  <label for="cf5">{{ lang("ccf5")}}</label>
+                  <div class="controls">
+                        <input class="form-control" id="cf5" [(ngModel)]="curCustomer.cf5" />
                   </div>
               </div> 
               <div class="form-group">
-                  <label for="cf6"><?= lang("ccf6"); ?></label>
-                  <div class="controls"> <?= form_input('cf6', '', 'class="form-control" id="cf6"');?>
+                  <label for="cf6">{{ lang("ccf6")}}</label>
+                  <div class="controls"> 
+                        <input class="form-control" id="cf6" [(ngModel)]="curCustomer.cf6" />
                   </div>
               </div> 
           </div>
       </div>
       <div class="form-group">
-          <div class="controls"> <?= form_submit('submit', lang("add_customer"), 'class="btn btn-primary"');?> </div>
+          <div class="controls"> 
+                <button class="btn btn-primary" (click)="createCustomer()">{{lang("add_customer")}}</button>  
       </div>
-      <?= form_close();?> 
 
       <div class="clearfix"></div>
   </div>

@@ -1,6 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
 @import "../node_modules/bootstrap/dist/css/bootstrap.css";
 @import "../node_modules/datatables.net-bs/css/dataTables.bootstrap.css";
+@import "./assets/style/plugins.css";
+@import "./assets/style/plugins.css";
+@import "./assets/style/style.css";
 /* @import "../src/assets/datatables/datatables.min.css"; */
 
 .content-wrapper .container{

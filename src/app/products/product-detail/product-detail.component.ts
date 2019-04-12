@@ -8,7 +8,12 @@ import { LangService } from '../../lang.service';
 })
 export class ProductDetailComponent implements OnInit {
 
-  $$page_title = 'New Product';
+  $page_title = 'New Product';
+  $tax_rates:any;
+  $Settings = {default_tax_rate:true};
+  curProduct = {name:'',price:0,details:''};
+  selectedRate:any;
+  selectedTaxMethod:any;
 
   constructor(private langService:LangService) { }
 

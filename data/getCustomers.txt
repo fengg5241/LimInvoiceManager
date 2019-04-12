@@ -1,0 +1,24 @@
+[
+  {
+    "id": "1",
+    "name": "Test Customer",
+    "company": "Customer Company Name",
+    "phone": "0123456789",
+    "email": "customer@tecdiary.com",
+    "city": "Petaling Jaya",
+    "country": "Malaysia",
+    "Actions": "<center><div class='btn-group'><a class=\"tip btn btn-primary btn-xs\" title='Users' href='http:\/\/igetpower.com\/1\/customers\/users\/?id=1' data-toggle='ajax-modal'><i class=\"fa fa-users\"><\/i><\/a> <a class=\"tip btn btn-primary btn-xs\" title='Add User' href='http:\/\/igetpower.com\/1\/customers\/add_user\/?id=1' data-toggle='ajax-modal'><i class=\"fa fa-plus\"><\/i><\/a> <a class=\"tip btn btn-warning btn-xs\" title='Edit Customer' href='http:\/\/igetpower.com\/1\/customers\/edit\/?id=1'><i class=\"fa fa-edit\"><\/i><\/a> <a class=\"tip btn btn-danger btn-xs\" title='Delete Customer' href='http:\/\/igetpower.com\/1\/customers\/delete\/?id=1' onClick=\"return confirm('You are going to remove this customer. Press OK to proceed and Cancel to Go Back')\"><i class=\"fa fa-trash-o\"><\/i><\/a><\/div><\/center>",
+    "login": "<center><div class='btn-group'><a class=\"tip btn btn-primary btn-xs\" target='_blank' title='Login as Customer' href='http:\/\/igetpower.com\/1\/clients\/?customer_id=1'><i class=\"fa fa-sign-in\"><\/i><\/a><\/div><\/center>"
+  },
+  {
+    "id": "2",
+    "name": "feng",
+    "company": "ShanCompany1",
+    "phone": "98508635",
+    "email": "feng5241@gmail.com",
+    "city": "Singapore",
+    "country": "Singapore",
+    "Actions": "<center><div class='btn-group'><a class=\"tip btn btn-primary btn-xs\" title='Users' href='http:\/\/igetpower.com\/1\/customers\/users\/?id=2' data-toggle='ajax-modal'><i class=\"fa fa-users\"><\/i><\/a> <a class=\"tip btn btn-primary btn-xs\" title='Add User' href='http:\/\/igetpower.com\/1\/customers\/add_user\/?id=2' data-toggle='ajax-modal'><i class=\"fa fa-plus\"><\/i><\/a> <a class=\"tip btn btn-warning btn-xs\" title='Edit Customer' href='http:\/\/igetpower.com\/1\/customers\/edit\/?id=2'><i class=\"fa fa-edit\"><\/i><\/a> <a class=\"tip btn btn-danger btn-xs\" title='Delete Customer' href='http:\/\/igetpower.com\/1\/customers\/delete\/?id=2' onClick=\"return confirm('You are going to remove this customer. Press OK to proceed and Cancel to Go Back')\"><i class=\"fa fa-trash-o\"><\/i><\/a><\/div><\/center>",
+    "login": "<center><div class='btn-group'><a class=\"tip btn btn-primary btn-xs\" target='_blank' title='Login as Customer' href='http:\/\/igetpower.com\/1\/clients\/?customer_id=2'><i class=\"fa fa-sign-in\"><\/i><\/a><\/div><\/center>"
+  }
+]

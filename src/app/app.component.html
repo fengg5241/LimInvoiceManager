@@ -336,7 +336,7 @@
           <ul class="treeview-menu">
             <li><a routerLink="/products"><i class="fa fa-circle-o"></i> List Products</a></li>
             <li><a routerLink="/products/new"><i class="fa fa-circle-o"></i> Add Product</a></li>
-            <li><a href="pages/charts/flot.html"><i class="fa fa-circle-o"></i> import products by csv</a></li>
+            <li><a routerLink="/products/upload"><i class="fa fa-circle-o"></i> import products by csv</a></li>
           </ul>
         </li>
         <li class="treeview">
@@ -348,9 +348,9 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="/customers"><i class="fa fa-circle-o"></i> List Customers</a></li>
-            <li><a href="pages/UI/icons.html"><i class="fa fa-circle-o"></i> Add Customer</a></li>
-            <li><a href="pages/UI/buttons.html"><i class="fa fa-circle-o"></i> import customers by csv</a></li>
+            <li><a routerLink="/customers"><i class="fa fa-circle-o"></i> List Customers</a></li>
+            <li><a routerLink="/customers/new"><i class="fa fa-circle-o"></i> Add Customer</a></li>
+            <li><a routerLink="/customers/upload"><i class="fa fa-circle-o"></i> import customers by csv</a></li>
           </ul>
         </li>
         <li class="treeview">
@@ -361,8 +361,8 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="/users"><i class="fa fa-circle-o"></i> List Users</a></li>
-            <li><a href="pages/forms/advanced.html"><i class="fa fa-circle-o"></i> Add New User</a></li>
+            <li><a routerLink="/users"><i class="fa fa-circle-o"></i> List Users</a></li>
+            <li><a routerLink="/users/new"><i class="fa fa-circle-o"></i> Add New User</a></li>
           </ul>
         </li>
         <li class="treeview">
@@ -417,7 +417,7 @@
   </aside>
 
   <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
+  <div class="content-wrapper mainbar">
     <router-outlet></router-outlet>
     <!-- Content Header (Page header) -->    
   </div>

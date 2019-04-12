@@ -11,52 +11,61 @@ import 'datatables.net-bs';
 })
 export class CustomersComponent implements OnInit {
 
-  $page_title = "Products";
+  $page_title = "Customers";
   $Settings = {
     rows_per_page:10
   }
+  $sim = {
+    in_group:{
+        admin:true
+    }
+  }
   constructor(private langService:LangService) { }
 
+  admin = true;
   ngOnInit() {
     let thisObject = this;
+    let rows_per_page = thisObject.$Settings.rows_per_page;
     $(document).ready(function() {
-
-      function tax_method(m) {
-          if (m == 'inclusive') {
-              // return '<small><span class="label label-info">'+{{thisObject.lang('inclusive')}}+'</span></small>'
-              return '<small><span class="label label-info">inclusive</span></small>'
-          }
-          return '<small><span class="label label-primary">exclusive</span></small>'
-      }
+        
+        let isAdmin = true;
+        let loginColumn = { 
+            "data": "login", 
+            "searchable": false, 
+            "orderable": false }
+        if(!isAdmin){
+            loginColumn["visible"] = false;
+        }
+      
   
       var table = $('#fileData').DataTable( {
   
-          "dom": '<"text-center"<"btn-group"B>><"clear"><"row"<"col-md-6"l><"col-md-6 pr0"p>r>t<"row"<"col-md-6"i><"col-md-6"p>><"clear">',
-          "lengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
-          "order": [[ 1, "asc" ]],
-          // "pageLength": {{thisObject.$Settings.rows_per_page}},
-          "pageLength": 10,
-          "processing": true, "serverSide": true,
-          'ajax' : { url: '/1/products/getdatatableajax', type: 'POST', "data": function ( d ) {
-              
-          }},
+        "dom": '<"text-center"<"btn-group"B>><"clear"><"row"<"col-md-6"l><"col-md-6 pr0"p>r>t<"row"<"col-md-6"i><"col-md-6"p>><"clear">',
+        "lengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
+        "order": [[ 2, "asc" ], [ 1, "asc" ]],
+          "pageLength": rows_per_page,
+        //   "pageLength": 10,
+          "processing": true, 
+          'ajax' : { url: './data/getCustomers.txt', type: 'GET', "dataSrc": ""},
           "buttons": [
           { extend: 'copyHtml5', exportOptions: { columns: [ 0, 1, 2, 3 ] } },
           { extend: 'excelHtml5', 'footer': true, exportOptions: { columns: [ 0, 1, 2, 3 ] } },
           { extend: 'csvHtml5', 'footer': true, exportOptions: { columns: [ 0, 1, 2, 3 ] } },
           { extend: 'pdfHtml5', orientation: 'landscape', pageSize: 'A4', 'footer': true,
           exportOptions: { columns: [ 0, 1, 2, 3 ] } },
-          { extend: 'colvis', text: 'Columns'},
+        //   { extend: 'colvis', text: 'Columns'},
           ],
           "columns": [
-          { "data": "pid", "searchable": false, "visible": false },
-          { "data": "product_name" },
-          { "data": "details" },
-          { "data": "price" },
-          { "data": "tax_rate" },
-          { "data": "tax_method", "render": tax_method },
-          { "data": "Actions", "searchable": false, "orderable": false }
-          ]
+            { "data": "id", "searchable": false, "visible": false },
+            { "data": "name" },
+            { "data": "company" },
+            { "data": "phone" },
+            { "data": "email" },
+            { "data": "city" },
+            { "data": "country" },
+            { "data": "Actions", "searchable": false, "orderable": false },
+            loginColumn
+            ]
   
       });
   

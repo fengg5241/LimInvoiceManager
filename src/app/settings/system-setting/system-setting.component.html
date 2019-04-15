@@ -223,7 +223,6 @@
                       <label class="control-label" for="smtp_host">{{ lang("smtp_host")}}</label>
                       <div class="controls"> 
                             <input class="form-control tip" id="smtp_host"  [(ngModel)]="curProduct.smtpHost" />
-                            <?php echo form_input('smtp_host', $Settings->smtp_host, 'class="form-control tip" id="smtp_host"')}}
                       </div>
                   </div>
               </div>
@@ -231,38 +230,33 @@
                   <div class="form-group">
                       <label class="control-label" for="smtp_user">{{ lang("smtp_user")}}</label>
                       <div class="controls"> 
-                            <input class="form-control" id="name" maxlength="80" [(ngModel)]="curProduct.name" />
-                            <?php echo form_input('smtp_user', $Settings->smtp_user, 'class="form-control tip" id="smtp_user"')}} </div>
+                            <input class="form-control tip" id="smtp_user"  [(ngModel)]="curProduct.smtpUser" /> </div>
                   </div>
               </div>
               <div class="col-md-4">
                   <div class="form-group">
                       <label class="control-label" for="smtp_pass">{{ lang("smtp_pass")}}</label>
                       <div class="controls"> 
-                            <input class="form-control" id="name" maxlength="80" [(ngModel)]="curProduct.name" />
-                            <?php echo form_password('smtp_pass', '', 'class="form-control tip" id="smtp_pass"')}} </div>
+                            <input class="form-control tip" id="smtp_pass"  [(ngModel)]="curProduct.smtpPass" /></div>
                   </div>
               </div>
               <div class="col-md-4">
                   <div class="form-group">
                       <label class="control-label" for="smtp_port">{{ lang("smtp_port")}}</label>
                       <div class="controls"> 
-                            <input class="form-control" id="name" maxlength="80" [(ngModel)]="curProduct.name" />
-                            <?php echo form_input('smtp_port', $Settings->smtp_port, 'class="form-control tip" id="smtp_port"')}} </div>
+                            <input class="form-control tip" id="smtp_port"  [(ngModel)]="curProduct.smtpPort" /></div>
                   </div>
               </div>
               <div class="col-md-4">
                   <div class="form-group">
                       <label class="control-label" for="smtp_crypto">{{ lang("smtp_crypto")}}</label>
                       <div class="controls">
-                            <select id='tax_method' name="tax_method" class='form-control' [(ngModel)]="selectedTaxMethod">
-                                <option value="exclusive">{{lang('exclusive')}}</option>
-                                <option value="inclusive">{{lang('inclusive')}}</option>
+                            <select id='smtp_crypto' name="smtp_crypto" class='form-control tip' [(ngModel)]="selectedSmtpCrypto">
+                                <option value="">{{lang('none')}}</option>
+                                <option value="tls">TLS</option>
+                                <option value="ssl">SSL</option>
                             </select>  
-                        <?php
-                          $crypto_opt = array('' => lang('none'), 'tls' => 'TLS', 'ssl' => 'SSL');
-                          echo form_dropdown('smtp_crypto', $crypto_opt, $Settings->smtp_crypto, 'class="form-control tip" id="smtp_crypto"');
-                          ?> </div>
+                        </div>
                   </div>
               </div>
           </div>
@@ -270,7 +264,8 @@
       </div>
 
       <div class="form-group">
-          <div class="controls"> {{ form_submit('submit', lang("update_settings"), 'class="btn btn-primary"');?> </div>
+          <div class="controls">
+                <button class="btn btn-primary" >{{lang("update_settings")}}</button>
       </div>
       <!-- {{ form_close();?> -->
 

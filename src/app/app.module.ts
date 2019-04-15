@@ -18,6 +18,21 @@ import { ProductUploadComponent } from './products/product-upload/product-upload
 import { CustomerDetailComponent } from './customers/customer-detail/customer-detail.component';
 import { CustomerUploadComponent } from './customers/customer-upload/customer-upload.component';
 import { UserDetailComponent } from './users/user-detail/user-detail.component';
+import { PaypalSettingComponent } from './settings/paypal-setting/paypal-setting.component';
+import { SkrillSettingComponent } from './settings/skrill-setting/skrill-setting.component';
+import { StripeSettingComponent } from './settings/stripe-setting/stripe-setting.component';
+import { CompanySettingComponent } from './settings/company-setting/company-setting.component';
+import { CompanyDetailComponent } from './settings/company-setting/company-detail/company-detail.component';
+import { EmailSettingComponent } from './settings/email-setting/email-setting.component';
+import { TaxRateSettingComponent } from './settings/tax-rate-setting/tax-rate-setting.component';
+import { TaxRateDetailComponent } from './settings/tax-rate-setting/tax-rate-detail/tax-rate-detail.component';
+import { NotesSettingComponent } from './settings/notes-setting/notes-setting.component';
+import { BackupsSettingComponent } from './settings/backups-setting/backups-setting.component';
+import { MonthlyReportComponent } from './reports/monthly-report/monthly-report.component';
+import { DailyReportComponent } from './reports/daily-report/daily-report.component';
+import { SalesReportComponent } from './reports/sales-report/sales-report.component';
+import { PaymentReportComponent } from './reports/payment-report/payment-report.component';
+import { SystemSettingComponent } from './settings/system-setting/system-setting.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +49,22 @@ import { UserDetailComponent } from './users/user-detail/user-detail.component';
     ProductUploadComponent,
     CustomerDetailComponent,
     CustomerUploadComponent,
-    UserDetailComponent
+    UserDetailComponent,
+    PaypalSettingComponent,
+    SkrillSettingComponent,
+    StripeSettingComponent,
+    CompanySettingComponent,
+    CompanyDetailComponent,
+    EmailSettingComponent,
+    TaxRateSettingComponent,
+    TaxRateDetailComponent,
+    NotesSettingComponent,
+    BackupsSettingComponent,
+    MonthlyReportComponent,
+    DailyReportComponent,
+    SalesReportComponent,
+    PaymentReportComponent,
+    SystemSettingComponent
   ],
   imports: [
     BrowserModule,

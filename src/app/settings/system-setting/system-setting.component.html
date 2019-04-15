@@ -1,3 +1,282 @@
-<p>
-  system-setting works!
-</p>
+
+<div class="page-head">
+  <h2 class="pull-left">{{ $page_title}} <span class="page-meta">{{ lang("Please update the information below.")}}</span> </h2>
+</div>
+<div class="clearfix"></div>
+<div class="matter">
+  <div class="container">
+      <!-- <?php $attrib = array('class' => 'form-horizontal'); echo form_open("settings/system_setting");?> -->
+      <div class="row">
+      <div class="col-md-4"><div class="form-group">
+              <label for="site_name">{{ lang("site_name")}}</label>
+              <div class="controls"> 
+                    <input class="form-control" id="site_name"  [(ngModel)]="curSetting.sitename" /></div>
+          </div></div>
+      <div class="col-md-4"><div class="form-group">
+              <label for="theme">{{ lang("theme")}}</label>
+              <div class="controls">
+                <select id='theme' name="theme" class='form-control' [(ngModel)]="selectedTheme">
+                    <option value="default">{{lang('Default')}}</option>
+                </select>
+              </div>
+          </div></div>
+      <div class="col-md-4"><div class="form-group">
+              <label for="language">{{ lang("language")}}</label>
+              <div class="controls">
+                <select id='language' name="language" class='form-control' [(ngModel)]="selectedLanguage">
+                    <option value="english">{{lang('English')}}</option>
+                    <option value="french">{{lang('French')}}</option>
+                    <option value="spanish">{{lang('Spanish')}}</option>
+                </select>
+              </div>
+          </div></div>
+      <div class="col-md-4"><div class="form-group">
+              <label class="control-label" for="email">{{ lang("default_email")}}</label>
+              <div class="controls"> 
+                    <input class="form-control" id="email" required="required" [(ngModel)]="curProduct.defaultEmail" /></div>
+          </div></div>
+      <div class="col-md-4"><div class="form-group">
+              <label for="currency_prefix">{{ lang("currency_code")}}</label>
+              <div class="controls"> 
+                    <input class="form-control" id="currency_prefix"  [(ngModel)]="curProduct.currencyPrefix" /> </div>
+          </div></div>
+      <!-- <div class="col-md-4"><div class="form-group">
+              <label for="major">{{ lang("currency_major")}}</label>
+              <div class="controls"> {{ form_input('major', $Settings->major, 'class="form-control" id="major"');?> </div>
+          </div></div>
+      <div class="col-md-4"><div class="form-group">
+              <label for="minor">{{ lang("currency_minor")}}</label>
+              <div class="controls"> {{ form_input('minor', $Settings->minor, 'class="form-control" id="minor"');?> </div>
+          </div></div> -->
+      <div class="col-md-4"><div class="form-group">
+              <label for="tax_rate">{{ lang("tax_rate")}}</label>
+              <div class="controls">
+                  <?php  $tr[0] = lang('disable');
+                  foreach($tax_rates as $rate){
+                      $tr[$rate->id] = $rate->name;
+                  }
+
+                  echo form_dropdown('tax_rate', $tr, $Settings->default_tax_rate, 'class="form-control" id="tax_rate"')}}
+              </div>
+          </div></div>
+
+      <div class="col-md-4"><div class="form-group">
+              <label for="display_words">{{ lang("display_to_words")}}</label>
+              <div class="controls">
+                <select id='display_words' name="display_words" class='form-control tip chzn-select ' [(ngModel)]="curSetting.selectedDisplayWords" required="required">
+                    <option value="0">{{lang('disable')}}</option>
+                    <option value="1">{{lang('enable')}}</option>
+                </select>
+              </div>
+          </div></div>
+
+      <div class="col-md-4"><div class="form-group">
+              <label for="email_html">{{ lang("add_html_to_email")}}</label>
+              <div class="controls">
+                    <select id='email_html' name="email_html" class='form-control tip chzn-select ' [(ngModel)]="curSetting.selectedEmailHtml" required="required">
+                        <option value="0">{{lang('disable')}}</option>
+                        <option value="1">{{lang('enable')}}</option>
+                    </select>
+              </div>
+          </div></div>
+
+      <div class="col-md-4">
+          <div class="form-group">
+              <label class="control-label" for="date_format">{{ lang("date_format")}}</label>
+
+              <div class="controls">
+                  <?php
+                  foreach ($date_formats as $date_format) {
+                      $dt[$date_format->id] = $date_format->js;
+                  }
+                  echo form_dropdown('date_format', $dt, $Settings->dateformat, 'id="date_format" class="form-control tip chzn-select" required="required" data-error="'.lang("date_format").' '.lang("is_required").'"');
+                  ?>
+              </div>
+          </div>
+      </div>
+
+      <div class="col-md-4"><div class="form-group">
+              <label for="print_payment">{{ lang("print_payment_on_invoice")}}</label>
+              <div class="controls">
+                    <select id='print_payment' name="print_payment" class='form-control tip chzn-select ' [(ngModel)]="curSetting.selectedPrintPayment" required="required">
+                        <option value="0">{{lang('disable')}}</option>
+                        <option value="1">{{lang('enable')}}</option>
+                    </select>
+              </div>
+          </div></div>
+
+      <div class="col-md-4"><div class="form-group">
+              <label for="calendar">{{ lang("calendar")}}</label>
+              <div class="controls">
+                <select id='calendar' name="calendar" class='form-control tip chzn-select' [(ngModel)]="curSetting.selectedCalendar">
+                    <option value="0">{{lang('shared')}}</option>
+                    <option value="1">{{lang('private')}}</option>
+                </select>
+              </div>
+          </div></div>
+      <div class="col-md-4"><div class="form-group">
+              <label for="restrict_sales">{{ lang("restrict_sales")}}</label>
+              <div class="controls">
+                <select id='restrict_sales' name="restrict_sales" class='form-control tip chzn-select' [(ngModel)]="curSetting.selectedRestrictSales">
+                    <option value="0">{{lang('disable')}}</option>
+                    <option value="1">{{lang('enable')}}</option>
+                </select>
+              </div>
+          </div></div>
+      <div class="col-md-4"><div class="form-group">
+              <label for="rows_per_page">{{ lang("rows_per_page")}}</label>
+              <div class="controls">
+                <select id='rows_per_page' name="rows_per_page" class='form-control' [(ngModel)]="curSetting.selectedRowsPerPage">
+                    <option value="10">10</option>
+                    <option value="25">25</option>
+                    <option value="50">50</option>
+                    <option value="100">100</option>
+                    <option value="-1">{{lang('All (not recommended)')}}</option>
+                </select>
+              </div>
+          </div></div>
+      <div class="col-md-4"><div class="form-group">
+              <label for="no_of_rows">{{ lang("no_of_rows")}}</label>
+              <div class="controls">
+                    <input class="form-control" id="no_of_rows" [(ngModel)]="curProduct.noOfRows" /></div>
+          </div></div>
+
+      <div class="col-md-4"><div class="form-group">
+              <label for="customer_user">{{ lang("auto_create_customer_user")}}</label>
+              <div class="controls"> 
+                    <select id='customer_user' name="customer_user" class='form-control' [(ngModel)]="curSetting.selectedAutoCreateCustomerUser">
+                        <option value="0">{{lang('disable')}}</option>
+                        <option value="1">{{lang('enable')}}</option>
+                    </select>
+              </div>
+          </div></div>
+      <div class="col-md-4">
+          <div class="form-group">
+              {{ lang('product_discount', 'product_discount')}}
+              <select id='product_discount' name="product_discount" class='form-control' [(ngModel)]="curSetting.selectedProductDiscount" required="required" style="width:100%;">
+                    <option value="0">{{lang('disable')}}</option>
+                    <option value="1">{{lang('enable')}}</option>
+                </select>
+          </div>
+      </div>
+
+      <div class="clearfix"></div>
+      <hr>
+      <div class="col-md-4"><div class="form-group">
+              <label class="control-label" for="decimals">{{ lang("decimals")}}</label>
+              <div class="controls">
+                <select id='decimals' name="decimals" class='form-control tip' [(ngModel)]="selectedDecimals" style="width:100%;" required="required" >
+                    <option value="0">{{lang('disable')}}</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                </select>
+              </div>
+          </div></div>
+      <div class="col-md-4"><div class="form-group">
+              <label class="control-label" for="decimals_sep">{{ lang("decimals_sep")}}</label>
+              <div class="controls"> 
+                    <select id='decimals_sep' name="decimals_sep" class='form-control tip' [(ngModel)]="selectedDecimals_sep" style="width:100%;" required="required">
+                        <option value=".">{{lang('dot')}}</option>
+                        <option value=",">{{lang('comma')}}</option>
+                    </select>  
+              </div>
+          </div></div>
+      <div class="col-md-4"><div class="form-group">
+              <label class="control-label" for="thousands_sep">{{ lang("thousands_sep")}}</label>
+              <div class="controls"> 
+                    <select id='thousands_sep' name="thousands_sep" class='form-control tip' [(ngModel)]="selectedThousandsSep" style="width:100%;" required="required">
+                        <option value=".">{{lang('dot')}}</option>
+                        <option value=",">{{lang('comma')}}</option>
+                        <option value="0">{{lang('space')}}</option>
+                    </select>
+              </div>
+          </div></div>
+
+      <div class="col-md-4"><div class="form-group">
+              <label class="control-label" for="protocol">{{ lang("email_protocol")}}</label>
+              <div class="controls"> 
+                    <select id='protocol' name="protocol" class='form-control tip' [(ngModel)]="selectedProtocol" style="width:100%;" required="required">
+                        <option value="mail">PHP Mail Function</option>
+                        <option value="sendmail">Send Mail</option>
+                        <option value="smtp">SMTP</option>
+                    </select>  
+              </div>
+          </div></div>
+      <div class="clearfix"></div>
+      <div class="row" id="sendmail_config" style="display: none;">
+          <div class="col-md-12">
+              <div class="col-md-4">
+                  <div class="form-group">
+                      <label class="control-label" for="mailpath">{{ lang("mailpath")}}</label>
+                      <div class="controls"> 
+                            <input class="form-control tip" id="mailpath"  [(ngModel)]="curProduct.mailpath" />
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <div class="clearfix"></div>
+      <div class="row" id="smtp_config" style="display: none;">
+          <div class="col-md-12">
+              <div class="col-md-4">
+                  <div class="form-group">
+                      <label class="control-label" for="smtp_host">{{ lang("smtp_host")}}</label>
+                      <div class="controls"> 
+                            <input class="form-control tip" id="smtp_host"  [(ngModel)]="curProduct.smtpHost" />
+                            <?php echo form_input('smtp_host', $Settings->smtp_host, 'class="form-control tip" id="smtp_host"')}}
+                      </div>
+                  </div>
+              </div>
+              <div class="col-md-4">
+                  <div class="form-group">
+                      <label class="control-label" for="smtp_user">{{ lang("smtp_user")}}</label>
+                      <div class="controls"> 
+                            <input class="form-control" id="name" maxlength="80" [(ngModel)]="curProduct.name" />
+                            <?php echo form_input('smtp_user', $Settings->smtp_user, 'class="form-control tip" id="smtp_user"')}} </div>
+                  </div>
+              </div>
+              <div class="col-md-4">
+                  <div class="form-group">
+                      <label class="control-label" for="smtp_pass">{{ lang("smtp_pass")}}</label>
+                      <div class="controls"> 
+                            <input class="form-control" id="name" maxlength="80" [(ngModel)]="curProduct.name" />
+                            <?php echo form_password('smtp_pass', '', 'class="form-control tip" id="smtp_pass"')}} </div>
+                  </div>
+              </div>
+              <div class="col-md-4">
+                  <div class="form-group">
+                      <label class="control-label" for="smtp_port">{{ lang("smtp_port")}}</label>
+                      <div class="controls"> 
+                            <input class="form-control" id="name" maxlength="80" [(ngModel)]="curProduct.name" />
+                            <?php echo form_input('smtp_port', $Settings->smtp_port, 'class="form-control tip" id="smtp_port"')}} </div>
+                  </div>
+              </div>
+              <div class="col-md-4">
+                  <div class="form-group">
+                      <label class="control-label" for="smtp_crypto">{{ lang("smtp_crypto")}}</label>
+                      <div class="controls">
+                            <select id='tax_method' name="tax_method" class='form-control' [(ngModel)]="selectedTaxMethod">
+                                <option value="exclusive">{{lang('exclusive')}}</option>
+                                <option value="inclusive">{{lang('inclusive')}}</option>
+                            </select>  
+                        <?php
+                          $crypto_opt = array('' => lang('none'), 'tls' => 'TLS', 'ssl' => 'SSL');
+                          echo form_dropdown('smtp_crypto', $crypto_opt, $Settings->smtp_crypto, 'class="form-control tip" id="smtp_crypto"');
+                          ?> </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+      </div>
+
+      <div class="form-group">
+          <div class="controls"> {{ form_submit('submit', lang("update_settings"), 'class="btn btn-primary"');?> </div>
+      </div>
+      <!-- {{ form_close();?> -->
+
+      <p><strong>Cron Job:</strong> <code>0 1 * * * wget -qO- {{ base_url()}}cron/run &gt;/dev/null 2&gt;&amp;1</code> to run at 1:00 AM daily.</p>
+      <div class="clearfix"></div>
+  </div>
+  <div class="clearfix"></div>
+</div>
+

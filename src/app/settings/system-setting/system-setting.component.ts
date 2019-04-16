@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { LangService } from '../lang.service';
+import { LangService } from '../../lang.service';
 import * as $ from 'jquery';
 
 @Component({

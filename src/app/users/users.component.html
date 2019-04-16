@@ -23,12 +23,15 @@
                         <td>{{ user.phone}}</td>
                         <td>{{displayUserGroups(user)}}</td>
                         <td style="text-align:center;">
-                            <center><div class="btn-group">
+                            <!-- <center> -->
+                                <div class="btn-group">
                             <!-- <a class="tip btn btn-primary btn-xs" title="'.lang("edit_user").'" href="'.site_url('auth/edit_user/').'?id=' . $user->id . '"> <i class="fa fa-edit"></i> </a>'; -->
                             <a class="tip btn btn-primary btn-xs" title="edit_user" routerLink="users/edit/"{{user.id}}> <i class="fa fa-edit"></i> </a>
-                            <a *ngif="sim.in_group.admin" class="tip btn btn-danger btn-xs" title="delete_user" routerLink="users/delete/"{user.id} onClick="return confirm('alert_x_user')">
+                            <a *ngIf="sim.in_group.admin" class="tip btn btn-danger btn-xs" title="delete_user" routerLink="users/delete/"{user.id} onClick="return confirm('alert_x_user')">
                               <i class="fa fa-trash-o"></i>
-                            </a></div></center></td>
+                            </a></div>
+                        <!-- </center> -->
+                    </td>
                         </tr>
                 </tbody>
             </table>

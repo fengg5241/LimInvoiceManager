@@ -51,12 +51,9 @@
       <div class="col-md-4"><div class="form-group">
               <label for="tax_rate">{{ lang("tax_rate")}}</label>
               <div class="controls">
-                  <?php  $tr[0] = lang('disable');
-                  foreach($tax_rates as $rate){
-                      $tr[$rate->id] = $rate->name;
-                  }
-
-                  echo form_dropdown('tax_rate', $tr, $Settings->default_tax_rate, 'class="form-control" id="tax_rate"')}}
+                    <select  id="tax_rate" name="tax_rates" class='form-control' [(ngModel)]="selectedRate">
+                        <option *ngFor="let rate of $tax_rates" value="{{rate.id}}">{{rate.name}}</option>
+                    </select>
               </div>
           </div></div>
 
@@ -85,12 +82,9 @@
               <label class="control-label" for="date_format">{{ lang("date_format")}}</label>
 
               <div class="controls">
-                  <?php
-                  foreach ($date_formats as $date_format) {
-                      $dt[$date_format->id] = $date_format->js;
-                  }
-                  echo form_dropdown('date_format', $dt, $Settings->dateformat, 'id="date_format" class="form-control tip chzn-select" required="required" data-error="'.lang("date_format").' '.lang("is_required").'"');
-                  ?>
+                    <select  id="date_format" name="date_format" class='form-control tip chzn-select' [(ngModel)]="selectedDate_Format" required="required">
+                        <option *ngFor="let format of $date_formats" value="{{format.id}}">{{format.js}}</option>
+                    </select>
               </div>
           </div>
       </div>
@@ -269,7 +263,7 @@
       </div>
       <!-- {{ form_close();?> -->
 
-      <p><strong>Cron Job:</strong> <code>0 1 * * * wget -qO- {{ base_url()}}cron/run &gt;/dev/null 2&gt;&amp;1</code> to run at 1:00 AM daily.</p>
+      <!-- <p><strong>Cron Job:</strong> <code>0 1 * * * wget -qO- {{ base_url()}}cron/run &gt;/dev/null 2&gt;&amp;1</code> to run at 1:00 AM daily.</p> -->
       <div class="clearfix"></div>
   </div>
   <div class="clearfix"></div>

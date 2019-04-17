@@ -7,7 +7,29 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CompanyDetailComponent implements OnInit {
 
+  $page_title = "Add Company";
+  curCompany = {
+    name:"",
+    email:"",
+    company:"",
+    cf1:"",
+    cf2:"",
+    cf3:"",
+    cf4:"",
+    cf5:"",
+    cf6:"",
+    address:"",
+    city:"",
+    state:"",
+    postalCode:"",
+    country:"",
+    phone:""
+  }
   constructor() { }
+
+  createCompany(){
+
+  }
 
   ngOnInit() {
   }

@@ -15,7 +15,7 @@
       <div class="col-md-4"><div class="form-group">
               <label for="theme">{{ lang("theme")}}</label>
               <div class="controls">
-                <select id='theme' name="theme" class='form-control' [(ngModel)]="selectedTheme">
+                <select id='theme' name="theme" class='form-control' [(ngModel)]="curSetting.selectedTheme">
                     <option value="default">{{lang('Default')}}</option>
                 </select>
               </div>
@@ -23,7 +23,7 @@
       <div class="col-md-4"><div class="form-group">
               <label for="language">{{ lang("language")}}</label>
               <div class="controls">
-                <select id='language' name="language" class='form-control' [(ngModel)]="selectedLanguage">
+                <select id='language' name="language" class='form-control' [(ngModel)]="curSetting.selectedLanguage">
                     <option value="english">{{lang('English')}}</option>
                     <option value="french">{{lang('French')}}</option>
                     <option value="spanish">{{lang('Spanish')}}</option>
@@ -33,12 +33,12 @@
       <div class="col-md-4"><div class="form-group">
               <label class="control-label" for="email">{{ lang("default_email")}}</label>
               <div class="controls"> 
-                    <input class="form-control" id="email" required="required" [(ngModel)]="curProduct.defaultEmail" /></div>
+                    <input class="form-control" id="email" required="required" [(ngModel)]="curSetting.defaultEmail" /></div>
           </div></div>
       <div class="col-md-4"><div class="form-group">
               <label for="currency_prefix">{{ lang("currency_code")}}</label>
               <div class="controls"> 
-                    <input class="form-control" id="currency_prefix"  [(ngModel)]="curProduct.currencyPrefix" /> </div>
+                    <input class="form-control" id="currency_prefix"  [(ngModel)]="curSetting.currencyPrefix" /> </div>
           </div></div>
       <!-- <div class="col-md-4"><div class="form-group">
               <label for="major">{{ lang("currency_major")}}</label>
@@ -51,7 +51,7 @@
       <div class="col-md-4"><div class="form-group">
               <label for="tax_rate">{{ lang("tax_rate")}}</label>
               <div class="controls">
-                    <select  id="tax_rate" name="tax_rates" class='form-control' [(ngModel)]="selectedRate">
+                    <select  id="tax_rate" name="tax_rates" class='form-control' [(ngModel)]="curSetting.selectedRate">
                         <option *ngFor="let rate of $tax_rates" value="{{rate.id}}">{{rate.name}}</option>
                     </select>
               </div>
@@ -82,7 +82,7 @@
               <label class="control-label" for="date_format">{{ lang("date_format")}}</label>
 
               <div class="controls">
-                    <select  id="date_format" name="date_format" class='form-control tip chzn-select' [(ngModel)]="selectedDate_Format" required="required">
+                    <select  id="date_format" name="date_format" class='form-control tip chzn-select' [(ngModel)]="curSetting.selectedDateFormat" required="required">
                         <option *ngFor="let format of $date_formats" value="{{format.id}}">{{format.js}}</option>
                     </select>
               </div>
@@ -132,7 +132,7 @@
       <div class="col-md-4"><div class="form-group">
               <label for="no_of_rows">{{ lang("no_of_rows")}}</label>
               <div class="controls">
-                    <input class="form-control" id="no_of_rows" [(ngModel)]="curProduct.noOfRows" /></div>
+                    <input class="form-control" id="no_of_rows" [(ngModel)]="curSetting.noOfRows" /></div>
           </div></div>
 
       <div class="col-md-4"><div class="form-group">
@@ -159,7 +159,7 @@
       <div class="col-md-4"><div class="form-group">
               <label class="control-label" for="decimals">{{ lang("decimals")}}</label>
               <div class="controls">
-                <select id='decimals' name="decimals" class='form-control tip' [(ngModel)]="selectedDecimals" style="width:100%;" required="required" >
+                <select id='decimals' name="decimals" class='form-control tip' [(ngModel)]="curSetting.selectedDecimals" style="width:100%;" required="required" >
                     <option value="0">{{lang('disable')}}</option>
                     <option value="1">1</option>
                     <option value="2">2</option>
@@ -169,7 +169,7 @@
       <div class="col-md-4"><div class="form-group">
               <label class="control-label" for="decimals_sep">{{ lang("decimals_sep")}}</label>
               <div class="controls"> 
-                    <select id='decimals_sep' name="decimals_sep" class='form-control tip' [(ngModel)]="selectedDecimals_sep" style="width:100%;" required="required">
+                    <select id='decimals_sep' name="decimals_sep" class='form-control tip' [(ngModel)]="curSetting.selectedDecimalsSep" style="width:100%;" required="required">
                         <option value=".">{{lang('dot')}}</option>
                         <option value=",">{{lang('comma')}}</option>
                     </select>  
@@ -178,7 +178,7 @@
       <div class="col-md-4"><div class="form-group">
               <label class="control-label" for="thousands_sep">{{ lang("thousands_sep")}}</label>
               <div class="controls"> 
-                    <select id='thousands_sep' name="thousands_sep" class='form-control tip' [(ngModel)]="selectedThousandsSep" style="width:100%;" required="required">
+                    <select id='thousands_sep' name="thousands_sep" class='form-control tip' [(ngModel)]="curSetting.selectedThousandsSep" style="width:100%;" required="required">
                         <option value=".">{{lang('dot')}}</option>
                         <option value=",">{{lang('comma')}}</option>
                         <option value="0">{{lang('space')}}</option>
@@ -189,7 +189,7 @@
       <div class="col-md-4"><div class="form-group">
               <label class="control-label" for="protocol">{{ lang("email_protocol")}}</label>
               <div class="controls"> 
-                    <select id='protocol' name="protocol" class='form-control tip' [(ngModel)]="selectedProtocol" style="width:100%;" required="required">
+                    <select id='protocol' name="protocol" class='form-control tip' [(ngModel)]="curSetting.selectedProtocol" style="width:100%;" required="required">
                         <option value="mail">PHP Mail Function</option>
                         <option value="sendmail">Send Mail</option>
                         <option value="smtp">SMTP</option>
@@ -203,7 +203,7 @@
                   <div class="form-group">
                       <label class="control-label" for="mailpath">{{ lang("mailpath")}}</label>
                       <div class="controls"> 
-                            <input class="form-control tip" id="mailpath"  [(ngModel)]="curProduct.mailpath" />
+                            <input class="form-control tip" id="mailpath"  [(ngModel)]="curSetting.mailpath" />
                       </div>
                   </div>
               </div>
@@ -216,7 +216,7 @@
                   <div class="form-group">
                       <label class="control-label" for="smtp_host">{{ lang("smtp_host")}}</label>
                       <div class="controls"> 
-                            <input class="form-control tip" id="smtp_host"  [(ngModel)]="curProduct.smtpHost" />
+                            <input class="form-control tip" id="smtp_host"  [(ngModel)]="curSetting.smtpHost" />
                       </div>
                   </div>
               </div>
@@ -224,28 +224,28 @@
                   <div class="form-group">
                       <label class="control-label" for="smtp_user">{{ lang("smtp_user")}}</label>
                       <div class="controls"> 
-                            <input class="form-control tip" id="smtp_user"  [(ngModel)]="curProduct.smtpUser" /> </div>
+                            <input class="form-control tip" id="smtp_user"  [(ngModel)]="curSetting.smtpUser" /> </div>
                   </div>
               </div>
               <div class="col-md-4">
                   <div class="form-group">
                       <label class="control-label" for="smtp_pass">{{ lang("smtp_pass")}}</label>
                       <div class="controls"> 
-                            <input class="form-control tip" id="smtp_pass"  [(ngModel)]="curProduct.smtpPass" /></div>
+                            <input class="form-control tip" id="smtp_pass"  [(ngModel)]="curSetting.smtpPass" /></div>
                   </div>
               </div>
               <div class="col-md-4">
                   <div class="form-group">
                       <label class="control-label" for="smtp_port">{{ lang("smtp_port")}}</label>
                       <div class="controls"> 
-                            <input class="form-control tip" id="smtp_port"  [(ngModel)]="curProduct.smtpPort" /></div>
+                            <input class="form-control tip" id="smtp_port"  [(ngModel)]="curSetting.smtpPort" /></div>
                   </div>
               </div>
               <div class="col-md-4">
                   <div class="form-group">
                       <label class="control-label" for="smtp_crypto">{{ lang("smtp_crypto")}}</label>
                       <div class="controls">
-                            <select id='smtp_crypto' name="smtp_crypto" class='form-control tip' [(ngModel)]="selectedSmtpCrypto">
+                            <select id='smtp_crypto' name="smtp_crypto" class='form-control tip' [(ngModel)]="curSetting.selectedSmtpCrypto">
                                 <option value="">{{lang('none')}}</option>
                                 <option value="tls">TLS</option>
                                 <option value="ssl">SSL</option>

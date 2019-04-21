@@ -18,7 +18,28 @@ export class UsersComponent implements OnInit {
   $Settings = {
     rows_per_page:10
   }
-  $users:any;
+  users = [
+    {
+      "id": "1",
+      "first_name": "Admin",
+      "last_name": "Admin",
+      "email": "admin@igetpower.com",
+      "phone": "0105292122",
+      "groups": [{
+          description:"Administrator"
+      }]
+    },
+    {
+      "id": "2",
+      "first_name": "feng",
+      "last_name": "shan",
+      "email": "feng_5241@gmail.com",
+      "phone": "985086351",
+      "groups": [{
+          description:"Sales Staff"
+      }]
+    }
+  ];
   sim = {
     in_group:{
       admin:true

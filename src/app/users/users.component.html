@@ -16,22 +16,19 @@
                 </tr>
             </thead>
             <tbody>
-                    <tr ng-repeat="user in $users">
+                    <tr *ngFor="let user of users">
                         <td>{{ user.first_name}}</td>
                         <td>{{ user.last_name}}</td>
                         <td>{{ user.email}}</td>
                         <td>{{ user.phone}}</td>
                         <td>{{displayUserGroups(user)}}</td>
                         <td style="text-align:center;">
-                            <!-- <center> -->
                                 <div class="btn-group">
-                            <!-- <a class="tip btn btn-primary btn-xs" title="'.lang("edit_user").'" href="'.site_url('auth/edit_user/').'?id=' . $user->id . '"> <i class="fa fa-edit"></i> </a>'; -->
-                            <a class="tip btn btn-primary btn-xs" title="edit_user" routerLink="users/edit/"{{user.id}}> <i class="fa fa-edit"></i> </a>
-                            <a *ngIf="sim.in_group.admin" class="tip btn btn-danger btn-xs" title="delete_user" routerLink="users/delete/"{user.id} onClick="return confirm('alert_x_user')">
+                            <a class="tip btn btn-primary btn-xs" title="edit_user" routerLink="users/edit/{{user.id}}"> <i class="fa fa-edit"></i> </a>
+                            <a *ngIf="sim.in_group.admin" class="tip btn btn-danger btn-xs" title="delete_user" routerLink="users/delete/{{user.id}}" onClick="return confirm('alert_x_user')">
                               <i class="fa fa-trash-o"></i>
                             </a></div>
-                        <!-- </center> -->
-                    </td>
+                        </td>
                         </tr>
                 </tbody>
             </table>

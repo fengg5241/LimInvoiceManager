@@ -19,7 +19,7 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr *ngFor="row of $companies; i=index" data-index="i">
+				<tr *ngFor="let row of $companies; let i=index">
 					<td>{{ i}}</td>
 					<td>{{ row.company}}</td>
 					<td>{{ row.name}}</td>

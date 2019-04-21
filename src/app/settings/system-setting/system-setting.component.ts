@@ -10,7 +10,34 @@ import * as $ from 'jquery';
 export class SystemSettingComponent implements OnInit {
 
   $page_title = "System Settings";
-
+  curSetting = {
+    sitename:"",
+    selectedTheme:"",
+    selectedLanguage:"",
+    selectedDisplayWords:"",
+    currencyPrefix:"",
+    selectedRate:"",
+    defaultEmail:"",
+    selectedEmailHtml:"",
+    selectedDateFormat:"",
+    selectedPrintPayment:"",
+    selectedCalendar:"",
+    selectedRestrictSales:"",
+    selectedRowsPerPage:"",
+    noOfRows:"",
+    selectedAutoCreateCustomerUser:"",
+    selectedProductDiscount:"",
+    selectedDecimals:"",
+    selectedDecimalsSep:"",
+    selectedThousandsSep:"",
+    selectedProtocol:"",
+    mailpath:"",
+    smtpHost:"",
+    smtpUser:"",
+    smtpPass:"",
+    smtpPort:"",
+    selectedSmtpCrypto:"",
+  }
 
   constructor(private langService: LangService) { }
 

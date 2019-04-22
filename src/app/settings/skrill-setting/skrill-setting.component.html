@@ -1,3 +1,57 @@
-<p>
-  skrill-setting works!
-</p>
+<div class="page-head">
+    <h2 class="pull-left">{{ $page_title}} <span class="page-meta">{{ lang("enter_info")}}</span> </h2>
+</div>
+<div class="clearfix"></div>
+<div class="matter">
+    <div class="container">
+
+      <!-- <?php $attrib = array('role' => 'form', 'id="skrill_form"');
+      echo form_open("settings/skrill", $attrib);
+      ?> -->
+      <div class="row">            
+          <div class="col-md-6">
+              <div class="form-group">
+                  {{ lang("activate")}}
+                  <select id='active' name="active" class='form-control tip' [(ngModel)]="curSetting.active"  required="required" >
+                      <option value="1">Yes</option>
+                      <option value="0">No</option>
+                   </select>
+              </div>
+
+              <div class="form-group">
+                  {{ lang("skrill_account_email")}}
+                  <input class="form-control tip" id="account_email" [(ngModel)]="curSetting.accountEmail" />
+                  <small class="help-block">{{lang("skrill_email_tip")}}</small>
+              </div>
+
+              <div class="form-group">
+                  {{ lang("secret_word")}}
+                  <input class="form-control tip" id="secret_word" [(ngModel)]="curSetting.secretWord" />
+                  <small class="help-block">{{lang("secret_word_tip")}}</small>
+              </div>
+
+              <div class="form-group">
+                  {{ lang("fixed_charges")}}
+                  <input class="form-control tip" id="fixed_charges" [(ngModel)]="curSetting.fixedCharges" />
+                  <small class="help-block">{{lang("fixed_charges_tip")}}</small>
+              </div>
+              <div class="form-group">
+                  {{ lang("extra_charges_my")}}
+                  <input class="form-control tip" id="extra_charges_my" [(ngModel)]="curSetting.extraChargesMy" />
+                  <small class="help-block">{{lang("extra_charges_my_tip")}}</small>
+              </div>
+              <div class="form-group">
+                  {{ lang("extra_charges_others")}}
+                  <input class="form-control tip" id="extra_charges" [(ngModel)]="curSetting.extraChargesOther" />
+                  <small class="help-block">{{lang("extra_charges_others_tip")}}</small>
+              </div>
+
+          </div>
+      </div>
+      <div style="clear: both; height: 10px;"></div>
+      <div class="form-group">
+          <button class="btn btn-primary" >{{lang("update_settings")}}</button>
+      </div>
+  </div>
+  <!-- {{ form_close()}}  -->
+</div>

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { LangService } from '../../../lang.service';
 
 @Component({
   selector: 'app-tax-rate-detail',
@@ -7,9 +8,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TaxRateDetailComponent implements OnInit {
 
-  constructor() { }
+  $page_title = "Add New Tax Rate";
+  curTaxRate = {
+    name:"",
+    rate:"",
+    selectedType:""
+  }
+  constructor(private langService: LangService) { }
 
   ngOnInit() {
+  }
+
+  lang(word) {
+    return this.langService.lang(word);
   }
 
 }

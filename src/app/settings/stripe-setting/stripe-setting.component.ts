@@ -13,8 +13,8 @@ export class StripeSettingComponent implements OnInit {
 
   curSetting = {
     active:0,
-    accountEmail:"",
-    secretWord:"",
+    secretKey:"",
+    publishableKey:"",
     fixedCharges:"",
     extraChargesMy:"",
     extraChargesOther:"",
@@ -23,22 +23,26 @@ export class StripeSettingComponent implements OnInit {
 
   ngOnInit() {
     let thisObject = this;
-    $(document).ready(function () {
-      $('#active').change(function () {
-        var v = $(this).val();
-        if (v == 1) {
-          $('#account_email').attr('required', 'required');
-        } else {
-          $('#account_email').removeAttr('required');
-        }
+    $(document).ready(function(){
+      $('#active').change(function(){
+          var v = $(this).val();
+          if(v == 1) {
+              $('#secret_key').attr('required', 'required');
+              $('#publishable_key').attr('required', 'required');
+          } else {
+              $('#secret_key').removeAttr('required');
+              $('#publishable_key').removeAttr('required');
+          }
       });
       var v = thisObject.curSetting.active;
-      if (v == 1) {
-        $('#account_email').attr('required', 'required');
+      if(v == 1) {
+          $('#secret_key').attr('required', 'required');
+          $('#publishable_key').attr('required', 'required');
       } else {
-        $('#account_email').removeAttr('required');
+          $('#secret_key').removeAttr('required');
+          $('#publishable_key').removeAttr('required');
       }
-    });
+  });
   }
 
   lang(word) {

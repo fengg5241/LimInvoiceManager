@@ -1,3 +1,77 @@
-<p>
-  notes-setting works!
-</p>
+<div class="page-head">
+  <h2 class="pull-left">{{ $page_title}} <span class="page-meta">{{ lang("Please use the table below to navigate or filter the results. You can download the table as csv, excel and pdf.")}}</span> </h2>
+</div>
+<div class="clearfix"></div>
+<div class="matter">
+  <div class="container">
+      <table id="fileData" class="table table-bordered table-condensed table-hover table-striped" style="margin-bottom: 5px;">
+          <thead>
+              <tr>
+                  <th style="width:33px;">{{ lang('no')}}</th>
+                  <th>{{ lang('description')}}</th>
+                  <th style="width:80px;">{{ lang('default')}}</th>
+                  <th style="width:80px;">{{ lang('actions')}}</th>
+              </tr>
+          </thead>
+          <tbody>
+              <tr *ngFor="let row of $notes; let i=index">
+              <tr id="{{ row.id}}">
+                  <td style="width:30px;" class="text-center">{{ i+1}}</td>
+                  <td class="description">{{ row.description}}</td>
+                  <td style="width:80px;" class="default_sale text-center">
+                      <i *ngif="row.defaultSale == 1" class="fa fa-check"></i> {{lang('sales')}}
+                      <i *ngif="row.defaultQuote == 1" class="fa fa-check"></i> {{lang('quotes')}}
+                  </td>
+                  <td style="width:80px;" class="text-center">
+                      <center><div class="btn-group"> <a class="tip btn btn-primary btn-xs edit" title="{{lang('edit_note')}}"> 
+                        <i class="fa fa-edit"></i> </a>
+                        <a class="tip btn btn-danger btn-xs" title="{{lang('delete_note')}}'" 
+                        routerLink="/settings/delete_tax_rate/{{row.id}}"> <i class="fa fa-trash-o"></i> </a>
+                      </div></center>
+                  </td>
+              </tr>
+          </tbody>
+      </table>
+      <p><a href="#" class="btn btn-primary add">{{ lang('new_note')}}</a></p>
+      <div class="clearfix"></div>
+  </div>
+  <div class="clearfix"></div>
+</div>
+
+<div class="modal fade" id="nModal" tabindex="-1" role="dialog" aria-labelledby="nModalLabel">
+<div class="modal-dialog" role="document">
+  <div class="modal-content">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <h4 class="modal-title" id="nModalLabel">{{ lang('new_note')}}</h4>
+    </div>
+    <!-- {{ form_open('settings/note', 'style="margin:0;"')}} -->
+    <div class="modal-body">
+      <div class="form-group">
+          {{ lang('description')}}
+          <textarea id="description" required="required" [(ngModel)]="curSetting.description"></textarea><br>
+      </div>
+      <div class="form-group">
+          <label for="default_sale">{{ lang('default') ({{lang('sales')}})</label>
+          <select id='default_sale' name="default_sale" class='form-control tip chzn-select' [(ngModel)]="curSetting.defaultSale" data-placeholder="{{lang('select')}}">
+              <option value="0">{{lang("no")}}</option>
+              <option value="1">{{lang("yes")}}</option>
+           </select>
+      </div>
+      <div class="form-group">
+          <label for="default_quote">{{ lang('default').' ('.lang('quotes').')'}}</label>
+          <select id='default_quote' name="default_quote" class='form-control tip chzn-select' [(ngModel)]="curSetting.defaultQuote" data-placeholder="{{lang('select')}}">
+              <option value="0">{{lang("no")}}</option>
+              <option value="1">{{lang("yes")}}</option>
+           </select>
+      </div>
+      <input type="hidden" name="action" id="action">
+      <input type="hidden" name="id" id="id">
+    </div>
+    <div class="modal-footer">
+      <button  class="btn btn-primary">{{ lang('submit')}}</button>
+    </div>
+    <!-- {{ form_close()}} -->
+  </div>
+</div>
+</div>

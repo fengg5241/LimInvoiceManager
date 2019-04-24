@@ -49,6 +49,7 @@ const routes: Routes = [
   { path: 'settings/stripeSetting', component: StripeSettingComponent },
   { path: 'settings/companies', component: CompanySettingComponent },
   { path: 'settings/companies/new', component: CompanyDetailComponent },
+  { path: 'settings/companies/edit/:id', component: CompanyDetailComponent },
   { path: 'settings/textRate', component: TaxRateSettingComponent },
   { path: 'settings/textRate/new', component: TaxRateDetailComponent },
   { path: 'settings/notesSetting', component: NotesSettingComponent },

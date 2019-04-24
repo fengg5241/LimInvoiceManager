@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { LangService } from '../../lang.service';
+import { HttpClient } from '@angular/common/http';
 import * as $ from 'jquery';
 
 @Component({
@@ -10,9 +11,15 @@ import * as $ from 'jquery';
 export class CompanySettingComponent implements OnInit {
 
   $page_title = "Companies";
-  constructor(private langService: LangService) { }
+  $companies :any;
+  constructor(private langService: LangService,
+    private http: HttpClient) { }
 
   ngOnInit() {
+
+    this.http.get('/company/selectAll').subscribe(data => {
+      this.$companies = data;
+    });
 
     $(document).ready(function() {
       $('#fileData').dataTable( {

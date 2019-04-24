@@ -9,7 +9,7 @@ import * as $ from 'jquery';
 })
 export class StripeSettingComponent implements OnInit {
 
-  $page_title = "Skrill Settings"
+  $page_title = "Stripe Settings"
 
   curSetting = {
     active:0,

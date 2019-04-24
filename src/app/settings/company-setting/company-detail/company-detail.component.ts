@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { LangService } from '../../../lang.service';
+import { HttpClient } from '@angular/common/http';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-company-detail',
@@ -25,13 +28,22 @@ export class CompanyDetailComponent implements OnInit {
     country:"",
     phone:""
   }
-  constructor() { }
+  constructor(private langService: LangService,
+    private http: HttpClient,
+    private location: Location) { }
 
   createCompany(){
-
+    this.http.post('/company/selectAll',{data:this.curCompany}).subscribe(data => {
+      // this.curCompany = data;
+      this.location.go("/settings/companies")
+    });
   }
 
   ngOnInit() {
+  }
+
+  lang(word) {
+    return this.langService.lang(word);
   }
 
 }

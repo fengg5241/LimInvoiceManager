@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { LangService } from '../../lang.service';
+import { LangService } from '../../../lang.service';
 import { HttpClient } from '@angular/common/http';
 import { Location } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
@@ -37,7 +37,7 @@ export class CompanyDetailComponent implements OnInit {
     private route: ActivatedRoute) { }
 
   createCompany(){
-    this.http.post('/company/insert',{data:this.curCompany}).subscribe(data => {
+    this.http.post('/company/insert',this.curCompany).subscribe(data => {
       this.location.go("/settings/companies")
     });
   }

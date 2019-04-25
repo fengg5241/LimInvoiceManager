@@ -19,15 +19,15 @@
                   <td style="width:30px;" class="text-center">{{ i+1}}</td>
                   <td class="description">{{ row.description}}</td>
                   <td style="width:80px;" class="default_sale text-center">
-                      <i *ngif="row.defaultSale == 1" class="fa fa-check"></i> {{lang('sales')}}
-                      <i *ngif="row.defaultQuote == 1" class="fa fa-check"></i> {{lang('quotes')}}
+                      <i *ngIf="row.defaultSale == 1" class="fa fa-check"></i> {{lang('sales')}}
+                      <i *ngIf="row.defaultQuote == 1" class="fa fa-check"></i> {{lang('quotes')}}
                   </td>
                   <td style="width:80px;" class="text-center">
-                      <center><div class="btn-group"> <a class="tip btn btn-primary btn-xs edit" title="{{lang('edit_note')}}"> 
+                      <div class="btn-group"> <a class="tip btn btn-primary btn-xs edit" title="{{lang('edit_note')}}"> 
                         <i class="fa fa-edit"></i> </a>
                         <a class="tip btn btn-danger btn-xs" title="{{lang('delete_note')}}'" 
                         routerLink="/settings/delete_tax_rate/{{row.id}}"> <i class="fa fa-trash-o"></i> </a>
-                      </div></center>
+                      </div>
                   </td>
               </tr>
           </tbody>
@@ -52,15 +52,15 @@
           <textarea id="description" required="required" [(ngModel)]="curSetting.description"></textarea><br>
       </div>
       <div class="form-group">
-          <label for="default_sale">{{ lang('default') ({{lang('sales')}})</label>
-          <select id='default_sale' name="default_sale" class='form-control tip chzn-select' [(ngModel)]="curSetting.defaultSale" data-placeholder="{{lang('select')}}">
+          <label for="default_sale">{{ lang('default')}} ({{lang('sales')}})</label>
+          <select id='default_sale' name="default_sale" class='form-control tip chzn-select' [(ngModel)]="curSetting.defaultSale">
               <option value="0">{{lang("no")}}</option>
               <option value="1">{{lang("yes")}}</option>
            </select>
       </div>
       <div class="form-group">
-          <label for="default_quote">{{ lang('default').' ('.lang('quotes').')'}}</label>
-          <select id='default_quote' name="default_quote" class='form-control tip chzn-select' [(ngModel)]="curSetting.defaultQuote" data-placeholder="{{lang('select')}}">
+          <label for="default_quote">{{ lang('default')}} ({{lang('quotes')}})</label>
+          <select id='default_quote' name="default_quote" class='form-control tip chzn-select' [(ngModel)]="curSetting.defaultQuote" >
               <option value="0">{{lang("no")}}</option>
               <option value="1">{{lang("yes")}}</option>
            </select>

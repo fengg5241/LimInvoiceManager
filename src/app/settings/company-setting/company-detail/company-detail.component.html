@@ -132,7 +132,8 @@
 
         <div class="form-group">
           <div class="controls"> 
-              <button class="btn btn-primary" (click)="createCompany()">{{lang("add_company")}}</button>
+              <button *ngif="isNewCompany" class="btn btn-primary" (click)="createCompany()">{{lang("add_company")}}</button>
+              <button *ngif="!isNewCompany" class="btn btn-primary" (click)="updateCompany()">{{lang("udate_company")}}</button>
           </div>
         </div>
         <!-- {{ form_close()}}  -->

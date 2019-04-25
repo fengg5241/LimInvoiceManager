@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { LangService } from '../../../lang.service';
+import { LangService } from '../../lang.service';
 import { HttpClient } from '@angular/common/http';
 import { Location } from '@angular/common';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-company-detail',
@@ -11,7 +12,9 @@ import { Location } from '@angular/common';
 export class CompanyDetailComponent implements OnInit {
 
   $page_title = "Add Company";
-  curCompany = {
+  isNewCompany = true;
+  curCompany:any;
+  newCompany = {
     name:"",
     email:"",
     company:"",
@@ -30,16 +33,31 @@ export class CompanyDetailComponent implements OnInit {
   }
   constructor(private langService: LangService,
     private http: HttpClient,
-    private location: Location) { }
+    private location: Location,
+    private route: ActivatedRoute) { }
 
   createCompany(){
-    this.http.post('/company/selectAll',{data:this.curCompany}).subscribe(data => {
-      // this.curCompany = data;
+    this.http.post('/company/insert',{data:this.curCompany}).subscribe(data => {
+      this.location.go("/settings/companies")
+    });
+  }
+
+  updateCompany(){
+    this.http.post('/company/update',{data:this.curCompany}).subscribe(data => {
       this.location.go("/settings/companies")
     });
   }
 
   ngOnInit() {
+    let companyId = this.route.snapshot.paramMap.get('id');
+    if(companyId){
+      this.isNewCompany = false;
+      this.http.get('/company/selectAll').subscribe(data => {
+        this.curCompany = data;
+      });
+    }else {
+      this.curCompany= Object.assign({}, this.newCompany);
+    }
   }
 
   lang(word) {

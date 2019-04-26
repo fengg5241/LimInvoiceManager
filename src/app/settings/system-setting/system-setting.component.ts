@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { LangService } from '../../lang.service';
+import { HttpClient } from '@angular/common/http';
 import * as $ from 'jquery';
 
 @Component({
@@ -10,6 +11,7 @@ import * as $ from 'jquery';
 export class SystemSettingComponent implements OnInit {
 
   $page_title = "System Settings";
+  settings:any;
   curSetting = {
     sitename:"",
     selectedTheme:"",
@@ -39,9 +41,19 @@ export class SystemSettingComponent implements OnInit {
     selectedSmtpCrypto:"",
   }
 
-  constructor(private langService: LangService) { }
+  constructor(private langService: LangService,
+    private http: HttpClient) { }
 
   ngOnInit() {
+
+    this.http.get('/sysSetting/selectAll').subscribe(data => {
+      this.settings = data;
+      if(this.settings.length > 0){
+        this.curSetting = Object.assign({}, this.settings[0]);
+      }
+
+    });
+
     let thisObject = this;
     $(document).ready(function () {
       if ($('#protocol').val() == 'smtp') {
@@ -69,5 +81,10 @@ export class SystemSettingComponent implements OnInit {
     return this.langService.lang(word);
   }
 
+  updateSysSetting(){
+    this.http.post('/sysSetting/update',this.curSetting).subscribe(data => {
+      alert("Successful !");
+    });
+  }
 
 }

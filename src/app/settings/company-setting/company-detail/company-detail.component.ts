@@ -2,8 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { LangService } from '../../../lang.service';
 import { HttpClient } from '@angular/common/http';
 import { Location } from '@angular/common';
-import { ActivatedRoute } from '@angular/router';
-
+import { ActivatedRoute,Router } from '@angular/router';
 @Component({
   selector: 'app-company-detail',
   templateUrl: './company-detail.component.html',
@@ -34,16 +33,17 @@ export class CompanyDetailComponent implements OnInit {
   constructor(private langService: LangService,
     private http: HttpClient,
     private location: Location,
-    private route: ActivatedRoute) { }
+    private route: ActivatedRoute,
+    private router: Router) { }
 
   createCompany(){
     this.http.post('/company/insert',this.curCompany).subscribe(data => {
-      this.location.go("/settings/companies")
+      this.router.navigateByUrl("settings/companies")
     });
   }
 
   updateCompany(){
-    this.http.post('/company/update',{data:this.curCompany}).subscribe(data => {
+    this.http.post('/company/update',this.curCompany).subscribe(data => {
       this.location.go("/settings/companies")
     });
   }
@@ -52,7 +52,8 @@ export class CompanyDetailComponent implements OnInit {
     let companyId = this.route.snapshot.paramMap.get('id');
     if(companyId){
       this.isNewCompany = false;
-      this.http.get('/company/selectAll').subscribe(data => {
+      this.$page_title = "Edit Company";
+      this.http.get('/company/selectById/'+companyId).subscribe(data => {
         this.curCompany = data;
       });
     }else {

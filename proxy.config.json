@@ -2,5 +2,9 @@
     "/company": {
       "target": "http://localhost:8080",
       "secure": false
+    },
+    "/sysSetting": {
+      "target": "http://localhost:8080",
+      "secure": false
     }
   }

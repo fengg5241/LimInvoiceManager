@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 import { LangService } from '../lang.service';
+import { UtilService } from '../common/util.service';
 import * as $ from 'jquery';
 import 'datatables.net';
 import 'datatables.net-bs';
@@ -15,12 +17,21 @@ import 'datatables.net-buttons/js/buttons.html5';
 export class ProductsComponent implements OnInit {
 
   $page_title = "Products";
-  $Settings = {
-    rows_per_page:10
-  }
-  constructor(private langService:LangService) { }
+  $settings :any;
+  $products:any;
+
+  constructor(private langService:LangService,
+    private utilService:UtilService,
+    private http: HttpClient) {
+        this.$settings = this.utilService.getSysSettings();
+     }
 
   ngOnInit() {
+      console.log(this.$settings);
+    this.http.get('/api/product/selectAll').subscribe(data => {
+        this.$products = data;
+    });
+
     let thisObject = this;
     $(document).ready(function() {
 
@@ -40,7 +51,8 @@ export class ProductsComponent implements OnInit {
           // "pageLength": {{thisObject.$Settings.rows_per_page}},
           "pageLength": 10,
           "processing": true, 
-          'ajax' : { url: './data/getProducts.txt', type: 'GET', "dataSrc": ""},
+        //   'ajax' : { url: './data/getProducts.txt', type: 'GET', "dataSrc": ""},
+          'ajax' : { url: '/api/product/selectAll', type: 'GET', "dataSrc": ""},
           buttons: [
           { extend: 'copyHtml5', exportOptions: { columns: [ 0, 1, 2, 3 ] } },
           { extend: 'excelHtml5', 'footer': true, exportOptions: { columns: [ 0, 1, 2, 3 ] } },
@@ -50,13 +62,13 @@ export class ProductsComponent implements OnInit {
         //   { extend: 'colvis', text: 'Columns'},
           ],
           "columns": [
-          { "data": "pid", "searchable": false, "visible": false },
-          { "data": "product_name" },
+          { "data": "id", "searchable": false, "visible": false },
+          { "data": "name" },
           { "data": "details" },
           { "data": "price" },
-          { "data": "tax_rate" },
-          { "data": "tax_method", "render": tax_method },
-          { "data": "Actions", "searchable": false, "orderable": false }
+          { "data": "taxRate" },
+          { "data": "taxMethod", "render": tax_method },
+        //   { "data": "Actions", "searchable": false, "orderable": false }
           ]
   
       });

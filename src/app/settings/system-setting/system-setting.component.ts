@@ -12,6 +12,9 @@ export class SystemSettingComponent implements OnInit {
 
   $page_title = "System Settings";
   settings:any;
+  $tax_rates:any;
+  $date_formats:any;
+
   curSetting = {
     siteName:"",
     theme:"",
@@ -46,7 +49,15 @@ export class SystemSettingComponent implements OnInit {
 
   ngOnInit() {
 
-    this.http.get('/sysSetting/selectAll').subscribe(data => {
+    this.http.get('/api/taxRate/selectAll').subscribe(data => {
+      this.$tax_rates = data;
+    });
+
+    this.http.get('/api/dateFormat/selectAll').subscribe(data => {
+      this.$date_formats = data;
+    });
+    
+    this.http.get('/api/sysSetting/selectAll').subscribe(data => {
       this.settings = data;
       if(this.settings.length > 0){
         this.curSetting = Object.assign({}, this.settings[0]);
@@ -82,7 +93,7 @@ export class SystemSettingComponent implements OnInit {
   }
 
   updateSysSetting(){
-    this.http.post('/sysSetting/update',this.curSetting).subscribe(data => {
+    this.http.post('/api/sysSetting/update',this.curSetting).subscribe(data => {
       alert("Successful !");
     });
   }

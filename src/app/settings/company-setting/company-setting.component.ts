@@ -17,7 +17,7 @@ export class CompanySettingComponent implements OnInit {
 
   ngOnInit() {
 
-    this.http.get('/company/selectAll').subscribe(data => {
+    this.http.get('/api/company/selectAll').subscribe(data => {
       this.$companies = data;
     });
 

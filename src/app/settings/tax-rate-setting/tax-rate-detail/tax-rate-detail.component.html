@@ -21,7 +21,7 @@
       <div class="form-group">
         <label for="type">{{ lang("type")}}</label>
         <div class="controls controls-row">
-            <select id='type' name="type" class='form-control' [(ngModel)]="curTaxRate.selectedType">
+            <select id='type' name="type" class='form-control' [(ngModel)]="curTaxRate.type">
                 <option value="">{{lang("select")}} {{lang("type")}}</option>
                 <option value="1">{{lang("percenage")}}  (%)</option>
                 <option value="2">{{lang("fixed")}}  ($)</option>
@@ -30,7 +30,7 @@
       </div>
       <div class="control-group">
         <div class="controls"> 
-            <button class="btn btn-primary" >{{lang("update_tax_rate")}}</button>
+            <button class="btn btn-primary" (click)="saveSetting()">{{lang("save_tax_rate")}}</button>
           </div>
       </div>
       <!-- {{ form_close();?> -->

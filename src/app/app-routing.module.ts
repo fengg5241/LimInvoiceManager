@@ -50,8 +50,9 @@ const routes: Routes = [
   { path: 'settings/companies', component: CompanySettingComponent },
   { path: 'settings/companies/new', component: CompanyDetailComponent },
   { path: 'settings/companies/edit/:id', component: CompanyDetailComponent },
-  { path: 'settings/textRate', component: TaxRateSettingComponent },
-  { path: 'settings/textRate/new', component: TaxRateDetailComponent },
+  { path: 'settings/taxRate', component: TaxRateSettingComponent },
+  { path: 'settings/taxRate/new', component: TaxRateDetailComponent },
+  { path: 'settings/taxRate/edit/:id', component: TaxRateDetailComponent },
   { path: 'settings/notesSetting', component: NotesSettingComponent },
   { path: 'settings/backupSetting', component: BackupsSettingComponent },
 ]

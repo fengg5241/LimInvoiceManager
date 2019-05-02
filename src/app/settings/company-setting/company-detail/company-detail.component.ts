@@ -37,14 +37,14 @@ export class CompanyDetailComponent implements OnInit {
     private router: Router) { }
 
   createCompany(){
-    this.http.post('/company/insert',this.curCompany).subscribe(data => {
+    this.http.post('/api/company/insert',this.curCompany).subscribe(data => {
       this.router.navigateByUrl("settings/companies")
     });
   }
 
   updateCompany(){
-    this.http.post('/company/update',this.curCompany).subscribe(data => {
-      this.location.go("/settings/companies")
+    this.http.post('/api/company/update',this.curCompany).subscribe(data => {
+      this.router.navigateByUrl("/settings/companies")
     });
   }
 
@@ -53,7 +53,7 @@ export class CompanyDetailComponent implements OnInit {
     if(companyId){
       this.isNewCompany = false;
       this.$page_title = "Edit Company";
-      this.http.get('/company/selectById/'+companyId).subscribe(data => {
+      this.http.get('/api/company/selectById/'+companyId).subscribe(data => {
         this.curCompany = data;
       });
     }else {

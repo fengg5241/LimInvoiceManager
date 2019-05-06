@@ -29,7 +29,7 @@
       <div *ngIf="$Settings.default_tax_rate" class="form-group">
           <label for="tax_rate">{{lang("tax_rate")}}</label>
           <div class="controls">
-            <select  id="tax_rate" name="tax_rates" class='form-control' [(ngModel)]="selectedRate">
+            <select  id="tax_rate" name="tax_rates" class='form-control' [(ngModel)]="curProduct.taxRate">
                 <option *ngFor="let rate of $tax_rates" value="{{rate.id}}">{{rate.name}}</option>
             </select>
           </div>
@@ -37,14 +37,14 @@
 
       <div *ngIf="$Settings.default_tax_rate" class="form-group">
             <label for="tax_method">{{lang("tax_method")}}</label>
-            <select id='tax_method' name="tax_method" class='form-control' [(ngModel)]="selectedTaxMethod">
+            <select id='tax_method' name="tax_method" class='form-control' [(ngModel)]="curProduct.taxMethod">
                 <option value="exclusive">{{lang('exclusive')}}</option>
                 <option value="inclusive">{{lang('inclusive')}}</option>
             </select>
       </div>
 
       <div class="form-group controls">
-            <button class="btn btn-primary" (click)="createPrize()">{{lang("add_product")}}</button>
+            <button class="btn btn-primary" (click)="save()">{{lang("save_product")}}</button>
       </div>
 
       <div class="clearfix"></div>

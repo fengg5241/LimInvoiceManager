@@ -30,8 +30,16 @@ export class UserDetailComponent implements OnInit {
     return this.langService.lang(word);
   }
 
-  createUser(){
-
+  save(){
+    if(this.isNew){
+      this.http.post('/api/product/insert',this.curProduct).subscribe(data => {
+        this.router.navigateByUrl("products")
+      });
+    }else{
+      this.http.post('/api/product/update',this.curProduct).subscribe(data => {
+        this.router.navigateByUrl("products")
+      });
+    }
   }
 
 }

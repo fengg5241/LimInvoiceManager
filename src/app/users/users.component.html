@@ -17,22 +17,22 @@
             </thead>
             <tbody>
                     <tr *ngFor="let user of users">
-                        <td>{{ user.first_name}}</td>
-                        <td>{{ user.last_name}}</td>
+                        <td>{{ user.firstName}}</td>
+                        <td>{{ user.lastName}}</td>
                         <td>{{ user.email}}</td>
                         <td>{{ user.phone}}</td>
-                        <td>{{displayUserGroups(user)}}</td>
+                        <td>{{ user.description}}</td>
                         <td style="text-align:center;">
                                 <div class="btn-group">
-                            <a class="tip btn btn-primary btn-xs" title="edit_user" routerLink="users/edit/{{user.id}}"> <i class="fa fa-edit"></i> </a>
-                            <a *ngIf="sim.in_group.admin" class="tip btn btn-danger btn-xs" title="delete_user" routerLink="users/delete/{{user.id}}" onClick="return confirm('alert_x_user')">
+                            <a class="tip btn btn-primary btn-xs" title="edit_user" routerLink="/users/edit/{{user.id}}"> <i class="fa fa-edit"></i> </a>
+                            <a *ngIf="sim.in_group.admin" class="tip btn btn-danger btn-xs" title="delete_user" (click)="delete(user.id)">
                               <i class="fa fa-trash-o"></i>
                             </a></div>
                         </td>
                         </tr>
                 </tbody>
             </table>
-            <p><a routerLink="users/new" class="btn btn-primary">{{ lang("add_user")}}</a></p>
+            <p><a routerLink="/users/new" class="btn btn-primary">{{ lang("add_user")}}</a></p>
             <div class="clearfix"></div>
         </div>
         <div class="clearfix"></div>

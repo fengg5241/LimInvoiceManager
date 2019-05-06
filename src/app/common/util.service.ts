@@ -14,15 +14,18 @@ export class UtilService {
     if(sysSettings){
       return Promise.resolve(JSON.parse(sysSettings))
     }else {
-      this.http.get('/api/sysSetting/selectAll').subscribe(data => {
-        let settings:any = data;
-        if(settings.length > 0){
-          this.updateSysSettings(JSON.stringify(settings[0]))
-          return settings[0];
-        }else {
-          return null;
-        }
-      });
+      return this.http.get('/api/sysSetting/selectAll').toPromise()
+        
+
+      // this.http.get('/api/sysSetting/selectAll').subscribe(data => {
+      //   let settings:any = data;
+      //   if(settings.length > 0){
+      //     this.updateSysSettings(JSON.stringify(settings[0]))
+      //     return settings[0];
+      //   }else {
+      //     return null;
+      //   }
+      // });
     }
   }
 

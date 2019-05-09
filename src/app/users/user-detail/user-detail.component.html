@@ -6,7 +6,7 @@
 </div>
 <div class="clearfix"></div>
 <div class="matter">
-  <div class="container">
+  <div class="container" *ngIf="curUser">
     <!-- <?php $attrib = array('class' => 'form-horizontal'); echo form_open("auth/create_user");?> -->
     <div class="form-group">
       <label for="first_name">{{ lang("first_name")}}</label>
@@ -43,14 +43,17 @@
       <label>{{ lang("user_role")}}</label>
       <div class="controls">
         <label class="radio">
-          <input type="radio" name="role" id="optionsRadios1" value="1" [(ngModel)]="curUser.adminRole">
-          {{ lang("admin (Do every thing)")}} </label>
+          <input type="radio" name="role" id="optionsRadios1" value="admin" [(ngModel)]="curUser.role">
+          {{ lang("admin (Do every thing)")}} 
+        </label>
         <label class="radio">
-          <input type="radio" name="role" id="optionsRadios2" value="2" [(ngModel)]="curUser.salesRole">
+          <input type="radio" name="role" id="optionsRadios2" value="staff" [(ngModel)]="curUser.role">
           {{ lang("Sales Staff (View, Add & Edit only)")}} </label>
         <label class="radio">
-          <input type="radio" name="role" id="optionsRadios3" value="3" [(ngModel)]="curUser.viewerRole">
+          <input type="radio" name="role" id="optionsRadios3" value="viewer" [(ngModel)]="curUser.role">
           {{ lang("Viewer (View only)")}} </label>
+          <!-- <input type="radio" value="1" name="gender" [ngModel]="user.gender" > Male
+   <input type="radio" value="2" name="gender" [ngModel]="user.gender" > Female -->
       </div>
     </div>
     <div class="form-group">

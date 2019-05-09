@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { LangService } from '../../lang.service';
 import * as $ from 'jquery';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-paypal-setting',
@@ -10,7 +11,7 @@ import * as $ from 'jquery';
 export class PaypalSettingComponent implements OnInit {
 
   $page_title = "Paypal Settings"
-
+  settings:any;
   curSetting = {
     active:0,
     accountEmail:"",
@@ -18,9 +19,18 @@ export class PaypalSettingComponent implements OnInit {
     extraChargesMy:"",
     extraChargesOther:"",
   }
-  constructor(private langService: LangService) { }
+  constructor(private langService: LangService,
+    private http: HttpClient) { }
 
   ngOnInit() {
+
+    this.http.get('/api/paypal/selectAll').subscribe(data => {
+      this.settings = data;
+      if(this.settings.length > 0){
+        this.curSetting = Object.assign({}, this.settings[0]);
+      }
+    });
+
     let thisObject = this;
     $(document).ready(function () {
       $('#active').change(function () {
@@ -42,5 +52,11 @@ export class PaypalSettingComponent implements OnInit {
 
   lang(word) {
     return this.langService.lang(word);
+  }
+
+  updateSysSetting(){
+    this.http.post('/api/paypal/update',this.curSetting).subscribe(data => {
+      alert("Successful !");
+    });
   }
 }

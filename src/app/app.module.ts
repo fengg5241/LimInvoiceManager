@@ -34,6 +34,8 @@ import { DailyReportComponent } from './reports/daily-report/daily-report.compon
 import { SalesReportComponent } from './reports/sales-report/sales-report.component';
 import { PaymentReportComponent } from './reports/payment-report/payment-report.component';
 import { SystemSettingComponent } from './settings/system-setting/system-setting.component';
+import { QuotationsComponent } from './quotations/quotations.component';
+import { QuotationDetailComponent } from './quotations/quotation-detail/quotation-detail.component';
 
 @NgModule({
   declarations: [
@@ -65,7 +67,9 @@ import { SystemSettingComponent } from './settings/system-setting/system-setting
     DailyReportComponent,
     SalesReportComponent,
     PaymentReportComponent,
-    SystemSettingComponent
+    SystemSettingComponent,
+    QuotationsComponent,
+    QuotationDetailComponent
   ],
   imports: [
     BrowserModule,

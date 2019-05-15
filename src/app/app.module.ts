@@ -37,6 +37,8 @@ import { SystemSettingComponent } from './settings/system-setting/system-setting
 import { QuotationsComponent } from './quotations/quotations.component';
 import { QuotationDetailComponent } from './quotations/quotation-detail/quotation-detail.component';
 
+import { AngularDateTimePickerModule } from 'angular2-datetimepicker';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -76,7 +78,8 @@ import { QuotationDetailComponent } from './quotations/quotation-detail/quotatio
     AppRoutingModule,
     ChartModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    AngularDateTimePickerModule
   ],
   providers: [],
   bootstrap: [AppComponent]

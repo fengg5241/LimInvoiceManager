@@ -1,4 +1,13 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { LangService } from '../lang.service';
+import * as $ from 'jquery';
+import 'datatables.net';
+import 'datatables.net-bs';
+import 'datatables.net-buttons';
+import 'datatables.net-buttons/js/buttons.html5';
+import 'datatables.net-buttons/js/buttons.html5';
+import 'bootstrap'
 
 @Component({
   selector: 'app-quotations',
@@ -7,9 +16,130 @@ import { Component, OnInit } from '@angular/core';
 })
 export class QuotationsComponent implements OnInit {
 
-  constructor() { }
+  $page_title = "Quotations";
+  $settings: any;
+  quotations: any;
+
+  constructor(private langService: LangService,
+    private http: HttpClient) { }
 
   ngOnInit() {
+    this.initTable()
   }
+
+  async initTable(){
+    let sysSettings = localStorage.getItem("LimSysSettings");
+    if(sysSettings){
+        this.$settings = sysSettings;
+    }else {
+        let sysSettings1 = await this.http.get('/api/sysSetting/selectAll').toPromise()
+        this.$settings = sysSettings1[0];
+    }
+
+    let thisObject = this;
+    this.http.get('/api/quotation/selectAll').subscribe(data => {
+        this.quotations = data;
+       
+        function status(x) {
+          switch (x) {
+            case 'sent':
+            return '<div class="text-center"><small><span class="label label-success">'+thisObject.lang('sent')+'</span></small></div>';
+            break;
+            case 'ordered':
+            return '<div class="text-center"><small><span class="label label-success">'+thisObject.lang('ordered')+'</span></small></div>';
+            break;
+            case 'pending':
+            return '<div class="text-center"><small><span class="label label-default">'+thisObject.lang('pending')+'</span></small></div>';
+            break;
+            default:
+            return '<div class="text-center"><small><span class="label'+x+' label label-default">'+x+'</span></small></div>';
+          }
+        }
+
+        let thisObject = this;
+        $(document).ready(function () {
+
+            var table = $('#fileData').DataTable({
+
+                "dom": '<"text-center"<"btn-group"B>><"clear"><"row"<"col-md-6"l><"col-md-6 pr0"p>r>t<"row"<"col-md-6"i><"col-md-6"p>><"clear">',
+                "lengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
+                "order": [[1, "asc"]],
+                "pageLength": thisObject.$settings.rowsPerPage,
+                buttons: [
+                  { extend: 'copyHtml5', exportOptions: { columns: [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11 ] } },
+                  { extend: 'excelHtml5', 'footer': true, exportOptions: { columns: [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11 ] } },
+                  { extend: 'csvHtml5', 'footer': true, exportOptions: { columns: [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11 ] } },
+                  { extend: 'pdfHtml5', orientation: 'landscape', pageSize: 'A4', 'footer': true, 
+                  exportOptions: { columns: [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11 ] } },
+                    //   { extend: 'colvis', text: 'Columns'},
+                ],
+                "columns": [
+                    null,
+                    null,//"render": fld
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,//"render": cf
+                    null,//"render": cf
+                    null,//"render": cf
+                    null,//"render": cf,
+                    null,//"render": cf 
+                    null,//"render": fsd
+                    {"render": status},
+                    {"searchable": false, "orderable": false }
+                ]
+            });
+
+            $('#fileData tfoot th:not(:last-child)').each(function () {
+                var title = $(this).text();
+                $(this).html('<input type="text" class="text_filter" placeholder="' + title + '" />');
+            });
+
+            $('#search_table').on('keyup change', function (e) {
+                var code = (e.keyCode ? e.keyCode : e.which);
+                if (((code == 13 && table.search() !== this.value) || (table.search() !== '' && this.value === ''))) {
+                    table.search(this.value).draw();
+                }
+            });
+
+            table.columns().every(function () {
+                var self = this;
+                $('input', this.footer()).on('keyup change', function (e) {
+                    var code = (e.keyCode ? e.keyCode : e.which);
+                    if (((code == 13 && self.search() !== this.value) || (self.search() !== '' && this.value === ''))) {
+                        self.search(this.value).draw();
+                    }
+                });
+            });
+    });
+    });
+
+    
+}
+
+// fld($ldate)
+// {
+//     if ($ldate) {
+//         $date = explode(' ', $ldate);
+//         $jsd = $this->dateFormats['js_sdate'];
+//         $inv_date = $date[0];
+//         $time = $date[1];
+//         if ($jsd == 'dd-mm-yyyy' || $jsd == 'dd/mm/yyyy' || $jsd == 'dd.mm.yyyy') {
+//             $date = substr($inv_date, -4) . "-" . substr($inv_date, 3, 2) . "-" . substr($inv_date, 0, 2) . " " . $time;
+//         } elseif ($jsd == 'mm-dd-yyyy' || $jsd == 'mm/dd/yyyy' || $jsd == 'mm.dd.yyyy') {
+//             $date = substr($inv_date, -4) . "-" . substr($inv_date, 0, 2) . "-" . substr($inv_date, 3, 2) . " " . $time;
+//         } else {
+//             $date = $inv_date;
+//         }
+//         return $date;
+//     } else {
+//         return '0000-00-00 00:00:00';
+//     }
+// }
+
+  lang(word) {
+    return this.langService.lang(word);
+}
 
 }

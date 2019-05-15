@@ -28,6 +28,8 @@ import { MonthlyReportComponent } from './reports/monthly-report/monthly-report.
 import { DailyReportComponent } from './reports/daily-report/daily-report.component';
 import { SalesReportComponent } from './reports/sales-report/sales-report.component';
 import { PaymentReportComponent } from './reports/payment-report/payment-report.component';
+import { QuotationsComponent } from './quotations/quotations.component';
+import { QuotationDetailComponent } from './quotations/quotation-detail/quotation-detail.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -37,6 +39,9 @@ const routes: Routes = [
   { path: 'products/edit/:id', component: ProductDetailComponent },
   { path: 'products/upload', component: ProductUploadComponent },
   { path: 'sales', component: SalesComponent },
+  { path: 'sales/quotations', component: QuotationsComponent },
+  { path: 'sales/quotations/new', component: QuotationDetailComponent },
+  { path: 'sales/quotations/edit/:id', component: QuotationDetailComponent },
   { path: 'customers', component: CustomersComponent },
   { path: 'customers/new', component: CustomerDetailComponent },
   { path: 'customers/upload', component: CustomerUploadComponent },

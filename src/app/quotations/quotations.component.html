@@ -1,3 +1,160 @@
-<p>
-  quotations works!
-</p>
+<div class="page-head">
+	<h2 class="pull-left">{{ $page_title}} <span class="page-meta">{{ lang("list_results")}}</span> </h2>
+</div>
+<div class="clearfix"></div>
+<div class="matter">
+	<div class="container">
+		<div class="table-responsive">
+			<table id="fileData" class="table quotes table-bordered table-hover table-striped" style="margin-bottom: 5px;">
+				<thead>
+					<tr class="active">
+						<th style="max-width:35px; text-align:center;">{{ lang("id")}}</th>
+						<th class="col-xs-1">{{ lang("date")}}</th>
+						<th class="col-xs-2">{{ lang("billing_company")}}</th>
+						<th class="col-xs-1">{{ lang("reference_no")}}</th>
+						<th class="col-xs-1">{{ lang("created_by")}}</th>
+						<th class="col-xs-2">{{ lang("customer")}}</th>
+						<th class="col-xs-1">{{ lang("total")}}</th>
+						<th class="col-xs-1">{{ lang("total_tax")}}</th>
+						<th class="col-xs-1">{{ lang("shipping")}}</th>
+						<th class="col-xs-1">{{ lang("discount")}}</th>
+						<th class="col-xs-1">{{ lang("grand_total")}}</th>
+						<th class="col-xs-1">{{ lang("expiry_date")}}</th>
+						<th class="col-xs-1">{{ lang("status")}}</th>
+						<th style="min-width:75px; text-align:center;">{{ lang("actions")}}</th>
+					</tr>
+				</thead>
+				<tbody>
+            <tr *ngFor="let row of quotations; let i=index">
+                <td>{{ row.id}}</td>
+                <td>{{ row.date}}</td>
+                <td>{{ row.companyName}}</td>
+                <td>{{ row.referenceNo}}</td>
+                <td>{{ row.userId}}</td>
+                <td>{{ row.customerName}}</td>
+                <td>{{ row.total}}</td>
+                <td>{{ row.totalTax}}</td>
+                <td>{{ row.shipping}}</td>
+                <td>{{ row.orderDiscount}}</td>
+                <td>{{ row.grandTotal}}</td>
+                <td>{{ row.expiryDate}}</td>
+                <td>{{ row.status}}</td>
+                <td><div class="text-center row-menu"><div class="btn-group text-left"><button type="button" class="btn btn-default btn-xs btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Actions <span class="caret"></span></button>
+                  <ul class="dropdown-menu pull-right" role="menu">
+                      <li><a routerLink="/sales/quotation/view/{{row.id}}" data-toggle="ajax-modal"><i class="fa fa-file-text-o"></i> View Quotation</a></li>
+                      <li><a routerLink="/sales/add/{{row.id}}"><i class="fa fa-share"></i> Generate Invoice</a></li>
+                      <li><a routerLink="/sales/quotation/edit/{{row.id}}"><i class="fa fa-edit"></i> Edit Quotation</a></li>
+                      <li><a routerLink="http://igetpower.com/1/sales/pdf_quote/1"><i class="fa fa-file-pdf-o"></i> Download as PDF</a></li>
+                      <li><a routerLink="http://igetpower.com/1/#" class="email_inv" id="{{row.id}}"><i class="fa fa-envelope"></i> Email Quotation</a></li>
+                      <li><a routerLink="/sales/quotation/delete/{{row.id}}" onclick="return confirm('You are going to remove this quotation. Press OK to proceed and Cancel to Go Back')"><i class="fa fa-trash-o"></i> Delete Quotation</a></li>
+                  </ul>
+              </div></div></td>
+            </tr>
+				</tbody>
+				<tfoot>
+					<tr>
+						<th style="max-width:35px; text-align:center;">{{ lang("id")}}</th>
+						<th class="col-xs-1">{{ lang("date")}}</th>
+						<th class="col-xs-2">{{ lang("billing_company")}}</th>
+						<th class="col-xs-1">{{ lang("reference_no")}}</th>
+						<th class="col-xs-1">{{ lang("created_by")}}</th>
+						<th class="col-xs-2">{{ lang("customer")}}</th>
+						<th class="col-xs-1">{{ lang("total")}}</th>
+						<th class="col-xs-1">{{ lang("total_tax")}}</th>
+						<th class="col-xs-1">{{ lang("shipping")}}</th>
+						<th class="col-xs-1">{{ lang("discount")}}</th>
+						<th class="col-xs-1">{{ lang("grand_total")}}</th>
+						<th class="col-xs-1">{{ lang("expiry_date")}}</th>
+						<th class="col-xs-1">{{ lang("status")}}</th>
+						<th style="min-width:75px; text-align:center;">{{ lang("actions")}}</th>
+					</tr>
+					<tr>
+						<td colspan="14" class="p0"><input type="text" class="form-control b0" name="search_table" id="search_table" placeholder="{{ lang('type_hit_enter')}}" style="width:100%;"></td>
+					</tr>
+				</tfoot>
+			</table>
+		</div>
+		<p><a routerLink="/sales/quotations/new" class="btn btn-primary">{{ lang("add_quote")}}</a></p>
+	</div>
+</div>
+
+<div class="modal fade" id="payModal" tabindex="-1" role="dialog" aria-labelledby="payModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<h4 class="modal-title" id="myModalLabel">{{ lang('add_payment')}}</h4>
+			</div>
+			<div class="modal-body">
+				<div class="control-group">
+					<label class="control-label" for="amount">{{ lang("amount_paid")}}</label>
+					<div class="controls"> {{ form_input('amount', '', 'class="input-block-level" id="amount"');?> </div>
+				</div>
+				<div class="control-group">
+					<label class="control-label" for="note">{{ lang("note")}}</label>
+					<div class="controls"> {{ form_textarea('note', '', 'class="input-block-level" id="note" style="height:100px;"');?> </div>
+				</div>
+				<input type="hidden" name="cid" value="" id="cid" />
+				<input type="hidden" name="vid" value="" id="vid" />
+			</div>
+			<div class="modal-footer">
+				<button class="btn" data-dismiss="modal" aria-hidden="true">{{ lang('close')}}</button>
+				<button class="btn btn-primary" id="add-payment">{{ lang('add_payment')}}</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="modal fade" id="emailModal" tabindex="-1" role="dialog" aria-labelledby="emailModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<h4 class="modal-title" id="emailModalLabel"></h4>
+			</div>
+			<div class="modal-body">
+
+				<div class="form-group">
+					<label for="customer_email">{{ lang("to")}}</label>
+					<div class="controls"> {{ form_input('to', '', 'class="form-control" id="customer_email"');?></div>
+				</div>
+				<div id="extra" style="display:none;">
+					<div class="form-group">
+						<label for="cc">{{ lang("cc")}}</label>
+						<div class="controls"> {{ form_input('cc', '', 'class="form-control" id="cc"');?></div>
+					</div>
+					<div class="form-group">
+						<label for="bcc">{{ lang("bcc")}}</label>
+						<div class="controls"> {{ form_input('bcc', '', 'class="form-control" id="bcc"');?></div>
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="subject">{{ lang("subject")}}</label>
+					<div class="controls">
+						{{ form_input('subject', '', 'class="form-control" id="subject"');?> 
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="message">{{ lang("message")}}</label>
+					<div class="controls"> 
+						{{ form_textarea('note', lang("find_attached_quote"), 'id ="message" class="form-control" placeholder="'.lang("add_note").'" rows="3" style="margin-top: 10px; height: 100px;"');?> 
+					</div>
+				</div>
+				<input type="hidden" id="qu_id" value="" />  
+			</div>
+			<div class="modal-footer">
+				<button class="btn pull-left" id="sh-btn">{{ lang('show_hide_cc')}}</button>
+				<button class="btn" data-dismiss="modal" aria-hidden="true">{{ lang('close')}}</button>
+				<button class="btn btn-primary" id="email_now">{{ lang('send_email')}}</button>
+			</div>
+			<script type="text/javascript">
+				$(document).ready(function() {
+					$('#sh-btn').click(function(event) {
+						$('#extra').toggle();
+						$('#cc').val('{{ $this->session->userdata('email')}}');
+					});
+				});
+			</script>
+		</div>
+	</div>
+</div>

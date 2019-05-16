@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { LangService } from '../../lang.service';
 import * as $ from 'jquery';
-import 'chosen-js';
 
 @Component({
   selector: 'app-quotation-detail',
@@ -25,8 +24,8 @@ export class QuotationDetailComponent implements OnInit {
   }
 
   curQuotation = {
-    date:new Date(),
-    company:"",
+    date:new Date().toISOString().split('T')[0],
+    company:null,
     referenceNo:"",
     customer:"",
     dueDate:"",
@@ -57,6 +56,12 @@ export class QuotationDetailComponent implements OnInit {
   ngOnInit() {
     this.initTable()
   }
+
+  ngAfterViewInit() {
+
+    // $("select").chosen({no_results_text: "No results matched", disable_search_threshold: 5, allow_single_deselect:true, width: '100%'});
+  }
+
 
   async initTable(){
     let sysSettings = localStorage.getItem("LimSysSettings");
@@ -108,10 +113,8 @@ export class QuotationDetailComponent implements OnInit {
             // })
 
             // $("select").chosen({no_results_text: "No results matched", disable_search_threshold: 5, allow_single_deselect:true, width: '100%'});
-            // $( ".datetime" ).datetimepicker({format: Site.dateFormats.js_ldate, autoclose: true, weekStart: 1, showMeridian: true, todayBtn: true});
-            // $( ".date" ).datetimepicker({format: Site.dateFormats.js_sdate, autoclose: true, todayBtn: true, minView: 2});
-            $( ".datetime" ).datetimepicker({ autoclose: true, weekStart: 1, showMeridian: true, todayBtn: true});
-            $( ".date" ).datetimepicker({autoclose: true, todayBtn: true, minView: 2});
+            // $( ".datetime" ).datetimepicker({ autoclose: true, weekStart: 1, showMeridian: true, todayBtn: true});
+            // $( ".date" ).datetimepicker({ autoclose: true, todayBtn: true, minView: 2});
             $(document).on('change', '#shipping, #order_discount, #order_tax, .quantity, .price, .discount, .tax, .tax_method', function() {
               // calculateTotal();
             });

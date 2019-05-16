@@ -22,8 +22,11 @@
         <div class="form-group">
           <label for="date">
             {{ lang("date")}}</label>
-            <!-- <angular2-date-picker [(ngModel)]="curQuotation.date" class="form-control" [settings]="dateSettings"></angular2-date-picker> -->
-            <input type="datetime-local" name="date" [(ngModel)]="curQuotation.date" class="form-control datetime" id="date">
+            <!-- <angular2-date-picker [(ngModel)]="curQuotation.date" class="form-control" 
+             style="padding:0;border:0"></angular2-date-picker> -->
+            <!-- <angular2-date-picker [(ngModel)]="curQuotation.date" class="form-control" 
+            [settings]="dateSettings" style="padding:0;border:0"></angular2-date-picker> -->
+            <input type="date" name="date" [(ngModel)]="curQuotation.date" class="form-control datetime" id="date">
           <!-- <?php $date = date('Y-m-d H:i')}} -->
           <!-- {{ form_input('date', (isset($_POST['date']) ? $_POST['date'] : ($inv ? $this->sim->hrld($inv->date) : $this->sim->hrld($date))), 'class="form-control datetime" id="date"');?> -->
         </div>
@@ -35,6 +38,7 @@
             {{ lang("billing_company")}}</label>
           <select name="billing_company" class="billing_company form-control" data-placeholder="Select Billing Company" 
             id="billing_company" [(ngModel)]="curQuotation.company">
+              <option value="null" disabled="true" [selected]="true">Placeholder text..</option>
               <option *ngFor="let row of $companies" value="{{row.id}}">{{row.company}}</option>
           </select>
         </div>
@@ -75,7 +79,9 @@ if (!$q) {
         <div class="form-group">
           <label for="due_date">
             {{ lang("due_date")}}</label>
-            <input type="text" name="date" [(ngModel)]="curQuotation.dueDate" class="form-control date" id="due_date">
+            <!-- <angular2-date-picker  id="due_date" [(ngModel)]="curQuotation.dueDate" class="form-control date" 
+             style="padding:0;border:0"></angular2-date-picker> -->
+            <input type="date" name="date" [(ngModel)]="curQuotation.dueDate" class="form-control date" id="due_date">
             <!-- $this->sim->hrsd($date))) -->
             <!-- <?php $date = date('Y-m-d H:i')}} -->
           <!-- {{ form_input('due_date', (isset($_POST['due_date']) ? $_POST['due_date'] : ($inv && $inv->due_date ? $this->sim->hrsd($inv->due_date) : $this->sim->hrsd($date))), 'class="form-control date" id="due_date"');?> -->

@@ -38,6 +38,7 @@ import { QuotationsComponent } from './quotations/quotations.component';
 import { QuotationDetailComponent } from './quotations/quotation-detail/quotation-detail.component';
 
 import { AngularDateTimePickerModule } from 'angular2-datetimepicker';
+import { SaleDetailComponent } from './sales/sale-detail/sale-detail.component';
 
 @NgModule({
   declarations: [
@@ -71,7 +72,8 @@ import { AngularDateTimePickerModule } from 'angular2-datetimepicker';
     PaymentReportComponent,
     SystemSettingComponent,
     QuotationsComponent,
-    QuotationDetailComponent
+    QuotationDetailComponent,
+    SaleDetailComponent,
   ],
   imports: [
     BrowserModule,

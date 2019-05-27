@@ -334,6 +334,7 @@ if (!$q) {
           <tr *ngFor="let row of quoteItems ; let i=index" id="{{ i + 1}}">
             <td style="width: 20px; text-align: center; padding-right: 10px; padding-right: 10px;">
               {{ i+1}}
+              <input id="quoteItemId-{{ i + 1}}"  class="quoteItemId" type="hidden" value="{{row.id}}">
             </td>
             <td>
                 <input name="quantity[]" [(ngModel)]="row.quantity" class="quantity form-control text-center input-sm" id="quantity-{{ i + 1}}" style="min-width: 70px;"/>
@@ -377,6 +378,7 @@ if (!$q) {
               id="{{ i + 1 + quoteItems.length}}">
             <td style="width: 20px; text-align: center; padding-right: 10px; padding-right: 10px;">
               {{ i+ 1 + quoteItems.length}}
+              <input id="quoteItemId-{{ i + 1 + quoteItems.length}}" class="quoteItemId" type="hidden" >
             </td>
             <td>
                 <input name="quantity[]"  class="quantity form-control text-center input-sm" id="quantity-{{ i + 1 + quoteItems.length}}" style="min-width: 70px;"/>

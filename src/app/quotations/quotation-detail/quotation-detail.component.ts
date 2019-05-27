@@ -324,14 +324,31 @@ export class QuotationDetailComponent implements OnInit {
       });
     } else {
       this.http.post('/api/quotation/update', this.curQuotation).subscribe(data => {
-        console.log(this.getQuotaItems());
-        this.router.navigateByUrl("sales/quotations")
+        console.log(this.getQuotaItems(this.curQuotation.id));
+        let {updateItems,insertItems} = this.getQuotaItems(this.curQuotation.id);
+        if(updateItems.length > 0){
+          this.http.post('/api/quotationItem/bulkUpdate',updateItems ).subscribe(data => {
+            if(insertItems.length > 0){
+              this.http.post('/api/quotationItem/bulkInsert',insertItems ).subscribe(data => {
+                this.router.navigateByUrl("sales/quotations")
+              })
+            }
+          })
+        }else if(insertItems.length > 0){
+          this.http.post('/api/quotationItem/bulkInsert',insertItems ).subscribe(data => {
+            this.router.navigateByUrl("sales/quotations")
+          })
+        }
+        
+
+        
+        
       });
     }
   }
 
-  getQuotaItems() {
-    let items = [];
+  getQuotaItems(quoteId) {
+    let updateItems = [],insertItems = [];
     for (let i = 1; i < (this.counter + 1); i++) {
       var shipping = parseFloat($('#shipping').val() ? $('#shipping').val() : 0);
       var row = $('#' + i);
@@ -339,24 +356,33 @@ export class QuotationDetailComponent implements OnInit {
       productName = row.find('.suggestions').val(),
       unitPrice = row.find('.price').val(),
         discount = row.find('.discount').val(),
-        taxRate = row.find('.tax').val(),
+        taxRateId = row.find('.tax').val(),
         taxMethod = row.find('.tax_method').val(),
-        details = row.find('.details').val();
+        details = row.find('.details').val(),
+        id = row.find('.quoteItemId').val();
 
         if(parseFloat(quantity) > 0){
-          items.push({
+          let item = {
             quantity,
             productName,
             details,
             unitPrice,
             discount,
-            taxRate,
-            taxMethod
-          })
+            taxRateId,
+            taxMethod,
+            quoteId
+          }
+          if(id){
+            item["id"] = id;
+            insertItems.push(item);
+          }else {
+            updateItems.push(item);
+          }
+          
         }
       }
 
-      return items;
+      return {insertItems,updateItems};
   }
 
   calSubTotal(row) {

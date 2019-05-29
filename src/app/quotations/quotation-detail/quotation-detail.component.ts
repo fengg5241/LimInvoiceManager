@@ -19,6 +19,7 @@ export class QuotationDetailComponent implements OnInit {
   products: any;
   $tax_rates: any;
   quoteItems: any;
+  updateItems:any;
 
   dateSettings = {
     bigBanner: true,
@@ -126,10 +127,10 @@ export class QuotationDetailComponent implements OnInit {
     $(document).ready(function () {
 
       $(document).on('change', '#shipping, #order_discount, #order_tax, .quantity, .price, .discount, .tax, .tax_method', function () {
-        calculateTotal();
+        calculateTotal(thisObject);
       });
 
-      calculateTotal();
+      calculateTotal(thisObject);
 
       $("#addButton").click(function () {
         var newTr = $('<tr></tr>').attr("id", thisObject.counter);
@@ -207,7 +208,8 @@ export class QuotationDetailComponent implements OnInit {
         return Math.floor(Math.random() * (max - min + 1)) + min;
       }
 
-      function calculateTotal() {
+      function calculateTotal(thisObject) {
+
         if (typeof thisObject.counter !== 'undefined') {
           let total = 0; let row_total = 0;
           for (let i = 1; i < (thisObject.counter + 1); i++) {
@@ -324,31 +326,21 @@ export class QuotationDetailComponent implements OnInit {
       });
     } else {
       this.http.post('/api/quotation/update', this.curQuotation).subscribe(data => {
-        console.log(this.getQuotaItems(this.curQuotation.id));
-        let {updateItems,insertItems} = this.getQuotaItems(this.curQuotation.id);
-        if(updateItems.length > 0){
+        let {updateItems,noOfValidItems} = this.getQuotaItems(this.curQuotation.id);
+        if(updateItems.length > 0 && noOfValidItems >= 1 ){
           this.http.post('/api/quotationItem/bulkUpdate',updateItems ).subscribe(data => {
-            if(insertItems.length > 0){
-              this.http.post('/api/quotationItem/bulkInsert',insertItems ).subscribe(data => {
-                this.router.navigateByUrl("sales/quotations")
-              })
-            }
-          })
-        }else if(insertItems.length > 0){
-          this.http.post('/api/quotationItem/bulkInsert',insertItems ).subscribe(data => {
             this.router.navigateByUrl("sales/quotations")
           })
+        }else {
+          alert("There is no products which quantity > 0")
         }
-        
-
-        
-        
       });
     }
   }
 
   getQuotaItems(quoteId) {
-    let updateItems = [],insertItems = [];
+    let updateItems = [];
+    let noOfValidItems = 0
     for (let i = 1; i < (this.counter + 1); i++) {
       var shipping = parseFloat($('#shipping').val() ? $('#shipping').val() : 0);
       var row = $('#' + i);
@@ -359,9 +351,10 @@ export class QuotationDetailComponent implements OnInit {
         taxRateId = row.find('.tax').val(),
         taxMethod = row.find('.tax_method').val(),
         details = row.find('.details').val(),
-        id = row.find('.quoteItemId').val();
+        id = row.find('.quoteItemId').val(),
+        subtotal = row.find('.subtotal').val();
 
-        if(parseFloat(quantity) > 0){
+        if(parseFloat(quantity) > 0 || id){
           let item = {
             quantity,
             productName,
@@ -370,19 +363,22 @@ export class QuotationDetailComponent implements OnInit {
             discount,
             taxRateId,
             taxMethod,
-            quoteId
+            quoteId,
+            subtotal
           }
           if(id){
             item["id"] = id;
-            insertItems.push(item);
-          }else {
-            updateItems.push(item);
           }
+          
+          if(parseFloat(quantity) > 0){
+            noOfValidItems += 1
+          }
+          updateItems.push(item);
           
         }
       }
 
-      return {insertItems,updateItems};
+      return {updateItems,noOfValidItems};
   }
 
   calSubTotal(row) {

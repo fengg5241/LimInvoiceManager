@@ -209,7 +209,7 @@ export class QuotationDetailComponent implements OnInit {
       }
 
       function calculateTotal(thisObject) {
-
+        thisObject.updateItems = [];
         if (typeof thisObject.counter !== 'undefined') {
           let total = 0; let row_total = 0;
           for (let i = 1; i < (thisObject.counter + 1); i++) {
@@ -221,7 +221,60 @@ export class QuotationDetailComponent implements OnInit {
               discount = row.find('.discount').val(),
               tax = row.find('.tax').val(),
               tax_method = row.find('.tax_method').val(),
+              quoteItemId = row.find('.quoteItemId').val(),
+              details = row.find('.details').val(),
               subtotal = row.find('.subtotal');
+
+      //         var quantity = row.find('.quantity').val(),
+      // productName = row.find('.suggestions').val(),
+      // unitPrice = row.find('.price').val(),
+      //   discount = row.find('.discount').val(),
+      //   taxRateId = row.find('.tax').val(),
+      //   taxMethod = row.find('.tax_method').val(),
+      //   details = row.find('.details').val(),
+      //   id = row.find('.quoteItemId').val(),
+      //   subtotal = row.find('.subtotal').val();
+
+      // $products[] = array(
+      //   'product_name' => $item_name,   ok
+      //   'quantity' => $item_qty,    ok
+      //   'net_unit_price' => $net_unit_price, ok
+      //   'unit_price' => $unit_price,   ok
+      //   'real_unit_price' => $item_price, ok
+      //   'subtotal' => $subtotal, ok
+      //   'details' => $item_details,ok
+      //   'tax_amt' => $item_tax_amt,ok
+      //   'tax_rate_id' => $item_tax_rate,ok
+      //   'tax' => $item_tax_val,
+      //   'discount' => $item_discount,ok
+      //   'discount_amt' => $item_discount_amt,ok
+      //   'tax_method' => $tax_method,ok
+      // );
+
+          let item = null;
+          if(parseFloat(quantity) > 0 || id){
+            item = {
+              quantity,
+              productName:product,
+              details,
+              real_unit_price:price,
+              discount,
+              taxRateId:tax,
+              taxMethod:tax_method,
+              quoteId:thisObject.curQuotation.id
+              
+            }
+            if(id){
+              item["id"] = id;
+            }
+            
+            if(parseFloat(quantity) > 0){
+              noOfValidItems += 1
+            }
+            thisObject.updateItems.push(item);
+            
+          }
+
             if (quantity && product && price) {
               var product_discount = 0, product_tax = 0;
 
@@ -239,25 +292,34 @@ export class QuotationDetailComponent implements OnInit {
               }
 
               let net_unit_price = price - product_discount;
-
+              let taxVal = "0";
               if (thisObject.$settings.defaultTaxRate > 0) {
                 $.each(thisObject.$tax_rates, function () {
                   if (this.id == tax) {
                     if (this.type == 1 && this.rate != 0) {
                       if (tax_method == 'inclusive') {
                         product_tax = formatDecimal(((net_unit_price * this.rate) / (100 + this.rate)), 4);
+                        taxVal = this.rate+"%";
                         net_unit_price -= product_tax;
                       } else {
                         product_tax = formatDecimal(((net_unit_price * this.rate) / 100), 4);
+                        taxVal = this.rate+"%";
                       }
                     } else {
                       product_tax = parseFloat(this.rate);
+                      taxVal = this.rate;
                     }
                   }
                 });
               }
+              item["tax"] = taxVal;
+              item["discountAmt"] = product_discount;
+              item["taxAmt"] = product_tax;
+              item["netUnitPrice"] = net_unit_price;
               row_total = (net_unit_price + product_tax) * quantity;
               subtotal.val(formatMoney(row_total, ""));
+
+              item["subtotal"] = subtotal;
               total += row_total;
             }
           }

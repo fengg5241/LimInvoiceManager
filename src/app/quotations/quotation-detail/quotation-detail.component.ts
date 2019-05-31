@@ -41,9 +41,25 @@ export class QuotationDetailComponent implements OnInit {
     state: "",
     postalCode: "",
     country: "",
-    productDiscount: "",
+    
   };
   curQuotation: any;
+
+  // $data = array('reference_no' => $reference_no, ok
+          // 'product_discount' => $product_discount, ok
+          // 'order_discount_id' => $order_discount_id,ok
+          // 'order_discount' => $order_discount,ok
+          // 'total_discount' => $total_discount,ok
+          // 'product_tax' => $product_tax,
+          // 'order_tax_id' => $order_tax_rate_id,
+          // 'order_tax' => $order_tax,
+          // 'total_tax' => $total_tax,
+          // 'total' => $total,
+          // 'grand_total' => $grand_total,
+          // 'status' => $status,
+          // 'shipping' => $this->sim->formatDecimal($shipping),
+          // 'note' => $note,
+          // );
 
   newQuotation = {
     date: new Date().toISOString().split('T')[0],
@@ -53,8 +69,15 @@ export class QuotationDetailComponent implements OnInit {
     customerId: "",
     dueDate: "",
     shipping: "",
+    orderDiscountId:"",
     orderDiscount: "",
+    productDiscount: "",
+    totalDiscount:"",
+    orderTaxId:"",
     orderTax: "",
+    totalTax:"",
+    total:"",
+    grandTotal:"",
     status: "",
     // recurring:"",
     note: ""
@@ -211,7 +234,7 @@ export class QuotationDetailComponent implements OnInit {
       function calculateTotal(thisObject) {
         thisObject.updateItems = [];
         if (typeof thisObject.counter !== 'undefined') {
-          let total = 0; let row_total = 0;
+          let total = 0; let row_total = 0,productDiscount = 0;
           for (let i = 1; i < (thisObject.counter + 1); i++) {
             var shipping = parseFloat($('#shipping').val() ? $('#shipping').val() : 0);
             var row = $('#' + i);
@@ -224,32 +247,6 @@ export class QuotationDetailComponent implements OnInit {
               quoteItemId = row.find('.quoteItemId').val(),
               details = row.find('.details').val(),
               subtotal = row.find('.subtotal');
-
-      //         var quantity = row.find('.quantity').val(),
-      // productName = row.find('.suggestions').val(),
-      // unitPrice = row.find('.price').val(),
-      //   discount = row.find('.discount').val(),
-      //   taxRateId = row.find('.tax').val(),
-      //   taxMethod = row.find('.tax_method').val(),
-      //   details = row.find('.details').val(),
-      //   id = row.find('.quoteItemId').val(),
-      //   subtotal = row.find('.subtotal').val();
-
-      // $products[] = array(
-      //   'product_name' => $item_name,   ok
-      //   'quantity' => $item_qty,    ok
-      //   'net_unit_price' => $net_unit_price, ok
-      //   'unit_price' => $unit_price,   ok
-      //   'real_unit_price' => $item_price, ok
-      //   'subtotal' => $subtotal, ok
-      //   'details' => $item_details,ok
-      //   'tax_amt' => $item_tax_amt,ok
-      //   'tax_rate_id' => $item_tax_rate,ok
-      //   'tax' => $item_tax_val,
-      //   'discount' => $item_discount,ok
-      //   'discount_amt' => $item_discount_amt,ok
-      //   'tax_method' => $tax_method,ok
-      // );
 
           let item = null;
           if(parseFloat(quantity) > 0 || id){
@@ -276,7 +273,7 @@ export class QuotationDetailComponent implements OnInit {
           }
 
             if (quantity && product && price) {
-              var product_discount = 0, product_tax = 0;
+              var product_discount = 0, taxAmount = 0,productTax=0;
 
               if (thisObject.$settings.productDiscount > 0) {
                 if (discount) {
@@ -290,7 +287,8 @@ export class QuotationDetailComponent implements OnInit {
                   }
                 }
               }
-
+              
+              productDiscount += formatDecimal(product_discount * quantity, 4);
               let net_unit_price = price - product_discount;
               let taxVal = "0";
               if (thisObject.$settings.defaultTaxRate > 0) {
@@ -298,25 +296,27 @@ export class QuotationDetailComponent implements OnInit {
                   if (this.id == tax) {
                     if (this.type == 1 && this.rate != 0) {
                       if (tax_method == 'inclusive') {
-                        product_tax = formatDecimal(((net_unit_price * this.rate) / (100 + this.rate)), 4);
+                        taxAmount = formatDecimal(((net_unit_price * this.rate) / (100 + this.rate)), 4);
                         taxVal = this.rate+"%";
-                        net_unit_price -= product_tax;
+                        net_unit_price -= taxAmount;
                       } else {
-                        product_tax = formatDecimal(((net_unit_price * this.rate) / 100), 4);
+                        taxAmount = formatDecimal(((net_unit_price * this.rate) / 100), 4);
                         taxVal = this.rate+"%";
                       }
                     } else {
-                      product_tax = parseFloat(this.rate);
+                      taxAmount = parseFloat(this.rate);
                       taxVal = this.rate;
                     }
                   }
                 });
               }
+
+              productTax +=  formatDecimal((taxAmount * quantity), 4);
               item["tax"] = taxVal;
               item["discountAmt"] = product_discount;
-              item["taxAmt"] = product_tax;
+              item["taxAmt"] = taxAmount;
               item["netUnitPrice"] = net_unit_price;
-              row_total = (net_unit_price + product_tax) * quantity;
+              row_total = (net_unit_price + taxAmount) * quantity;
               subtotal.val(formatMoney(row_total, ""));
 
               item["subtotal"] = subtotal;
@@ -355,6 +355,27 @@ export class QuotationDetailComponent implements OnInit {
           $('#order_discount_total').text(formatMoney(order_discount, ""));
           $('#order_tax_total').text(formatMoney(order_tax, ""));
           $('#grand_total').text(formatMoney(grand_total, ""));
+
+          // $data = array('reference_no' => $reference_no, ok
+          // 'product_discount' => $product_discount, ok
+          // 'order_discount_id' => $order_discount_id,ok
+          // 'order_discount' => $order_discount,ok
+          // 'total_discount' => $total_discount,ok
+          // 'product_tax' => $product_tax,
+          // 'order_tax_id' => $order_tax_rate_id,
+          // 'order_tax' => $order_tax,
+          // 'total_tax' => $total_tax,
+          // 'total' => $total,
+          // 'grand_total' => $grand_total,
+          // 'status' => $status,
+          // 'shipping' => $this->sim->formatDecimal($shipping),
+          // 'note' => $note,
+          // );
+
+          thisObject.curQuotation.productDiscount = productDiscount;
+          thisObject.curQuotation.orderDiscount = order_discount;
+          thisObject.curQuotation.totalDiscount = formatDecimal(order_discount + productDiscount,4);
+          
         }
       }
 

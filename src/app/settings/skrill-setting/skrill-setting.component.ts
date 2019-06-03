@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { LangService } from '../../lang.service';
 import * as $ from 'jquery';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-skrill-setting',
@@ -8,23 +9,29 @@ import * as $ from 'jquery';
   styleUrls: ['./skrill-setting.component.css']
 })
 export class SkrillSettingComponent implements OnInit {
-
-  $page_title = "Skrill Settings"
-
+  $page_title = 'Skrill Settings';
+  settings: any;
   curSetting = {
-    active:0,
-    accountEmail:"",
-    secretWord:"",
-    fixedCharges:"",
-    extraChargesMy:"",
-    extraChargesOther:"",
-  }
-  constructor(private langService: LangService) { }
+    active: 0,
+    accountEmail: '',
+    secretWord: '',
+    fixedCharges: '',
+    extraChargesMy: '',
+    extraChargesOther: ''
+  };
+  constructor(private langService: LangService, private http: HttpClient) {}
 
   ngOnInit() {
+    this.http.get('/api/skrill/selectAll').subscribe(data => {
+      this.settings = data;
+      if (this.settings.length > 0) {
+        this.curSetting = Object.assign({}, this.settings[0]);
+      }
+    });
+
     let thisObject = this;
-    $(document).ready(function () {
-      $('#active').change(function () {
+    $(document).ready(function() {
+      $('#active').change(function() {
         var v = $(this).val();
         if (v == 1) {
           $('#account_email').attr('required', 'required');
@@ -43,5 +50,11 @@ export class SkrillSettingComponent implements OnInit {
 
   lang(word) {
     return this.langService.lang(word);
+  }
+
+  updateSysSetting() {
+    this.http.post('/api/skrill/update', this.curSetting).subscribe(data => {
+      alert('Successful !');
+    });
   }
 }

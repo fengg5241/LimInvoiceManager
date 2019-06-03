@@ -312,7 +312,7 @@ export class QuotationDetailComponent implements OnInit {
                 quantity,
                 productName: product,
                 details,
-                real_unit_price: price,
+                realUnitPrice: price,
                 discount,
                 taxRateId: tax,
                 taxMethod: tax_method,
@@ -378,6 +378,7 @@ export class QuotationDetailComponent implements OnInit {
               }
 
               productTax += formatDecimal(taxAmount * quantity, 4);
+              item['unitPrice'] = formatDecimal(net_unit_price + taxAmount, 4)
               item['tax'] = taxVal;
               item['discountAmt'] = product_discount;
               item['taxAmt'] = taxAmount;
@@ -385,7 +386,7 @@ export class QuotationDetailComponent implements OnInit {
               row_total = (net_unit_price + taxAmount) * quantity;
               subtotal.val(formatMoney(row_total, ''));
 
-              item['subtotal'] = subtotal;
+              item['subtotal'] = subtotal.val();
               total += row_total;
             }
           }

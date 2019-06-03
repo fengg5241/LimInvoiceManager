@@ -355,7 +355,7 @@ if (!$q) {
               </div>
             </td>
             <td>
-                <input name="price[]" [(ngModel)]="row.unitPrice" class="form-control price input-sm text-right" id="price-{{ i + 1}}" style="min-width: 100px;"/>
+                <input name="price[]" [(ngModel)]="row.realUnitPrice" class="form-control price input-sm text-right" id="price-{{ i + 1}}" style="min-width: 100px;"/>
             </td>
             <td *ngIf="$settings && $settings.productDiscount">
                 <input name="discount[]" [(ngModel)]="row.discount" class="form-control discount input-sm" id="discount-{{ i + 1}}" />

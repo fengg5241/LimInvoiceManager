@@ -31,96 +31,121 @@
               <div id="credentials" class="tab-pane fade in">
                 <!-- {{ form_open('settings/email_templates') }}> -->
                 <textarea
-                  id="details-{{ i + 1 }}"
-                  name="details[]"
-                  [(ngModel)]="row.details"
+                  id="credentials-ta"
+                  name="mail_body"
+                  class="form-control"
+                  [(ngModel)]="curSetting.mailBody"
                   maxlength="255"
-                  style="margin-top:5px;padding:5px 10px;height:60px;"
                   class="form-control details"
                 >
                 </textarea>
-                <?php echo form_textarea('mail_body', (isset($_POST['mail_body']) ? html_entity_decode($_POST['mail_body']) : html_entity_decode($credentials)), 'class="form-control" id="credentials-ta"')}}>
+                <!-- <?php echo form_textarea('mail_body', (isset($_POST['mail_body']) ? html_entity_decode($_POST['mail_body']) : html_entity_decode($credentials)), 'class="form-control" id="credentials-ta"')}}> -->
                 <div class="well" style="margin-top:5px;" id="credentials-pr">
                   {{ $credentials }}
                 </div>
                 <input
-                  type="submit"
                   name="submit"
                   class="btn btn-primary"
-                  value="{{ lang('save') }}>"
+                  value="{{ lang('save') }}"
+                  (click)="save('credentials')"
                   style="margin-top:15px;"
                 />
 
-                <?php echo form_close()}}>
+                <!-- <?php echo form_close()}}> -->
               </div>
 
               <div id="activate_email" class="tab-pane fade">
-                {{ form_open('settings/email_templates/activate_email') }}>
-
-                <?php echo form_textarea('mail_body', (isset($_POST['mail_body']) ? html_entity_decode($_POST['mail_body']) : html_entity_decode($activate_email)), 'class="form-control" id="activate_email-ta"')}}>
+                <!-- {{ form_open('settings/email_templates/activate_email') }}> -->
+                <textarea
+                  id="activate_email-ta"
+                  name="mail_body"
+                  class="form-control"
+                  [(ngModel)]="curSetting.mailBody"
+                  maxlength="255"
+                  class="form-control details"
+                >
+                </textarea>
+                <!-- <?php echo form_textarea('mail_body', (isset($_POST['mail_body']) ? html_entity_decode($_POST['mail_body']) : html_entity_decode($activate_email)), 'class="form-control" id="activate_email-ta"')}}> -->
                 <div
                   class="well"
                   style="margin-top:5px;"
                   id="activate_email-pr"
                 >
-                  {{$activate_email;}}
+                  {{ $activateEmail }}
                 </div>
                 <input
                   type="submit"
                   name="submit"
                   class="btn btn-primary"
-                  value="{{ lang('save') }}>"
+                  value="{{ lang('save') }}"
+                  (click)="save('activateEmail')"
                   style="margin-top:15px;"
                 />
 
-                <?php echo form_close()}}>
+                <!-- <?php echo form_close()}}> -->
               </div>
 
               <div id="forgot_password" class="tab-pane fade">
-                {{ form_open('settings/email_templates/forgot_password') }}>
-
-                <?php echo form_textarea('mail_body', (isset($_POST['mail_body']) ? html_entity_decode($_POST['mail_body']) : html_entity_decode($forgot_password)), 'class="form-control" id="forgot_password-ta"')}}>
+                <!-- {{ form_open('settings/email_templates/forgot_password') }}> -->
+                <textarea
+                  id="forgot_password-ta"
+                  name="mail_body"
+                  class="form-control"
+                  [(ngModel)]="curSetting.mailBody"
+                  maxlength="255"
+                >
+                </textarea>
+                <!-- <?php echo form_textarea('mail_body', (isset($_POST['mail_body']) ? html_entity_decode($_POST['mail_body']) : html_entity_decode($forgot_password)), 'class="form-control" id="forgot_password-ta"')}}> -->
                 <div
                   class="well"
                   style="margin-top:5px;"
                   id="forgot_password-pr"
                 >
-                  {{$forgot_password;}}
+                  {{ $forgotPassword }}
                 </div>
                 <input
                   type="submit"
                   name="submit"
                   class="btn btn-primary"
-                  value="{{ lang('save') }}>"
+                  value="{{ lang('save') }}"
+                  (click)="save('forgotPassword')"
                   style="margin-top:15px;"
                 />
 
-                <?php echo form_close()}}>
+                <!-- <?php echo form_close()}}> -->
               </div>
 
               <div id="new_password" class="tab-pane fade">
-                {{ form_open('settings/email_templates/new_password') }}>
-
-                <?php echo form_textarea('mail_body', (isset($_POST['mail_body']) ? html_entity_decode($_POST['mail_body']) : html_entity_decode($new_password)), 'class="form-control" id="new_password-ta"')}}>
+                <!-- {{ form_open('settings/email_templates/new_password') }}> -->
+                <textarea
+                  id="new_password-ta"
+                  name="mail_body"
+                  class="form-control"
+                  [(ngModel)]="curSetting.mailBody"
+                >
+                </textarea>
+                <!-- <?php echo form_textarea('mail_body', (isset($_POST['mail_body']) ? html_entity_decode($_POST['mail_body']) : html_entity_decode($new_password)), 'class="form-control" id="new_password-ta"')}}> -->
                 <div class="well" style="margin-top:5px;" id="new_password-pr">
-                  {{$new_password;}}
+                  {{ $newPassword }}
                 </div>
                 <input
                   type="submit"
                   name="submit"
                   class="btn btn-primary"
-                  value="{{ lang('save') }}>"
+                  value="{{ lang('save') }}"
+                  (click)="save('newPassword')"
                   style="margin-top:15px;"
                 />
 
-                <?php echo form_close()}}>
+                <!-- <?php echo form_close()}}> -->
               </div>
             </div>
           </div>
           <div class="col-md-4 col-sm-4">
             <div class="margin5">
               <h3 style="font-weight: bold;">
-                {{ $this->lang->line('short_tags')}}>
+                <!-- {{ lang->line('short_tags')}}> -->
+                {{ lang('short_tags') }}
               </h3>
               <pre>{logo} {site_name} {site_link}, {user_name} {email}</pre>
               {{ lang('new_user') }}, {{ lang('reset_password') }}

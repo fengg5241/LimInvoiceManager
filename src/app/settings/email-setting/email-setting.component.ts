@@ -13,12 +13,15 @@ export class EmailSettingComponent implements OnInit {
   settings: any;
   curSetting = {
     active: 0,
-    accountEmail: '',
+    mailBody: '',
     fixedCharges: '',
     extraChargesMy: '',
     extraChargesOther: ''
   };
-  $credentials = this.getCredentials();
+  $credentials: any;
+  $activateEmail: any;
+  $forgotPassword: any;
+  $newPassword: any;
 
   constructor(private langService: LangService, private http: HttpClient) {}
 
@@ -29,6 +32,12 @@ export class EmailSettingComponent implements OnInit {
     //     this.curSetting = Object.assign({}, this.settings[0]);
     //   }
     // });
+    this.$credentials = this.getCredentials();
+    this.$activateEmail = this.getActivateEmail();
+    this.$forgotPassword = this.getForgotPassword();
+    this.$newPassword = this.getNewPassword();
+
+    this.curSetting.mailBody = this.$credentials;
 
     let thisObject = this;
     $(document).ready(function() {
@@ -47,8 +56,19 @@ export class EmailSettingComponent implements OnInit {
     });
   }
 
+  save(templateName) {
+    localStorage.setItem(
+      `emailTemplate[${templateName}]`,
+      this.curSetting.mailBody
+    );
+  }
+
   getCredentials() {
-    return `<h3>{logo}</h3>
+    let template = localStorage.getItem('emailTemplate.credentials');
+    if (template) {
+      return template;
+    } else {
+      return `<h3>{logo}</h3>
             <h4>Login Details</h4>
             <p>Hello {user_name},</p>
             <p>We have created new account for you to manage your quotations and orders from our website.</p>
@@ -59,30 +79,45 @@ export class EmailSettingComponent implements OnInit {
             </pre>
             <p><a href="{client_link}"></a></p>
             <p>Best regards,<br>{site_name}</p>`;
+    }
   }
 
   getActivateEmail() {
-    return `<h3>{logo}</h3>
+    let template = localStorage.getItem('emailTemplate.activateEmail');
+    if (template) {
+      return template;
+    } else {
+      return `<h3>{logo}</h3>
             <h4>Please confirm your registration</h4>
             <p>Hello {user_name},</p>
             <p>Please confirm your new account registration for ({email}). </p>
             <p>{activation_link}</p>
             <p><a href="{client_link}"></a></p>
             <p>Best regards,<br>{site_name}<br>{site_link}</p>`;
+    }
   }
 
   getForgotPassword() {
-    return `<h3>{logo}</h3>
+    let template = localStorage.getItem('emailTemplate.forgotPassword');
+    if (template) {
+      return template;
+    } else {
+      return `<h3>{logo}</h3>
             <h4>Forgot Password?</h4>
             <p>Hello {user_name},</p>
             <p>We have received the request to reset your password of {email} for {site_name} and have created the reset password link.</p>
             <p>{reset_password_link}</p>
             <p>Please click the above link to reset your  password. If you have not requested the reset. Please ignore this email.</p>
             <p>Best regards,<br>{site_name}</p>`;
+    }
   }
 
   getNewPassword() {
-    return `<h3>{logo}</h3>
+    let template = localStorage.getItem('emailTemplate.newPassword');
+    if (template) {
+      return template;
+    } else {
+      return `<h3>{logo}</h3>
             <h4>Login Details</h4>
             <p>Hello {user_name},</p>
             <p>You have reset your account password. </p>
@@ -93,6 +128,7 @@ export class EmailSettingComponent implements OnInit {
             </pre>
             <p><a href="{client_link}"></a></p>
             <p>Best regards,<br>{site_name}</p>`;
+    }
   }
 
   lang(word) {

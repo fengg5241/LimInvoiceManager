@@ -147,13 +147,14 @@
                 <!-- {{ lang->line('short_tags')}}> -->
                 {{ lang('short_tags') }}
               </h3>
-              <pre>{logo} {site_name} {site_link}, {user_name} {email}</pre>
+              <pre>{{'{'}}logo{{'}'}} {{'{'}}site_name{{'}'}} {{'{'}}site_link{{'}'}}, {{'{'}}user_name{{'}'}} {{'{'}}email{{'}'}}</pre>
+              <!-- <pre>{{shortTag}}</pre> -->
               {{ lang('new_user') }}, {{ lang('reset_password') }}
-              <pre>{password} </pre>
+              <pre>{{'{'}}password{{'}'}} </pre>
               {{ lang('forgot_password') }}
-              <pre>{reset_password_link}</pre>
+              <pre>{{'{'}}reset_password_link{{'}'}}</pre>
               {{ lang('activate_email') }}
-              <pre>{activation_link}</pre>
+              <!-- <pre>{{'{'}}activation_link{{'}'}}</pre> -->
             </div>
           </div>
         </div>

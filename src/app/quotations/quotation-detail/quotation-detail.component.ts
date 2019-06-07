@@ -91,7 +91,7 @@ export class QuotationDetailComponent implements OnInit {
 
   ngOnInit() {
     this.initTable();
-    this.initQuotation();
+    // this.initQuotation();
   }
 
   ngAfterViewInit() {
@@ -125,12 +125,23 @@ export class QuotationDetailComponent implements OnInit {
         .toPromise();
       this.$settings = sysSettings1[0];
     }
+    this.$tax_rates = await this.http.get('/api/taxRate/selectAll').toPromise();
+
     let id = this.route.snapshot.paramMap.get('id');
     if (id) {
+      this.isNew = false;
+      this.$page_title = 'Edit Quotation';
+      this.curQuotation = await this.http.get('/api/quotation/selectById/' + id).toPromise();
+      this.curQuotation.date = this.curQuotation.date.split('T')[0];
+      this.curQuotation.expiryDate = this.curQuotation.expiryDate.split(
+        'T'
+      )[0];
+      
       this.quoteItems = await this.http
         .get('/api/quotationItem/selectByQuoteId/' + id)
         .toPromise();
     } else {
+      this.curQuotation = Object.assign({}, this.newQuotation);
       this.quoteItems = [];
     }
     this.noOfEmptyRow =
@@ -152,9 +163,7 @@ export class QuotationDetailComponent implements OnInit {
       this.$customers = data;
     });
 
-    this.http.get('/api/taxRate/selectAll').subscribe(data => {
-      this.$tax_rates = data;
-    });
+    
 
     let thisObject = this;
     $(document).ready(function() {

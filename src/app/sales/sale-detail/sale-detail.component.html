@@ -1,3 +1,800 @@
-<p>
-  sale-detail works!
-</p>
+<!-- <script type="text/javascript">
+
+  var counter = {{ $Settings -> no_of_rows + 1}}, no_of_rows = {{ $Settings -> no_of_rows + 1}},
+    default_tax_rate = {{ $Settings -> default_tax_rate}}, tax_rates = {{ json_encode($tax_rates) ?>;
+  var total = 0, order_tax = 0, order_discount = 0, grand_total = 0;
+
+</script> -->
+
+<div class="page-head">
+  <h2 class="pull-left">
+    {{ $page_title }} <span class="page-meta"> {{ lang('enter_info') }}</span>
+  </h2>
+</div>
+<div class="clearfix"></div>
+<div class="matter">
+  <div class="container" *ngIf="curQuotation">
+    <!-- <?php $attrib = array('class' => 'form-horizontal'); echo form_open("sales/add_quote");?> -->
+
+    <div class="row">
+      <div class="col-md-4">
+        <div class="form-group">
+          <label for="date"> {{ lang('date') }}</label>
+          <!-- <angular2-date-picker [(ngModel)]="curQuotation.date" class="form-control" 
+               style="padding:0;border:0"></angular2-date-picker> -->
+          <!-- <angular2-date-picker [(ngModel)]="curQuotation.date" class="form-control" 
+              [settings]="dateSettings" style="padding:0;border:0"></angular2-date-picker> -->
+          <input
+            type="date"
+            name="date"
+            [(ngModel)]="curQuotation.date"
+            class="form-control datetime"
+            id="date"
+          />
+          <!-- <?php $date = date('Y-m-d H:i')}} -->
+          <!-- {{ form_input('date', (isset($_POST['date']) ? $_POST['date'] : ($inv ? $this->sim->hrld($inv->date) : $this->sim->hrld($date))), 'class="form-control datetime" id="date"');?> -->
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="form-group">
+          <label for="billing_company"> {{ lang('billing_company') }}</label>
+          <select
+            name="billing_company"
+            class="billing_company form-control"
+            data-placeholder="Select Billing Company"
+            id="billing_company"
+            [(ngModel)]="curQuotation.companyId"
+          >
+            <option value="null" disabled="true" [selected]="true"
+              >Placeholder text..</option
+            >
+            <option *ngFor="let row of $companies" value="{{ row.id }}">{{
+              row.company
+            }}</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="form-group">
+          <label for="reference_no"> {{ lang('reference_no') }}</label>
+          <div class="input-group">
+            <input
+              type="text"
+              name="reference_no"
+              [(ngModel)]="curQuotation.referenceNo"
+              class="form-control"
+              id="reference_no"
+            />
+            <span
+              class="input-group-addon"
+              id="gen_ref"
+              style="cursor: pointer;"
+              ><i class="fa fa-random"></i
+            ></span>
+            <div class="clearfix"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-4">
+        <div class="form-group">
+          <label for="customer"> {{ lang('customer') }}</label>
+          <select
+            name="customer"
+            class="customer form-control"
+            data-placeholder="Select Customer"
+            id="customer"
+            [(ngModel)]="curQuotation.customerId"
+          >
+            <!-- lang("new_customer") -->
+            <option value="null" disabled="true" [selected]="true"
+              >Select Customer</option
+            >
+            <option value="new">Add New Customer</option>
+            <option *ngFor="let row of $customers" value="{{ row.id }}"
+              >{{ row.company }}({{ row.name }})</option
+            >
+          </select>
+        </div>
+      </div>
+
+      <!-- <?php
+  if (!$q) {
+      ?> -->
+      <!-- <div class="col-md-4">
+          <div class="form-group">
+            <label for="due_date">
+              {{ lang("due_date")}}</label>
+              <input type="date" name="date" [(ngModel)]="curQuotation.dueDate" class="form-control date" id="due_date"> -->
+      <!-- $this->sim->hrsd($date))) -->
+      <!-- <?php $date = date('Y-m-d H:i')}} -->
+      <!-- {{ form_input('due_date', (isset($_POST['due_date']) ? $_POST['due_date'] : ($inv && $inv->due_date ? $this->sim->hrsd($inv->due_date) : $this->sim->hrsd($date))), 'class="form-control date" id="due_date"');?> -->
+      <!-- </div>
+        </div> -->
+      <!-- <?php
+  } else {
+      ?>-->
+      <div class="col-md-4">
+        <div class="form-group">
+          <label for="due_date"> {{ lang('due_date') }}</label>
+          <input
+            type="date"
+            name="due_date"
+            [(ngModel)]="curQuotation.dueDate"
+            class="form-control date"
+            id="due_date"
+          />
+          <!-- {{ form_input('expiry_date', (isset($_POST['expiry_date']) ? $_POST['expiry_date'] : ($inv && $inv->expiry_date ? $this->sim->hrsd($inv->expiry_date) : '')), 'class="form-control date" id="expiry_date"');?> -->
+        </div>
+      </div>
+      <!-- <?php
+  }
+  ?> -->
+
+      <div class="col-md-4">
+        <div class="form-group">
+          <label for="shipping"> {{ lang('shipping') }}</label>
+          <input
+            type="text"
+            name="shipping"
+            [(ngModel)]="curQuotation.shipping"
+            class="form-control"
+            id="shipping"
+          />
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-4">
+        <div class="form-group">
+          <label for="order_discount"> {{ lang('order_discount') }}</label>
+          <input
+            name="order_discount"
+            [(ngModel)]="curQuotation.orderDiscountId"
+            class="form-control"
+            id="order_discount"
+          />
+          <!-- {{ form_input('order_discount', (isset($_POST['order_discount']) ? $_POST['order_discount'] : ($inv ? $inv->order_discount_id : '')), 'class="form-control" id="order_discount"');?> -->
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="form-group">
+          <label for="order_tax"> {{ lang('order_tax') }}</label>
+          <select
+            name="order_tax"
+            class="tax form-control input-sm"
+            data-placeholder="Select Customer"
+            id="order_tax"
+            style="min-width: 100px;"
+            [(ngModel)]="curQuotation.orderTaxId"
+          >
+            <!-- lang("new_customer") -->
+            <option *ngFor="let row of $tax_rates" value="{{ row.id }}">{{
+              row.name
+            }}</option>
+          </select>
+          <!-- {{ form_dropdown('order_tax', $tr, (isset($_POST['order_tax']) ? $_POST['order_tax'] : ($inv ? $inv->order_tax_id : '')), 'id="order_tax" class="tax form-control input-sm" style="min-width: 100px;"'); -->
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="form-group">
+          <label for="status"> {{ lang('status') }}</label>
+          <select
+            name="status"
+            class="status form-control"
+            data-placeholder="Select Status"
+            id="status"
+            style="min-width: 100px;"
+            [(ngModel)]="curQuotation.status"
+          >
+            <option value="canceled">{{ lang('canceled') }}</option>
+            <option value="overdue">{{ lang('overdue') }}</option>
+            <option value="paid">{{ lang('paid') }}</option>
+            <option value="pending">{{ lang('pending') }}</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-4">
+        <div class="form-group">
+          <label for="recurring"> {{ lang('recurring') }}</label>
+          <select
+            name="recurring"
+            class="form-control"
+            id="recurring"
+            [(ngModel)]="curQuotation.recurring"
+          >
+            <option value="0">{{ lang('No') }}</option>
+            <option value="1">Every day (daily)</option>
+            <option value="2">Every 7 days (weekly)</option>
+            <option value="3">Every month (monthly)</option>
+            <option value="4">Every 3 months (quarterly)</option>
+            <option value="5">Every 6 months (semiannually)</option>
+            <option value="6">Every year (annually)</option>
+            <option value="7">Every 2 years (biennially)</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <div class="clearfix"></div>
+
+    <div class="col-xs-12">
+      <div
+        class="row"
+        *ngIf="newCustomer"
+        id="customerForm"
+        style="display:none;"
+      >
+        <div class="well well-sm">
+          <div class="clearfix"></div>
+          <h3>
+            {{ lang('new_customer') }}
+          </h3>
+          <div class="clearfix"></div>
+          <div class="col-sm-4">
+            <div class="form-group">
+              <label for="company"> {{ lang('company') }}</label>
+              <div class="controls">
+                <input
+                  name="company"
+                  [(ngModel)]="newCustomer.company"
+                  class="form-control"
+                  id="company"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-4">
+            <div class="form-group">
+              <label for="name"> {{ lang('contact_person') }}</label>
+              <div class="controls">
+                <input
+                  name="name"
+                  [(ngModel)]="newCustomer.name"
+                  class="form-control"
+                  id="name"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-4">
+            <div class="form-group">
+              <label for="phone"> {{ lang('phone') }}</label>
+              <div class="controls">
+                <input
+                  name="phone"
+                  [(ngModel)]="newCustomer.phone"
+                  class="form-control"
+                  id="phone"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-4">
+            <div class="form-group">
+              <label for="email_address"> {{ lang('email_address') }}</label>
+              <div class="controls">
+                <input
+                  name="email"
+                  [(ngModel)]="newCustomer.email"
+                  class="form-control"
+                  id="email"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-4">
+            <div class="form-group">
+              <label for="address"> {{ lang('address') }}</label>
+              <div class="controls">
+                <input
+                  name="address"
+                  [(ngModel)]="newCustomer.address"
+                  class="form-control"
+                  id="address"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-4">
+            <div class="form-group">
+              <label for="city"> {{ lang('city') }}</label>
+              <div class="controls">
+                <input
+                  name="city"
+                  [(ngModel)]="newCustomer.city"
+                  class="form-control"
+                  id="city"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-4">
+            <div class="form-group">
+              <label for="state"> {{ lang('state') }}</label>
+              <div class="controls">
+                <input
+                  name="state"
+                  [(ngModel)]="newCustomer.state"
+                  class="form-control"
+                  id="state"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-4">
+            <div class="form-group">
+              <label for="postal_code"> {{ lang('postal_code') }}</label>
+              <div class="controls">
+                <input
+                  name="postal_code"
+                  [(ngModel)]="newCustomer.postalCode"
+                  class="form-control"
+                  id="postal_code"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-4">
+            <div class="form-group">
+              <label for="country"> {{ lang('country') }}</label>
+              <div class="controls">
+                <input
+                  name="country"
+                  [(ngModel)]="newCustomer.country"
+                  class="form-control"
+                  id="country"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="clearfix"></div>
+        </div>
+      </div>
+    </div>
+    <div class="clearfix"></div>
+
+    <div class="table-responsive">
+      <table
+        id="dyTable"
+        class="table table-striped table-condensed"
+        style="margin-bottom:5px;"
+      >
+        <thead>
+          <tr class="active">
+            <th class="text-center">
+              {{ lang('no') }}
+            </th>
+            <th class="col-sm-1 text-center">
+              {{ lang('quantity') }}
+            </th>
+            <th class="text-center">
+              {{ lang('product_code') }}
+            </th>
+            <th class="col-sm-2 text-center">
+              {{ lang('unit_price') }}
+            </th>
+            <th
+              *ngIf="$settings && $settings.productDiscount"
+              class="col-sm-1 text-center"
+            >
+              {{ lang('discount') }}
+            </th>
+            <th
+              *ngIf="$settings && $settings.defaultTaxRate"
+              class="col-sm-2 text-center"
+            >
+              {{ lang('tax_rate') }}
+            </th>
+            <th
+              *ngIf="$settings && $settings.defaultTaxRate"
+              class="col-sm-1 text-center"
+            >
+              {{ lang('tax_method') }}
+            </th>
+            <th class="col-sm-2 text-center">
+              {{ lang('subtotal') }}
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- shan no invoice<?php
+              $i = isset($_POST['product']) ? sizeof($_POST['product']) : 0;
+              if (!$inv) {
+                  for ($r=1; $r<=$i; $r++) {
+                      ?> -->
+          <tr *ngFor="let row of quoteItems; let i = index" id="{{ i + 1 }}">
+            <td
+              style="width: 20px; text-align: center; padding-right: 10px; padding-right: 10px;"
+            >
+              {{ i + 1 }}
+              <input
+                id="quoteItemId-{{ i + 1 }}"
+                class="quoteItemId"
+                type="hidden"
+                value="{{ row.id }}"
+              />
+            </td>
+            <td>
+              <input
+                name="quantity[]"
+                [(ngModel)]="row.quantity"
+                class="quantity form-control text-center input-sm"
+                id="quantity-{{ i + 1 }}"
+                style="min-width: 70px;"
+              />
+            </td>
+            <td>
+              <div class="input-group">
+                <input
+                  name="product[]"
+                  [(ngModel)]="row.productName"
+                  class="form-control suggestions input-sm"
+                  id="product-{{ i + 1 }}"
+                  maxlength="80"
+                  style="min-width: 270px;"
+                />
+                <span class="input-group-addon"
+                  ><i class="fa fa-file-text-o pointer detailsIcon"></i
+                ></span>
+              </div>
+
+              <!-- shan <div class="details-con details-con-0{{ i+1}}" {{$_POST['details'][$r-1] ? '' :
+                  ' style="display:none;"' }}>
+                  {{ form_textarea('details[]', $_POST['details'][$r-1], 'class="form-control details" id="details-'.$r.'" maxlength="255" style="margin-top:5px;padding:5px 10px;height:60px;"');?>
+                </div> -->
+              <div class="details-con details-con-0{{ i + 1 }}">
+                <textarea
+                  id="details-{{ i + 1 }}"
+                  name="details[]"
+                  [(ngModel)]="row.details"
+                  maxlength="255"
+                  style="margin-top:5px;padding:5px 10px;height:60px;"
+                  class="form-control details"
+                >
+                </textarea>
+              </div>
+            </td>
+            <td>
+              <input
+                name="price[]"
+                [(ngModel)]="row.realUnitPrice"
+                class="form-control price input-sm text-right"
+                id="price-{{ i + 1 }}"
+                style="min-width: 100px;"
+              />
+            </td>
+            <td *ngIf="$settings && $settings.productDiscount">
+              <input
+                name="discount[]"
+                [(ngModel)]="row.discount"
+                class="form-control discount input-sm"
+                id="discount-{{ i + 1 }}"
+              />
+            </td>
+            <td *ngIf="$settings && $settings.defaultTaxRate">
+              <select
+                id="tax_rate-{{ i + 1 }}"
+                name="tax_rates"
+                class="form-control tax input-sm"
+                [(ngModel)]="row.taxRateId"
+                style="min-width: 100px;"
+              >
+                <option *ngFor="let rate of $tax_rates" value="{{ rate.id }}">{{
+                  rate.name
+                }}</option>
+              </select>
+            </td>
+            <td *ngIf="$settings && $settings.defaultTaxRate">
+              <select
+                id="tax_method-{{ i + 1 }}"
+                name="tax_method[]"
+                class="form-control tax_method"
+                id="tax_method-{{ i + 1 }}"
+                [(ngModel)]="row.taxMethod"
+              >
+                <option value="exclusive">{{ lang('exclusive') }}</option>
+                <option value="inclusive">{{ lang('inclusive') }}</option>
+              </select>
+            </td>
+            <td>
+              <input
+                type="text"
+                readonly
+                tabindex="-1"
+                id="subtotal-{{ i + 1 }}"
+                class="subtotal form-control text-right input-sm"
+                name="subtotal[]"
+              />
+            </td>
+          </tr>
+          <tr
+            *ngFor="let row of emptyRowArray; let i = index"
+            id="{{ i + 1 + quoteItems.length }}"
+          >
+            <td
+              style="width: 20px; text-align: center; padding-right: 10px; padding-right: 10px;"
+            >
+              {{ i + 1 + quoteItems.length }}
+              <input
+                id="quoteItemId-{{ i + 1 + quoteItems.length }}"
+                class="quoteItemId"
+                type="hidden"
+              />
+            </td>
+            <td>
+              <input
+                name="quantity[]"
+                class="quantity form-control text-center input-sm"
+                id="quantity-{{ i + 1 + quoteItems.length }}"
+                style="min-width: 70px;"
+              />
+            </td>
+            <td>
+              <div class="input-group">
+                <input
+                  name="product[]"
+                  class="form-control suggestions input-sm"
+                  id="product-{{ i + 1 + quoteItems.length }}"
+                  maxlength="80"
+                  style="min-width: 270px;"
+                />
+                <span class="input-group-addon"
+                  ><i class="fa fa-file-text-o pointer detailsIcon"></i
+                ></span>
+              </div>
+
+              <!-- shan <div class="details-con details-con-0{{ i+1}}" {{$_POST['details'][$r-1] ? '' :
+                  ' style="display:none;"' }}>
+                  {{ form_textarea('details[]', $_POST['details'][$r-1], 'class="form-control details" id="details-'.$r.'" maxlength="255" style="margin-top:5px;padding:5px 10px;height:60px;"');?>
+                </div> -->
+              <div class="details-con details-con-0{{ i + quoteItems.length }}">
+                <textarea
+                  id="details-{{ i + quoteItems.length }}"
+                  name="details[]"
+                  maxlength="255"
+                  style="margin-top:5px;padding:5px 10px;height:60px;"
+                  class="form-control details"
+                >
+                </textarea>
+              </div>
+            </td>
+            <td>
+              <input
+                name="price[]"
+                class="form-control price input-sm text-right"
+                id="price-{{ i + 1 + quoteItems.length }}"
+                style="min-width: 100px;"
+              />
+            </td>
+            <td *ngIf="$settings && $settings.productDiscount">
+              <input
+                name="discount[]"
+                class="form-control discount input-sm"
+                id="discount-{{ i + 1 + quoteItems.length }}"
+              />
+            </td>
+            <td *ngIf="$settings && $settings.defaultTaxRate">
+              <select
+                id="tax_rate-{{ i + 1 + quoteItems.length }}"
+                name="tax_rates"
+                class="form-control tax input-sm"
+                style="min-width: 100px;"
+              >
+                <option *ngFor="let rate of $tax_rates" value="{{ rate.id }}">{{
+                  rate.name
+                }}</option>
+              </select>
+            </td>
+            <td *ngIf="$settings && $settings.defaultTaxRate">
+              <select
+                id="tax_method-{{ i + 1 + quoteItems.length }}"
+                name="tax_method[]"
+                class="form-control tax_method"
+              >
+                <option value="exclusive">{{ lang('exclusive') }}</option>
+                <option value="inclusive">{{ lang('inclusive') }}</option>
+              </select>
+            </td>
+            <td>
+              <input
+                type="text"
+                readonly
+                tabindex="-1"
+                id="subtotal-{{ i + 1 + quoteItems.length }}"
+                class="subtotal form-control text-right input-sm"
+                name="subtotal[]"
+              />
+            </td>
+          </tr>
+          <!-- shan have invoice<?php
+                  }
+              } else {
+                  $r = 1;
+                  foreach ($inv_products as $prod) {
+                      ?>
+            <tr id="{{ $r}}">
+              <td style="width: 20px; text-align: center; padding-right: 10px; padding-right: 10px;">
+                {{ $r}}
+              </td>
+              <td>
+                {{ form_input('quantity[]', $prod->quantity, 'id="quantity-'.$r.'" class="quantity form-control text-center input-sm" style="min-width: 70px;"');?>
+              </td>
+              <td>
+                <div class="input-group">
+                  {{ form_input('product[]', $prod->product_name, 'id="product-'.$r.'" class="form-control input-sm suggestions" maxlength="80" style="min-width:270px;"')}}
+                  <span class="input-group-addon"><i class="fa fa-file-text-o pointer details"></i></span>
+                </div>
+                <div class="details-con details-con-0{{ $r}}" {{$prod->details ? '' : ' style="display:none;"'}}>
+                  {{ form_textarea('details[]', $prod->details, 'class="form-control details" id="details-'.$r.'" maxlength="255" style="margin-top:5px;padding:5px 10px;height:60px;"');?>
+                </div>
+              </td>
+              <td>
+                {{ form_input('price[]', $prod->real_unit_price, 'id="price-'.$r.'" class="price form-control text-right input-sm" style="min-width: 100px;"')}}
+              </td>
+              <?php if ($Settings->product_discount) { ?>
+              <td>
+                <?php
+                              echo form_input('discount[]', $prod->discount, 'id="discount-'.$r.'" class="discount form-control input-sm"');
+                              ?>
+              </td>
+              <?php } ?>
+              <?php if ($Settings->default_tax_rate) { ?>
+              <td>
+                <?php
+                              echo form_dropdown('tax_rate[]', $tr, $prod->tax_rate_id, 'id="tax_rate-'.$r.'" class="tax form-control input-sm" style="min-width: 100px;"');
+                              ?>
+              </td>
+              <td>
+                <?php $opts = array('exclusive' => lang('exclusive'), 'inclusive' => lang('inclusive'))}}
+                <?php echo form_dropdown('tax_method[]', $opts, $prod->tax_method, 'class="form-control tax_method" id="tax_method-'.$r.'"')}}
+              </td>
+              <?php } ?>
+              <td><input type="text" readonly tabindex="-1" id="subtotal-{{ $r}}" class="subtotal form-control text-right input-sm"
+                  name="subtotal[]"></td>
+  
+            </tr>
+            <?php
+                      $r++;
+                  }
+              } -->
+          <!-- if ($r < 9) {
+                  for ($rw=$r; $rw<=$Settings->no_of_rows; $rw++) {
+                      ?>
+            <tr id="{{ $rw}}">
+              <td style="width: 20px; text-align: center; padding-right: 10px; padding-right: 10px;">
+                {{ $rw}}
+              </td>
+              <td>
+                {{ form_input('quantity[]', '', 'id="quantity-'.$rw.'" class="quantity form-control text-center input-sm" style="min-width: 70px;"');?>
+              </td>
+              <td>
+                <div class="input-group">
+                  {{ form_input('product[]', '', 'id="product-'.$rw.'" class="form-control input-sm suggestions" maxlength="80" style="min-width:270px;"')}}
+                  <span class="input-group-addon"><i class="fa fa-file-text-o pointer details"></i></span>
+                </div>
+                <div class="details-con details-con-0{{ $rw}}" style="display:none;">
+                  {{ form_textarea('details[]', '', 'class="form-control details" id="details-'.$rw.'" maxlength="255" style="margin-top:5px;padding:5px 10px;height:60px;"');?>
+                </div>
+              </td>
+              <td>
+                {{ form_input('price[]', '', 'id="price-'.$rw.'" class="price form-control text-right input-sm" style="min-width: 100px;"')}}
+              </td>
+              <?php if ($Settings->product_discount) { ?>
+              <td>
+                <?php
+                              echo form_input('discount[]', '', 'id="discount-'.$rw.'" class="discount form-control input-sm"');
+                              ?>
+              </td>
+              <?php } ?>
+              <?php if ($Settings->default_tax_rate) { ?>
+              <td>
+                <?php
+                              echo form_dropdown('tax_rate[]', $tr, '', 'id="tax_rate-'.$rw.'" class="tax form-control input-sm" style="min-width: 100px;"');
+                              ?>
+              </td>
+              <td>
+                <?php $opts = array('exclusive' => lang('exclusive'), 'inclusive' => lang('inclusive'))}}
+                <?php echo form_dropdown('tax_method[]', $opts, set_value('tax_method'), 'class="form-control tax_method" id="tax_method-'.$r.'"')}}
+              </td>
+              <?php } ?>
+              <td><input type="text" readonly tabindex="-1" id="subtotal-{{ $rw}}" class="subtotal form-control text-right input-sm"
+                  name="subtotal[]"></td>
+            </tr>
+            <?php
+                  }
+              }
+              ?> -->
+        </tbody>
+        <tfoot>
+          <td [attr.colspan]="calColspan()">
+            <button
+              type="button"
+              tabindex="-1"
+              class="btn btn-primary btn-sm"
+              id="addButton"
+            >
+              <i class="fa fa-plus"></i>
+            </button>
+            <button
+              type="button"
+              tabindex="-1"
+              class="btn btn-danger btn-sm"
+              id="removeButton"
+            >
+              <i class="fa fa-minus"></i>
+            </button>
+          </td>
+          <td class="hidden-xs">
+            <h4 style="margin: 0; text-align: right;">{{ lang('total') }}:</h4>
+          </td>
+          <td class="hidden-xs">
+            <h4 style="margin: 0; text-align: right;">
+              <span class="pull-right total_amount">0.00</span>
+            </h4>
+          </td>
+        </tfoot>
+      </table>
+    </div>
+
+    <div class="well well-sm bold">
+      <div class="visible-xs col-xs-12" style="border:0;">
+        <h4 style="margin:0;text-align:center;">
+          {{ lang('total') }}: <span class="total_amount">0.00</span>
+        </h4>
+      </div>
+      <div class="col-sm-4" style="border:0;">
+        <h4 style="margin:0;text-align:center;">
+          {{ lang('order_discount') }}:
+          <span id="order_discount_total">0.00</span>
+        </h4>
+      </div>
+      <div class="col-sm-4" style="border:0;">
+        <h4 style="margin:0;text-align:center;">
+          {{ lang('order_tax') }}: <span id="order_tax_total">0.00</span>
+        </h4>
+      </div>
+      <div class="col-sm-4" style="border:0;">
+        <h4 style="margin:0;text-align:center;">
+          {{ lang('grand_total') }}:
+          <span id="grand_total" style="font-weight:bold;">0.00</span>
+        </h4>
+      </div>
+      <div class="clearfix"></div>
+    </div>
+
+    <div class="clearfix"></div>
+
+    <div class="form-group">
+      <textarea
+        id="note"
+        name="note"
+        [(ngModel)]="curQuotation.note"
+        maxlength="255"
+        placeholder="{{ lang('add_note') }}"
+        rows="3"
+        style="margin-top: 10px; height: 100px;"
+        class="form-control notes"
+      >
+      </textarea>
+    </div>
+
+    <div class="form-group">
+      <button class="btn btn-primary btn-lg" (click)="save()">
+        {{ lang('save_quote') }}
+      </button>
+    </div>
+    <div class="clearfix"></div>
+  </div>
+  <div class="clearfix"></div>
+</div>

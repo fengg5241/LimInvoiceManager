@@ -39,6 +39,7 @@ import { QuotationDetailComponent } from './quotations/quotation-detail/quotatio
 
 import { AngularDateTimePickerModule } from 'angular2-datetimepicker';
 import { SaleDetailComponent } from './sales/sale-detail/sale-detail.component';
+import { QuotationView } from './quotations/quotation-view/quotation-view.component';
 
 @NgModule({
   declarations: [
@@ -74,6 +75,7 @@ import { SaleDetailComponent } from './sales/sale-detail/sale-detail.component';
     QuotationsComponent,
     QuotationDetailComponent,
     SaleDetailComponent,
+    QuotationView,
   ],
   imports: [
     BrowserModule,

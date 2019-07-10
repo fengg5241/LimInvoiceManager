@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { ActivatedRoute, Router } from '@angular/router';
 import { LangService } from '../lang.service';
 import * as $ from 'jquery';
 import 'datatables.net';
@@ -19,9 +20,11 @@ export class QuotationsComponent implements OnInit {
   $page_title = "Quotations";
   $settings: any;
   quotations: any;
+  tableInstance = null;
 
   constructor(private langService: LangService,
-    private http: HttpClient) { }
+    private http: HttpClient,
+    private router: Router) { }
 
   ngOnInit() {
     this.initTable()
@@ -91,6 +94,8 @@ export class QuotationsComponent implements OnInit {
                 ]
             });
 
+            thisObject.tableInstance = table;
+
             $('#fileData tfoot th:not(:last-child)').each(function () {
                 var title = $(this).text();
                 $(this).html('<input type="text" class="text_filter" placeholder="' + title + '" />');
@@ -101,6 +106,21 @@ export class QuotationsComponent implements OnInit {
                 if (((code == 13 && table.search() !== this.value) || (table.search() !== '' && this.value === ''))) {
                     table.search(this.value).draw();
                 }
+            });
+
+            $('#fileData').on('click', '.email_inv', function() {
+                // var id = $(this).attr('id');
+                // var cid = $(this).attr('data-customer');
+                // var bid = $(this).attr('data-company');
+                // $.getJSON( "<?=site_url('sales/getCE');?>", { cid: cid, bid: bid, <?=$this->security->get_csrf_token_name();?>: '<?=$this->security->get_csrf_hash()?>' }).done(function( json ) {
+                //     $('#customer_email').val(json.ce);
+                //     $('#subject').val('<?=lang("invoice_from");?> '+json.com);
+                // });
+                // $('#emailModalLabel').text('<?=lang("email") . " " . lang("invoice") . " " . lang("no");?> '+id);
+                // $('#subject').val('<id?=lang("invoice") . " from " . $Settings->site_name;?>');
+                // $('#inv_id').val();
+                $('#emailModal').modal();
+                return false;
             });
 
             table.columns().every(function () {
@@ -140,6 +160,25 @@ export class QuotationsComponent implements OnInit {
 
   lang(word) {
     return this.langService.lang(word);
+}
+
+// deleteConfirm(quoteId){
+//     let confirm = confirm('You are going to remove this quotation. Press OK to proceed and Cancel to Go Back') 
+//     if(confirm){
+        
+//     }
+
+// }
+
+deleteQuote(quoteId){
+    this.http
+        .get('/api/quotation/delete/'+quoteId )
+        .subscribe(data => {
+            this.tableInstance.clear();
+            this.initTable();
+        },
+        error => alert(error.error.message)
+        );
 }
 
 }

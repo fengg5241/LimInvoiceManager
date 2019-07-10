@@ -43,7 +43,7 @@ export class QuotationDetailComponent implements OnInit {
     country: ''
   };
   curQuotation: any;
-
+  
   // $data = array('reference_no' => $reference_no, ok
   // 'product_discount' => $product_discount, ok
   // 'order_discount_id' => $order_discount_id,ok
@@ -133,9 +133,9 @@ export class QuotationDetailComponent implements OnInit {
       this.$page_title = 'Edit Quotation';
       this.curQuotation = await this.http.get('/api/quotation/selectById/' + id).toPromise();
       this.curQuotation.date = this.curQuotation.date.split('T')[0];
-      this.curQuotation.expiryDate = this.curQuotation.expiryDate.split(
+      this.curQuotation.expiryDate = this.curQuotation.expiryDate ? this.curQuotation.expiryDate.split(
         'T'
-      )[0];
+      )[0] : null;
       
       this.quoteItems = await this.http
         .get('/api/quotationItem/selectByQuoteId/' + id)
@@ -498,24 +498,50 @@ export class QuotationDetailComponent implements OnInit {
     return this.langService.lang(word);
   }
 
-  save() {
+  async save() {
+
+    if (!(this.updateItems.length > 0 && this.noOfValidItems >= 1)) {
+      alert('There is no products which quantity > 0');
+      return;
+    }
+
+    if(this.curQuotation.customerId == "new"){
+      let newCustomerId = await this.http
+      .post('/api/customer/insert',this.newCustomer)
+      .toPromise();
+      this.curQuotation.customerId = newCustomerId;
+      this.curQuotation.customerName = this.newCustomer.company;
+    }else {
+      let filterCustomer = this.$customers.filter(item=> item.id == this.curQuotation.customerId);
+      this.curQuotation["customerName"] = filterCustomer[0].company; 
+    }
+
+    if(this.curQuotation.companyId){
+      let filterCompany = this.$companies.filter(item=> item.id == this.curQuotation.companyId);
+      this.curQuotation["companyName"] = filterCompany[0].company; 
+    }
+    
+    this.curQuotation["userId"] = 1;
+    this.curQuotation["user"] = 1;
     if (this.isNew) {
       this.http
         .post('/api/quotation/insert', this.curQuotation)
         .subscribe(data => {
           //get new id
-          // this.curQuotation.id = newId;
-          // if (this.updateItems.length > 0 && this.noOfValidItems >= 1) {
-          //   this.http
-          //     .post('/api/quotationItem/bulkUpdate', this.updateItems)
-          //     .subscribe(data => {
-          //       this.router.navigateByUrl('sales/quotations');
-          //     });
-          // } else {
-          //   alert('There is no products which quantity > 0');
-          // }
-          // this.router.navigateByUrl('sales/quotations');
-        });
+          this.curQuotation.id = data;
+          this.updateItems.forEach(e => {
+            e.quoteId = data;
+          });
+          this.http
+              .post('/api/quotationItem/bulkUpdate', this.updateItems)
+              .subscribe(data => {
+                this.router.navigateByUrl('sales/quotations');
+              });
+          this.router.navigateByUrl('sales/quotations');
+        },
+        error => alert(error.error.message)
+        );
+        
     } else {
       this.http
         .post('/api/quotation/update', this.curQuotation)
@@ -523,15 +549,11 @@ export class QuotationDetailComponent implements OnInit {
           // let { updateItems, noOfValidItems } = this.getQuotaItems(
           //   this.curQuotation.id
           // );
-          if (this.updateItems.length > 0 && this.noOfValidItems >= 1) {
-            this.http
+          this.http
               .post('/api/quotationItem/bulkUpdate', this.updateItems)
               .subscribe(data => {
                 this.router.navigateByUrl('sales/quotations');
               });
-          } else {
-            alert('There is no products which quantity > 0');
-          }
         });
     }
   }

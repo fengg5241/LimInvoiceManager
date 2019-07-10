@@ -29,6 +29,7 @@ import { DailyReportComponent } from './reports/daily-report/daily-report.compon
 import { SalesReportComponent } from './reports/sales-report/sales-report.component';
 import { PaymentReportComponent } from './reports/payment-report/payment-report.component';
 import { QuotationsComponent } from './quotations/quotations.component';
+import { QuotationView } from './quotations/quotation-view/quotation-view.component';
 import { QuotationDetailComponent } from './quotations/quotation-detail/quotation-detail.component';
 
 const routes: Routes = [
@@ -40,6 +41,7 @@ const routes: Routes = [
   { path: 'products/upload', component: ProductUploadComponent },
   { path: 'sales', component: SalesComponent },
   { path: 'sales/quotations', component: QuotationsComponent },
+  { path: 'sales/quotations/view', component: QuotationView },
   { path: 'sales/quotations/new', component: QuotationDetailComponent },
   { path: 'sales/quotations/edit/:id', component: QuotationDetailComponent },
   { path: 'customers', component: CustomersComponent },

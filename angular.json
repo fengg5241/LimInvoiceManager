@@ -27,6 +27,7 @@
               "src/assets/datatables/datatables.min.css"
             ],
             "scripts": ["./node_modules/jquery/dist/jquery.min.js",
+                        // "./node_modules/bootstrap/dist/js/bootstrap.js",
                        "./dist/js/adminlte.js",
                        "./node_modules/chosen-js/chosen.jquery.min.js",
                        "./node_modules/datatables.net/js/jquery.dataTables.js",

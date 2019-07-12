@@ -19,6 +19,14 @@ export class SalesComponent implements OnInit {
   $settings: any;
   quotations: any;
   tableInstance = null;
+  emailModal = {
+    customerEmail:"",
+    cc:"",
+    bcc:"",
+    subject:"",
+    
+
+  }
 
   constructor(
     private langService: LangService,

@@ -76,16 +76,14 @@
                     <li>
                       <a
                         routerLink="/sales/add_payment/{{ row.id }}"
-                        data-customer="{{ row.customerId }}"
-                        data-company="{{ row.companyId }}"
+                        
                         ><i class="fa fa-money"></i> Add Paymenets</a
                       >
                     </li>
                     <li>
                       <a
                         routerLink="/sales/invoice/edit/{{ row.id }}"
-                        data-customer="{{ row.customerId }}"
-                        data-company="{{ row.companyId }}"
+                       
                         ><i class="fa fa-edit"></i> Edit Invoice</a
                       >
                     </li>
@@ -241,35 +239,38 @@
         <div class="form-group">
           <label for="customer_email">{{ lang('to') }}</label>
           <div class="controls">
-            {{
-              form_input('to', '', 'class="form-control" id="customer_email"')
-            }}
+              <input name="customer_email" [(ngModel)]="emailModal.customerEmail" class="form-control" id="customer_email" />
           </div>
         </div>
         <div id="extra" style="display:none;">
           <div class="form-group">
             <label for="cc">{{ lang('cc') }}</label>
             <div class="controls">
-              {{ form_input('cc', '', 'class="form-control" id="cc"') }}
+                <input name="cc" [(ngModel)]="emailModal.cc" class="form-control" id="cc" />
             </div>
           </div>
           <div class="form-group">
             <label for="bcc">{{ lang('bcc') }}</label>
             <div class="controls">
-              {{ form_input('bcc', '', 'class="form-control" id="bcc"') }}
-            </div>
+                <input name="bcc" [(ngModel)]="emailModal.bcc" class="form-control" id="bcc" />
+              </div>
           </div>
         </div>
         <div class="form-group">
           <label for="subject">{{ lang('subject') }}</label>
           <div class="controls">
-            {{ form_input('subject', '', 'class="form-control" id="subject"') }}
-          </div>
+              <input name="subject" [(ngModel)]="emailModal.subject" class="form-control" id="subject" />
+            </div>
         </div>
         <div class="form-group">
           <label for="message">{{ lang('message') }}</label>
+          
           <div class="controls">
-            {{ form_textarea('note', lang("find_attached_quote"), 'id ="message" class="form-control" placeholder="'.lang("add_note").'" rows="3" style="margin-top: 10px; height: 100px;"')}}
+              <textarea class="form-control" id="message" maxlength="255" rows="3" 
+              style="margin-top: 10px; height: 100px;" [(ngModel)]="emailModal.message"
+              placeholder="lang('Please find the attached invoice')">
+            </textarea>
+            <!-- {{ form_textarea('note', lang("find_attached_quote"), 'id ="message" class="form-control" placeholder="'.lang("add_note").'" rows="3" style="margin-top: 10px; height: 100px;"')}} -->
           </div>
         </div>
         <input type="hidden" id="qu_id" value="" />

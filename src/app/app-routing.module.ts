@@ -6,6 +6,7 @@ import {ProductsComponent} from './products/products.component'
 import {ProductDetailComponent} from './products/product-detail/product-detail.component'
 import {ProductUploadComponent} from './products/product-upload/product-upload.component'
 import {SalesComponent} from './sales/sales.component'
+import {SaleDetailComponent} from './sales/sale-detail/sale-detail.component'
 import {CustomersComponent} from './customers/customers.component'
 import {CustomerDetailComponent} from './customers/customer-detail/customer-detail.component'
 import {CustomerUploadComponent} from './customers/customer-upload/customer-upload.component'
@@ -40,6 +41,8 @@ const routes: Routes = [
   { path: 'products/edit/:id', component: ProductDetailComponent },
   { path: 'products/upload', component: ProductUploadComponent },
   { path: 'sales', component: SalesComponent },
+  { path: 'sales/new', component: SaleDetailComponent },
+  { path: 'sales/edit/:id', component: SaleDetailComponent },
   { path: 'sales/quotations', component: QuotationsComponent },
   { path: 'sales/quotations/view', component: QuotationView },
   { path: 'sales/quotations/new', component: QuotationDetailComponent },

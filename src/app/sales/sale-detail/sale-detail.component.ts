@@ -50,7 +50,6 @@ export class SaleDetailComponent implements OnInit {
     companyId: null,
     referenceNo: '',
     customerId: '',
-    dueDate: '',
     shipping: '',
     orderDiscountId: '',
     orderDiscount: '',

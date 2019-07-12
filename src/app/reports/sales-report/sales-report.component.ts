@@ -27,8 +27,8 @@ export class SalesReportComponent implements OnInit {
   };
 
   $settings: any;
-  $customers: [];
-  $users: [];
+  $customers = [];
+  $users =  [];
   searchUser: null;
   $total: 0;
   $paid: 0;
@@ -48,10 +48,10 @@ export class SalesReportComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.init();
+    this.initUI();
   }
 
-  async init() {
+  async initUI() {
     let sysSettings = localStorage.getItem('LimSysSettings');
     if (sysSettings) {
       this.$settings = sysSettings;

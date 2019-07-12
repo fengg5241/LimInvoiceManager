@@ -27,6 +27,16 @@ export class QuotationsComponent implements OnInit {
     private router: Router) { }
 
   ngOnInit() {
+    //   let mail = {
+    //     to:"fengg_5241@163.com",
+    //     from:"fengg5241@gmail.com",
+    //     subject:"test",
+    //     content:"This is actual message"
+    //   }
+      
+    // this.http.post('/api/email/send',mail).subscribe(data => {
+
+    // })
     this.initTable()
   }
 

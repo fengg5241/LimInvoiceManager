@@ -122,12 +122,13 @@
             <th class="col-xs-1">{{ lang('created_by') }}</th>
             <th class="col-xs-2">{{ lang('customer') }}</th>
             <th class="col-xs-1">{{ lang('total') }}</th>
-            <th class="col-xs-1">{{ lang('total_tax') }}</th>
-            <th class="col-xs-1">{{ lang('shipping') }}</th>
-            <th class="col-xs-1">{{ lang('discount') }}</th>
-            <th class="col-xs-1">{{ lang('grand_total') }}</th>
-            <th class="col-xs-1">{{ lang('expiry_date') }}</th>
+            <!-- <th class="col-xs-1">{{ lang('total_tax') }}</th> -->
+            <!-- <th class="col-xs-1">{{ lang('shipping') }}</th> -->
+            <th class="col-xs-1">{{ lang('paid') }}</th>
+            <th class="col-xs-1">{{ lang('balance') }}</th>
+            <th class="col-xs-1">{{ lang('due_date') }}</th>
             <th class="col-xs-1">{{ lang('status') }}</th>
+            <th class="col-xs-1">{{ lang('recurring') }}</th>
             <th style="min-width:75px; text-align:center;">
               {{ lang('actions') }}
             </th>
@@ -328,7 +329,7 @@
             lang('new_status')
           }}</label>
           <div class="controls" id="change_status">
-            <select
+            <!-- <select
               id="new_status"
               name="status"
               class="new-status form-control select"
@@ -343,7 +344,7 @@
               <option value="overdue">{{ lang('overdue') }}</option>
               <option value="paid">{{ lang('paid') }}</option>
               <option value="pending">{{ lang('pending') }}</option>
-            </select>
+            </select> -->
           </div>
         </div>
       </div>

@@ -54,6 +54,8 @@ const routes: Routes = [
   { path: 'users/new', component: UserDetailComponent },
   { path: 'users/edit/:id', component: UserDetailComponent },
   { path: 'reports', component: ReportsComponent },
+  { path: 'reports/daily', component: DailyReportComponent },
+  { path: 'reports/sales', component: SalesReportComponent },
   { path: 'settings', component: SettingsComponent },
   { path: 'settings/systemSetting', component: SystemSettingComponent },
   { path: 'settings/paypalSetting', component: PaypalSettingComponent },

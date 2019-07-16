@@ -53,7 +53,7 @@ const routes: Routes = [
   { path: 'users', component: UsersComponent },
   { path: 'users/new', component: UserDetailComponent },
   { path: 'users/edit/:id', component: UserDetailComponent },
-  { path: 'reports', component: ReportsComponent },
+  // { path: 'reports', component: ReportsComponent },
   { path: 'reports/daily', component: DailyReportComponent },
   { path: 'reports/sales', component: SalesReportComponent },
   { path: 'settings', component: SettingsComponent },

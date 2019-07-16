@@ -19,6 +19,7 @@ export class SalesReportComponent implements OnInit {
   $page_title = 'Sales Report';
   searchParams = {
     pruductId: null,
+    companyId:null,
     customFields: null,
     createdBy: null,
     status: null,
@@ -63,6 +64,11 @@ export class SalesReportComponent implements OnInit {
     }
     // this.$tax_rates = await this.http.get('/api/taxRate/selectAll').toPromise();
   }
+
+
+  lang(word) {
+    return this.langService.lang(word);
+}
 
   formatMoney(x, symbol) {
     if (!symbol) {

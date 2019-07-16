@@ -74,26 +74,10 @@ export class SaleDetailComponent implements OnInit {
 
   ngOnInit() {
     this.initTable();
-    // this.initQuotation();
   }
 
   ngAfterViewInit() {
     // $("select").chosen({no_results_text: "No results matched", disable_search_threshold: 5, allow_single_deselect:true, width: '100%'});
-  }
-
-  initQuotation() {
-    let id = this.route.snapshot.paramMap.get('id');
-    if (id) {
-      this.isNew = false;
-      this.$page_title = 'Edit Quotation';
-      this.http.get('/api/quotation/selectById/' + id).subscribe(data => {
-        this.curQuotation = data;
-        this.curQuotation.date = this.curQuotation.date.split('T')[0];
-        this.curQuotation.dueDate = this.curQuotation.dueDate.split('T')[0];
-      });
-    } else {
-      this.curQuotation = Object.assign({}, this.newQuotation);
-    }
   }
 
   async initTable() {
@@ -111,9 +95,9 @@ export class SaleDetailComponent implements OnInit {
     let id = this.route.snapshot.paramMap.get('id');
     if (id) {
       this.isNew = false;
-      this.$page_title = 'Edit Quotation';
+      this.$page_title = 'Edit Invoice';
       this.curQuotation = await this.http
-        .get('/api/quotation/selectById/' + id)
+        .get('/api/sales/selectById/' + id)
         .toPromise();
       this.curQuotation.date = this.curQuotation.date.split('T')[0];
       this.curQuotation.dueDate = this.curQuotation.dueDate
@@ -121,7 +105,7 @@ export class SaleDetailComponent implements OnInit {
         : null;
 
       this.quoteItems = await this.http
-        .get('/api/quotationItem/selectByQuoteId/' + id)
+        .get('/api/saleItem/selectBySaleId/' + id)
         .toPromise();
     } else {
       this.curQuotation = Object.assign({}, this.newQuotation);
@@ -508,7 +492,7 @@ export class SaleDetailComponent implements OnInit {
     this.curQuotation['userId'] = 1;
     this.curQuotation['user'] = 1;
     if (this.isNew) {
-      this.http.post('/api/quotation/insert', this.curQuotation).subscribe(
+      this.http.post('/api/sales/insert', this.curQuotation).subscribe(
         data => {
           //get new id
           this.curQuotation.id = data;
@@ -516,25 +500,25 @@ export class SaleDetailComponent implements OnInit {
             e.quoteId = data;
           });
           this.http
-            .post('/api/quotationItem/bulkUpdate', this.updateItems)
+            .post('/api/saleItem/bulkUpdate', this.updateItems)
             .subscribe(data => {
-              this.router.navigateByUrl('sales/quotations');
+              this.router.navigateByUrl('sales');
             });
-          this.router.navigateByUrl('sales/quotations');
+          this.router.navigateByUrl('sales');
         },
         error => alert(error.error.message)
       );
     } else {
       this.http
-        .post('/api/quotation/update', this.curQuotation)
+        .post('/api/sales/update', this.curQuotation)
         .subscribe(data => {
           // let { updateItems, noOfValidItems } = this.getQuotaItems(
           //   this.curQuotation.id
           // );
           this.http
-            .post('/api/quotationItem/bulkUpdate', this.updateItems)
+            .post('/api/saleItem/bulkUpdate', this.updateItems)
             .subscribe(data => {
-              this.router.navigateByUrl('sales/quotations');
+              this.router.navigateByUrl('sales');
             });
         });
     }

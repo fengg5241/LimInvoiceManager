@@ -41,11 +41,11 @@
             <td>{{ row.referenceNo }}</td>
             <td>{{ row.userId }}</td>
             <td>{{ row.customerName }}</td>
-            <td>{{ row.total }}</td>
+            <td>{{ row.grandTotal }}</td>
             <!-- <td>{{ row.totalTax }}</td> -->
             <!-- <td>{{ row.shipping }}</td> -->
             <td>{{ row.paid }}</td>
-            <td>{{ row.balance }}</td>
+            <td>{{ row.grandTotal - row.paid }}</td>
             <td>{{ row.dueDate }}</td>
             <td>{{ row.status }}</td>
             <td>{{ row.recurring }}</td>
@@ -82,7 +82,7 @@
                     </li>
                     <li>
                       <a
-                        routerLink="/sales/invoice/edit/{{ row.id }}"
+                        routerLink="/sales/edit/{{ row.id }}"
                        
                         ><i class="fa fa-edit"></i> Edit Invoice</a
                       >
@@ -183,21 +183,33 @@
             lang('amount_paid')
           }}</label>
           <div class="controls">
-            {{
+              <input
+              type="text"
+              name="amount"
+              [(ngModel)]="payModal.amount"
+              class="input-block-level"
+              id="amount"
+            />
+
+            <!-- {{
               form_input('amount', '', 'class="input-block-level" id="amount"')
-            }}
+            }} -->
           </div>
         </div>
         <div class="control-group">
           <label class="control-label" for="note">{{ lang('note') }}</label>
           <div class="controls">
-            {{
+              <textarea class="input-block-level" id="note" maxlength="255"
+              style=" height: 100px;" [(ngModel)]="payModal.note"
+              >
+            </textarea>
+            <!-- {{
               form_textarea(
                 'note',
                 '',
                 'class="input-block-level" id="note" style="height:100px;"'
               )
-            }}
+            }} -->
           </div>
         </div>
         <input type="hidden" name="cid" value="" id="cid" />

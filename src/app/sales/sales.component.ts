@@ -28,6 +28,11 @@ export class SalesComponent implements OnInit {
 
   }
 
+  payModal={
+    amount:null,
+    note:""
+  }
+
   constructor(
     private langService: LangService,
     private http: HttpClient,
@@ -50,40 +55,33 @@ export class SalesComponent implements OnInit {
     }
 
     let thisObject = this;
-    this.http.get('/api/quotation/selectAll').subscribe(data => {
+    this.http.get('/api/sales/selectAll').subscribe(data => {
       this.quotations = data;
 
       function status(x) {
         switch (x) {
-          case 'sent':
-            return (
-              '<div class="text-center"><small><span class="label label-success">' +
-              thisObject.lang('sent') +
-              '</span></small></div>'
-            );
-            break;
-          case 'ordered':
-            return (
-              '<div class="text-center"><small><span class="label label-success">' +
-              thisObject.lang('ordered') +
-              '</span></small></div>'
-            );
-            break;
+          case 'paid':
+                return '<div class="text-center"><small><a id="'+x+'" href="#myModal" role="button" data-toggle="modal" class="st"><span class=" label label-success">'+thisObject.lang(x)+'</span></a></small></div>';
+                break;
+
+          case 'partial':
+                return '<div class="text-center"><small><a id="'+x+'" href="#myModal" role="button" data-toggle="modal" class="st"><span class="label label-info">'+thisObject.lang(x)+'</span></a></small></div>';
+                break;
+
           case 'pending':
-            return (
-              '<div class="text-center"><small><span class="label label-default">' +
-              thisObject.lang('pending') +
-              '</span></small></div>'
-            );
-            break;
+                return '<div class="text-center"><small><a id="'+x+'" href="#myModal" role="button" data-toggle="modal" class="st"><span class="label label-warning">'+thisObject.lang(x)+'</span></a></small></div>';
+                break;
+
+          case 'overdue':
+                return '<div class="text-center"><small><a id="'+x+'" href="#myModal" role="button" data-toggle="modal" class="st"><span class="label label-danger">'+thisObject.lang(x)+'</span></a></small></div>';
+                break;
+
+          case 'canceled':
+                return '<div class="text-center"><small><a id="'+x+'" href="#myModal" role="button" data-toggle="modal" class="st"><span class="label label-danger">'+thisObject.lang(x)+'</span></a></small></div>';
+                break;
+
           default:
-            return (
-              '<div class="text-center"><small><span class="label' +
-              x +
-              ' label label-default">' +
-              x +
-              '</span></small></div>'
-            );
+                return '<div class="text-center"><a id="'+x+'" href="#myModal" role="button" data-toggle="modal" class="st">'+thisObject.lang(x)+'</a></div>';
         }
       }
 
@@ -130,8 +128,9 @@ export class SalesComponent implements OnInit {
             null, //"render": cf
             null, //"render": cf
             null, //"render": cf,
-            null, //"render": cf
             { render: status },
+            null, //"render": cf
+           
             { searchable: false, orderable: false }
           ]
         });

@@ -169,7 +169,7 @@ export class QuotationDetailComponent implements OnInit {
     $(document).ready(function() {
       $(document).on(
         'change',
-        '#shipping, #order_discount, #order_tax, .quantity, .price, .discount, .tax, .tax_method',
+        '#shipping, #order_discount, #order_tax, .quantity, .price, .discount, .tax, .suggestions, .tax_method',
         function() {
           calculateTotal(thisObject);
         }

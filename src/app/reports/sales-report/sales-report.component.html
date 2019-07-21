@@ -19,7 +19,7 @@
         <div class="controls">
           <input
             name="product"
-            [(ngModel)]="searchParams.pruductId"
+            [(ngModel)]="searchParams.productName"
             class="form-control"
             id="product"
           />
@@ -36,14 +36,16 @@
                   class="customer form-control"
                   data-placeholder="Select customer"
                   id="customer"
-                  [(ngModel)]="searchParams.companyId"
+                  [(ngModel)]="searchParams.customerId"
                 >
                   <option value="null" disabled="true" [selected]="true"
                     >Select Customer</option
                   >
                   <option *ngFor="let row of $customers" value="{{ row.id }}">{{
-                    row.customerName
-                  }}</option>
+                    row.company
+                  }}({{
+                    row.name
+                  }})</option>
                 </select>
                 <!-- <?php 
 							$cu[""] = lang("select")." ".lang("customer");
@@ -59,7 +61,7 @@
               <div class="controls">
                 <input
                   name="customFields"
-                  [(ngModel)]="searchParams.customFields"
+                  [(ngModel)]="searchParams.customerFields"
                   class="form-control tip"
                   id="customFields"
                 />
@@ -94,10 +96,12 @@
                   [(ngModel)]="searchParams.createdBy"
                 >
                   <option value="null" disabled="true" [selected]="true"
-                    >Select Customer</option
+                    >Select User</option
                   >
                   <option *ngFor="let row of $users" value="{{ row.id }}">{{
-                    row.customerName
+                    row.firstName
+                  }} {{
+                    row.lastName
                   }}</option>
                 </select>
               </div>
@@ -147,7 +151,7 @@
                 <input
                   type="date"
                   name="start_date"
-                  [(ngModel)]="searchParams.start_date"
+                  [(ngModel)]="searchParams.startDate"
                   class="form-control date"
                   id="start_date"
                 />
@@ -166,7 +170,7 @@
                 <input
                   type="date"
                   name="end_date"
-                  [(ngModel)]="searchParams.end_date"
+                  [(ngModel)]="searchParams.endDate"
                   class="form-control date"
                   id="end_date"
                 />
@@ -176,7 +180,7 @@
         </div>
         <div class="form-group">
           <div class="controls">
-            <button class="btn btn-primary btn-lg" (click)="save()">
+            <button class="btn btn-primary btn-lg" (click)="searchSalesReport()">
               {{ lang('submit') }}
             </button>
             <!-- {{ form_submit('submit', lang("submit"), 'class="btn btn-primary"');?> -->
@@ -307,16 +311,32 @@
             <th class="col-xs-1">{{ lang('status') }}</th>
           </tr>
         </thead>
-        <tbody>
+        <!-- <tbody>
           <tr>
             <td colspan="11" class="dataTables_empty">
               {{ lang('loading_data_from_server') }}
             </td>
           </tr>
+        </tbody> -->
+        <tbody>
+          <tr *ngFor="let row of sales; let i = index">
+            <td>{{ row.id }}</td>
+            <td>{{ row.date }}</td>
+            <td>{{ row.companyName }}</td>
+            <td>{{ row.referenceNo }}</td>
+            <td>{{ row.userName }}</td>
+            <td>{{ row.customerName }}</td>
+            <td>{{ row.grandTotal }}</td>
+            <!-- <td>{{ row.totalTax }}</td> -->
+            <!-- <td>{{ row.shipping }}</td> -->
+            <td>{{ row.paid }}</td>
+            <td>{{ row.grandTotal - row.paid }}</td>
+            <td>{{ row.dueDate }}</td>
+            <td>{{ row.status }}</td>
+          </tr>
         </tbody>
-
         <tfoot>
-          <tr>
+          <!-- <tr>
             <th class="col-xs-1">{{ lang('id') }}</th>
             <th class="col-xs-1">{{ lang('date') }}</th>
             <th class="col-xs-2">{{ lang('billing_company') }}</th>
@@ -328,7 +348,7 @@
             <th class="col-xs-1">{{ lang('balance') }}</th>
             <th class="col-xs-1">{{ lang('due_date') }}</th>
             <th class="col-xs-1">{{ lang('status') }}</th>
-          </tr>
+          </tr> -->
           <tr>
             <td colspan="11" class="p0">
               <input

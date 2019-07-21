@@ -42,6 +42,7 @@ const routes: Routes = [
   { path: 'products/upload', component: ProductUploadComponent },
   { path: 'sales', component: SalesComponent },
   { path: 'sales/new', component: SaleDetailComponent },
+  { path: 'sales/new/:id', component: SaleDetailComponent },
   { path: 'sales/edit/:id', component: SaleDetailComponent },
   { path: 'sales/quotations', component: QuotationsComponent },
   { path: 'sales/quotations/view', component: QuotationView },

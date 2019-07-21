@@ -94,19 +94,45 @@ export class SaleDetailComponent implements OnInit {
 
     let id = this.route.snapshot.paramMap.get('id');
     if (id) {
-      this.isNew = false;
-      this.$page_title = 'Edit Invoice';
-      this.curQuotation = await this.http
-        .get('/api/sales/selectById/' + id)
-        .toPromise();
-      this.curQuotation.date = this.curQuotation.date.split('T')[0];
-      this.curQuotation.dueDate = this.curQuotation.dueDate
-        ? this.curQuotation.dueDate.split('T')[0]
-        : null;
+      let path = this.route.snapshot.routeConfig.path;
+      if(path.indexOf("new") > -1){ // go from "generate invoice link of quotation list page"
+        this.isNew = true;
+        this.$page_title = 'Add Invoice';
 
-      this.quoteItems = await this.http
-        .get('/api/saleItem/selectBySaleId/' + id)
-        .toPromise();
+        this.curQuotation = await this.http.get('/api/quotation/selectById/' + id).toPromise();
+        this.curQuotation.date = this.curQuotation.date.split('T')[0];
+        // Set original quote id and item id are  null, used for create invoice
+        this.curQuotation.id = null;
+      
+        this.quoteItems = await this.http
+          .get('/api/quotationItem/selectByQuoteId/' + id)
+          .toPromise();
+        if(this.quoteItems && this.quoteItems.length > 0){
+          this.quoteItems.forEach(e => {
+            e.id = null;
+          });
+        }
+        
+
+      }else {
+        this.isNew = false;
+        this.$page_title = 'Edit Invoice';
+
+        this.curQuotation = await this.http
+          .get('/api/sales/selectById/' + id)
+          .toPromise();
+        this.curQuotation.date = this.curQuotation.date.split('T')[0];
+        this.curQuotation.dueDate = this.curQuotation.dueDate
+          ? this.curQuotation.dueDate.split('T')[0]
+          : null;
+
+        this.quoteItems = await this.http
+          .get('/api/saleItem/selectBySaleId/' + id)
+          .toPromise();
+      }
+      
+      
+      
     } else {
       this.curQuotation = Object.assign({}, this.newQuotation);
       this.quoteItems = [];
@@ -134,7 +160,7 @@ export class SaleDetailComponent implements OnInit {
     $(document).ready(function() {
       $(document).on(
         'change',
-        '#shipping, #order_discount, #order_tax, .quantity, .price, .discount, .tax, .tax_method',
+        '#shipping, #order_discount, #order_tax, .quantity, .price, .discount, .tax, .suggestions,.tax_method',
         function() {
           calculateTotal(thisObject);
         }
@@ -290,7 +316,7 @@ export class SaleDetailComponent implements OnInit {
                 discount,
                 taxRateId: tax,
                 taxMethod: tax_method,
-                quoteId: thisObject.curQuotation.id
+                saleId: thisObject.curQuotation.id
               };
               if (quoteItemId) {
                 item['id'] = quoteItemId;
@@ -497,7 +523,7 @@ export class SaleDetailComponent implements OnInit {
           //get new id
           this.curQuotation.id = data;
           this.updateItems.forEach(e => {
-            e.quoteId = data;
+            e.saleId = data;
           });
           this.http
             .post('/api/saleItem/bulkUpdate', this.updateItems)
@@ -524,7 +550,7 @@ export class SaleDetailComponent implements OnInit {
     }
   }
 
-  getQuotaItems(quoteId) {
+  getQuotaItems(saleId) {
     let updateItems = [];
     let noOfValidItems = 0;
     for (let i = 1; i < this.counter + 1; i++) {
@@ -551,7 +577,7 @@ export class SaleDetailComponent implements OnInit {
           discount,
           taxRateId,
           taxMethod,
-          quoteId,
+          saleId,
           subtotal
         };
         if (id) {

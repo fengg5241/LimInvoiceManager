@@ -18,19 +18,22 @@ import 'datatables.net-buttons/js/buttons.html5';
 export class SalesReportComponent implements OnInit {
   $page_title = 'Sales Report';
   searchParams = {
-    pruductId: null,
-    companyId:null,
-    customFields: null,
+    productName: null,
+    customerId:null,
+    customerFields: null,
     createdBy: null,
     status: null,
-    start_date: null,
-    end_date: new Date().toISOString().split('T')[0]
+    startDate: null,
+    endDate: new Date().toISOString().split('T')[0]
   };
 
   $settings: any;
-  $customers = [];
-  $users =  [];
+  $companies:any
+  $customers:any;
+  sales:any;
+  $users:any;
   searchUser: null;
+  tableInstance = null;
   $total: 0;
   $paid: 0;
   $pp: 0;
@@ -62,9 +65,135 @@ export class SalesReportComponent implements OnInit {
         .toPromise();
       this.$settings = sysSettings1[0];
     }
+
+    this.http.get('/api/user/selectAll').subscribe(data => {
+      this.$users = data;
+    });
+
+    this.http.get('/api/customer/selectAll').subscribe(data => {
+      this.$customers = data;
+    });
     // this.$tax_rates = await this.http.get('/api/taxRate/selectAll').toPromise();
   }
 
+
+  searchSalesReport(){
+    this.http.post('/api/sales/getSalesReport',this.searchParams).subscribe(data => {
+      this.sales = data;
+
+      function status(x) {
+        switch (x) {
+          case 'paid':
+                return '<div class="text-center"><small><a id="'+x+'" href="#myModal" role="button" data-toggle="modal" class="st"><span class=" label label-success">'+thisObject.lang(x)+'</span></a></small></div>';
+                break;
+
+          case 'partial':
+                return '<div class="text-center"><small><a id="'+x+'" href="#myModal" role="button" data-toggle="modal" class="st"><span class="label label-info">'+thisObject.lang(x)+'</span></a></small></div>';
+                break;
+
+          case 'pending':
+                return '<div class="text-center"><small><a id="'+x+'" href="#myModal" role="button" data-toggle="modal" class="st"><span class="label label-warning">'+thisObject.lang(x)+'</span></a></small></div>';
+                break;
+
+          case 'overdue':
+                return '<div class="text-center"><small><a id="'+x+'" href="#myModal" role="button" data-toggle="modal" class="st"><span class="label label-danger">'+thisObject.lang(x)+'</span></a></small></div>';
+                break;
+
+          case 'canceled':
+                return '<div class="text-center"><small><a id="'+x+'" href="#myModal" role="button" data-toggle="modal" class="st"><span class="label label-danger">'+thisObject.lang(x)+'</span></a></small></div>';
+                break;
+
+          default:
+                return '<div class="text-center"><a id="'+x+'" href="#myModal" role="button" data-toggle="modal" class="st">'+thisObject.lang(x)+'</a></div>';
+        }
+      }
+
+      let thisObject = this;
+      $(document).ready(function() {
+        var table = $('#fileData').DataTable({
+          dom:
+            '<"text-center"<"btn-group"B>><"clear"><"row"<"col-md-6"l><"col-md-6 pr0"p>r>t<"row"<"col-md-6"i><"col-md-6"p>><"clear">',
+          lengthMenu: [[10, 25, 50, 100, -1], [10, 25, 50, 100, 'All']],
+          order: [[1, 'asc']],
+          pageLength: thisObject.$settings.rowsPerPage,
+          retrieve: true,
+          buttons: [
+            {
+              extend: 'copyHtml5',
+              exportOptions: { columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11] }
+            },
+            {
+              extend: 'excelHtml5',
+              footer: true,
+              exportOptions: { columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11] }
+            },
+            {
+              extend: 'csvHtml5',
+              footer: true,
+              exportOptions: { columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11] }
+            },
+            {
+              extend: 'pdfHtml5',
+              orientation: 'landscape',
+              pageSize: 'A4',
+              footer: true,
+              exportOptions: { columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11] }
+            }
+            //   { extend: 'colvis', text: 'Columns'},
+          ],
+          columns: [
+            null,
+            null, //"render": fld
+            null,
+            null,
+            null,
+            null,
+            null, //"render": cf
+            null, //"render": cf
+            null, //"render": cf
+            null, //"render": cf,
+            { render: status }
+           
+          ]
+        });
+
+        thisObject.tableInstance = table;
+
+        $('#fileData tfoot th:not(:last-child)').each(function() {
+          var title = $(this).text();
+          $(this).html(
+            '<input type="text" class="text_filter" placeholder="' +
+              title +
+              '" />'
+          );
+        });
+
+        $('#search_table').on('keyup change', function(e) {
+          var code = e.keyCode ? e.keyCode : e.which;
+          if (
+            (code == 13 && table.search() !== this.value) ||
+            (table.search() !== '' && this.value === '')
+          ) {
+            table.search(this.value).draw();
+          }
+        });
+
+
+        table.columns().every(function() {
+          var self = this;
+          $('input', this.footer()).on('keyup change', function(e) {
+            var code = e.keyCode ? e.keyCode : e.which;
+            if (
+              (code == 13 && self.search() !== this.value) ||
+              (self.search() !== '' && this.value === '')
+            ) {
+              self.search(this.value).draw();
+            }
+          });
+        });
+      });
+    });
+  }
 
   lang(word) {
     return this.langService.lang(word);

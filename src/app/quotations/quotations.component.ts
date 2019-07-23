@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
+import {  NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { LangService } from '../lang.service';
+import {QuotationView} from './quotation-view/quotation-view.component'
 import * as $ from 'jquery';
 import 'datatables.net';
 import 'datatables.net-bs';
@@ -24,7 +26,8 @@ export class QuotationsComponent implements OnInit {
 
   constructor(private langService: LangService,
     private http: HttpClient,
-    private router: Router) { }
+    private router: Router,
+    private modalService: NgbModal) { }
 
   ngOnInit() {
     //   let mail = {
@@ -189,6 +192,11 @@ deleteQuote(quoteId){
         },
         error => alert(error.error.message)
         );
+}
+
+openViewModal(quoteId){
+    const modalRef = this.modalService.open(QuotationView);
+    modalRef.componentInstance.name = 'World';
 }
 
 }

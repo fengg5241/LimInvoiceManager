@@ -1755,3 +1755,16 @@ small .label{ font-size: 12px; padding: 0 5px 1px 5px !important; }
   background-image: linear-gradient(to bottom, #3cb0fd, #3498db) !important;
   text-decoration: none !important;
 }
+
+.modal-dialog{
+	margin-top:50px !important;
+}
+
+.modal-backdrop.fade{
+	opacity: 0.5 !important;
+}
+
+.modal.fade{
+	opacity: 1 !important;
+}
+

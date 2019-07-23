@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {FormsModule} from '@angular/forms'
 import { HttpClientModule } from '@angular/common/http';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
@@ -40,6 +41,7 @@ import { QuotationDetailComponent } from './quotations/quotation-detail/quotatio
 import { AngularDateTimePickerModule } from 'angular2-datetimepicker';
 import { SaleDetailComponent } from './sales/sale-detail/sale-detail.component';
 import { QuotationView } from './quotations/quotation-view/quotation-view.component';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -76,14 +78,16 @@ import { QuotationView } from './quotations/quotation-view/quotation-view.compon
     QuotationDetailComponent,
     SaleDetailComponent,
     QuotationView,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
+    NgbModule,
     AppRoutingModule,
     ChartModule,
     FormsModule,
     HttpClientModule,
-    AngularDateTimePickerModule
+    AngularDateTimePickerModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

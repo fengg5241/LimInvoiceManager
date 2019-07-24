@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import * as accounting from 'accounting/accounting.js';
 import { HttpClient } from '@angular/common/http';
 import { LangService } from '../../lang.service';
 
@@ -48,6 +49,28 @@ export class QuotationView implements OnInit {
     cf6: ''
   };
 
+  $inv = {
+    date: new Date().toISOString().split('T')[0],
+    expiryDate: '',
+    companyId: null,
+    referenceNo: '',
+    customerId: '',
+    dueDate: '',
+    shipping: '',
+    orderDiscountId: '',
+    orderDiscount: '',
+    productDiscount: '',
+    totalDiscount: '',
+    orderTaxId: '',
+    orderTax: '',
+    totalTax: '',
+    total: '',
+    grandTotal: '',
+    status: '',
+    // recurring:"",
+    note: ''
+  };
+
   $settings: any;
 
   constructor(
@@ -70,5 +93,22 @@ export class QuotationView implements OnInit {
         .toPromise();
       this.$settings = sysSettings1[0];
     }
+  }
+
+  formatMoney(x, symbol) {
+    let thisObject = this;
+    if (!symbol) {
+      symbol = '';
+    }
+    return accounting.formatMoney(
+      x,
+      symbol,
+      thisObject.$settings.decimals,
+      thisObject.$settings.thousandsSep == 0
+        ? ' '
+        : thisObject.$settings.thousandsSep,
+      thisObject.$settings.decimalsSep,
+      '%s%v'
+    );
   }
 }

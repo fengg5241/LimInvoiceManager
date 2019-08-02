@@ -1,10 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
 import {  NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import * as accounting from 'accounting/accounting.js';
 import { LangService } from '../lang.service';
 import {QuotationView} from './quotation-view/quotation-view.component'
 import * as $ from 'jquery';
+import * as jspdf from 'jspdf'; 
 import 'datatables.net';
 import 'datatables.net-bs';
 import 'datatables.net-buttons';
@@ -23,6 +25,14 @@ export class QuotationsComponent implements OnInit {
   $settings: any;
   quotations: any;
   tableInstance = null;
+
+  @ViewChild('content') content: ElementRef;
+
+  $biller:any;
+  $customer:any;
+  $inv:any;
+  quoteItems: any;
+  $cols = 4;
 
   constructor(private langService: LangService,
     private http: HttpClient,
@@ -197,6 +207,77 @@ deleteQuote(quoteId){
 openViewModal(quoteId){
     const modalRef = this.modalService.open(QuotationView);
     modalRef.componentInstance.name = 'World';
+    modalRef.componentInstance.quoteId = quoteId;
 }
 
+downloadPDF(quoteId){
+    
+
+    this.initPDF(quoteId);
+
+  
+}
+
+async initPDF(quoteId){
+    this.$inv = await this.http.get('/api/quotation/selectById/' + quoteId).toPromise();
+    this.$inv.date = this.$inv.date.split('T')[0];
+    this.$inv.expiryDate = this.$inv.expiryDate ? this.$inv.expiryDate.split(
+        'T'
+      )[0] : null;
+    
+    let companyId = this.$inv.companyId ? this.$inv.companyId : 1;
+    this.http.get('/api/company/selectById/'+ companyId).subscribe(data => {
+      this.$biller = data;
+    });
+
+    this.http.get('/api/customer/selectById/'+ this.$inv.customerId).subscribe(data => {
+      this.$customer = data;
+    });
+    this.quoteItems = await this.http
+        .get('/api/quotationItem/selectByQuoteId/' + quoteId)
+        .toPromise();
+
+        let doc = new jspdf();
+
+    let specialElementHandlers = {
+        '#editor':function(){
+            return true;
+        }
+    }
+        let content = this.content.nativeElement;
+        doc.fromHTML(content.innerHTML,10,10,{
+            'width':900,
+            'elementHandlers':specialElementHandlers
+        });
+        doc.save("test.pdf");
+}
+
+formatMoney(x, symbol) {
+    let thisObject = this;
+    if (!symbol) {
+      symbol = '';
+    }
+    return accounting.formatMoney(
+      x,
+      symbol,
+      thisObject.$settings.decimals,
+      thisObject.$settings.thousandsSep == 0
+        ? ' '
+        : thisObject.$settings.thousandsSep,
+      thisObject.$settings.decimalsSep,
+      '%s%v'
+    );
+  }
+
+  getDiscountCols(){
+    let col = this.$cols - 2;
+    if(this.$settings.productDiscount) { col += 1; }
+    if(this.$settings.defaultTaxRate) { col += 1; }
+
+    return col;
+  }
+
+  getStatusPng(){
+    return "assets/img/"+this.$inv.status+".png";
+  }
 }

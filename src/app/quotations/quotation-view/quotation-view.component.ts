@@ -74,6 +74,8 @@ export class QuotationView implements OnInit {
   //   note: ''
   // };
 
+
+
   $settings: any;
   quoteItems: any;
   $cols = 4;
@@ -149,5 +151,22 @@ export class QuotationView implements OnInit {
 
   getStatusPng(){
     return "assets/img/"+this.$inv.status+".png";
+  }
+
+  formatMoney(x, symbol) {
+    let thisObject = this;
+    if (!symbol) {
+      symbol = '';
+    }
+    return accounting.formatMoney(
+      x,
+      symbol,
+      thisObject.$settings.decimals,
+      thisObject.$settings.thousandsSep == 0
+        ? ' '
+        : thisObject.$settings.thousandsSep,
+      thisObject.$settings.decimalsSep,
+      '%s%v'
+    );
   }
 }

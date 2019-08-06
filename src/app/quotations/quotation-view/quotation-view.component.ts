@@ -120,23 +120,7 @@ export class QuotationView implements OnInit {
         .toPromise();
   }
 
-  formatMoney(x, symbol) {
-    let thisObject = this;
-    if (!symbol) {
-      symbol = '';
-    }
-    return accounting.formatMoney(
-      x,
-      symbol,
-      thisObject.$settings.decimals,
-      thisObject.$settings.thousandsSep == 0
-        ? ' '
-        : thisObject.$settings.thousandsSep,
-      thisObject.$settings.decimalsSep,
-      '%s%v'
-    );
-  }
-
+  
   getDiscountCols(){
     let col = this.$cols - 2;
     if(this.$settings.productDiscount) { col += 1; }

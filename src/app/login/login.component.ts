@@ -9,6 +9,9 @@ import { LangService } from '../lang.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+
+  $settings: any;
+  
   constructor(
     private langService: LangService,
     private http: HttpClient,

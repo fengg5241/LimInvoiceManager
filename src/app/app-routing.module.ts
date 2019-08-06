@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 import {HomeComponent} from './home/home.component'
+import {LoginComponent} from './login/login.component'
 import {ProductsComponent} from './products/products.component'
 import {ProductDetailComponent} from './products/product-detail/product-detail.component'
 import {ProductUploadComponent} from './products/product-upload/product-upload.component'
@@ -36,6 +37,7 @@ import { QuotationDetailComponent } from './quotations/quotation-detail/quotatio
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
+  { path: 'login', component: LoginComponent },
   { path: 'products', pathMatch: 'full', component: ProductsComponent },
   { path: 'products/new', component: ProductDetailComponent },
   { path: 'products/edit/:id', component: ProductDetailComponent },

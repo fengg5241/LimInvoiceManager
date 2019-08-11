@@ -22,7 +22,7 @@
               <td>{{ row.type == 1 ? lang("Percentage (%)") :lang("Fixed ($)") }}</td>
               <td>
                 <div class="btn-group"> <a class="tip btn btn-primary btn-xs" title="{{lang('edit_tax_rate')}}"  
-                  routerLink="/settings/taxRate/edit/{{row.id}}"> <i class="fa fa-edit"></i> </a>
+                  routerLink="/home/settings/taxRate/edit/{{row.id}}"> <i class="fa fa-edit"></i> </a>
                   <a class="tip btn btn-danger btn-xs" title="{{lang('delete_tax_rate')}}'" 
                   (click)="delete(row.id)"> <i class="fa fa-trash-o"></i> </a>
                 </div>
@@ -30,7 +30,7 @@
             </tr>
       </tbody>
     </table>
-    <p><a routerLink="/settings/taxRate/new" class="btn btn-primary">{{ lang('new_tax_rate')}}</a></p>
+    <p><a routerLink="/home/settings/taxRate/new" class="btn btn-primary">{{ lang('new_tax_rate')}}</a></p>
     <div class="clearfix"></div>
   </div>
   <div class="clearfix"></div>

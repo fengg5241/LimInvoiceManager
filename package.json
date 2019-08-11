@@ -23,6 +23,7 @@
     "@ng-bootstrap/ng-bootstrap": "^4.2.1",
     "accounting": "^0.4.1",
     "angular-highcharts": "^7.2.0",
+    "angular-webstorage-service": "^1.0.2",
     "angular2-datetimepicker": "^1.1.1",
     "bootstrap": "^3.4.0",
     "bootstrap-colorpicker": "^2.5.3",

@@ -42,8 +42,8 @@
                 <td><div class="text-center row-menu"><div class="btn-group text-left"><button type="button" class="btn btn-default btn-xs btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Actions <span class="caret"></span></button>
                   <ul class="dropdown-menu pull-right" role="menu">
                       <li><a href="javascript:void(0);" (click)="openViewModal(row.id)"><i class="fa fa-file-text-o"></i> View Quotation</a></li>
-                      <li><a routerLink="/sales/new/{{row.id}}"><i class="fa fa-share"></i> Generate Invoice</a></li>
-                      <li><a routerLink="/sales/quotations/edit/{{row.id}}"><i class="fa fa-edit"></i> Edit Quotation</a></li>
+                      <li><a routerLink="/home/sales/new/{{row.id}}"><i class="fa fa-share"></i> Generate Invoice</a></li>
+                      <li><a routerLink="/home/sales/quotations/edit/{{row.id}}"><i class="fa fa-edit"></i> Edit Quotation</a></li>
                       <li><a href="javascript:void(0);" (click)="downloadPDF(row.id)"><i class="fa fa-file-pdf-o"></i> Download as PDF</a></li>
                       <li><a href="javascript:void(0);" class="email_inv" id="{{row.id}}"><i class="fa fa-envelope"></i> Email Quotation</a></li>
                       <li><a href="javascript:void(0);" (click)="deleteQuote(row.id)"><i class="fa fa-trash-o"></i> Delete Quotation</a></li>
@@ -74,7 +74,7 @@
 				</tfoot>
 			</table>
 		</div>
-		<p><a routerLink="/sales/quotations/new" class="btn btn-primary">{{ lang("add_quote")}}</a></p>
+		<p><a routerLink="/home/sales/quotations/new" class="btn btn-primary">{{ lang("add_quote")}}</a></p>
 	</div>
 </div>
 

@@ -43,6 +43,11 @@ import { SaleDetailComponent } from './sales/sale-detail/sale-detail.component';
 import { QuotationView } from './quotations/quotation-view/quotation-view.component';
 import { LoginComponent } from './login/login.component';
 import { SaleViewComponent } from './sales/sale-view/sale-view.component';
+import { StorageServiceModule } from 'angular-webstorage-service';
+import { AppHeaderComponent } from './app-header/app-header.component';
+import { AppAsideComponent } from './app-aside/app-aside.component';
+import { FooterComponent } from './footer/footer.component';
+import { HomeChartComponent } from './home-chart/home-chart.component';
 
 @NgModule({
   declarations: [
@@ -81,6 +86,10 @@ import { SaleViewComponent } from './sales/sale-view/sale-view.component';
     QuotationView,
     LoginComponent,
     SaleViewComponent,
+    AppHeaderComponent,
+    AppAsideComponent,
+    FooterComponent,
+    HomeChartComponent,
   ],
   imports: [
     BrowserModule,
@@ -90,6 +99,7 @@ import { SaleViewComponent } from './sales/sale-view/sale-view.component';
     FormsModule,
     HttpClientModule,
     AngularDateTimePickerModule,
+    StorageServiceModule
   ],
   providers: [],
   bootstrap: [AppComponent]

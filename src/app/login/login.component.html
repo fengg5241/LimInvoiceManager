@@ -6,13 +6,14 @@
           <h1
             style="text-align:center; padding-bottom:10px; font-size:32px; line-height: 36px; text-transform: uppercase; font-weight: bold; color:#FFF; display:block;"
           >
-            {{ $settings.site_name}}
+            <!-- {{ $settings.site_name}} -->
           </h1>
           <!--<img src="{{ $assets}}img/{{ $settings->logo}}" alt="{{ $settings->site_name}}"/>-->
         </div>
         <div class="widget worange">
           <div class="widget-head">
-            {{ lang('login_to') }}
+            <!-- {{ lang('login_to') }} -->
+            Please sign in 
           </div>
 
           <div class="widget-content">
@@ -30,7 +31,7 @@
                   </button>
                   <p>{{ $message }}</p>
                 </div>
-              </form>
+              
               <div class="form-group">
                 <label class="control-label col-lg-3" for="inputEmail">{{
                   lang('Email')
@@ -82,6 +83,7 @@
                   <!--<button type="reset" class="btn btn-default">Reset</button>-->
                 </div>
               </div>
+            </form>
             </div>
           </div>
           <div class="widget-foot">

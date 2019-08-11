@@ -24,7 +24,7 @@
                         <td>{{ user.description}}</td>
                         <td style="text-align:center;">
                                 <div class="btn-group">
-                            <a class="tip btn btn-primary btn-xs" title="edit_user" routerLink="/users/edit/{{user.id}}"> <i class="fa fa-edit"></i> </a>
+                            <a class="tip btn btn-primary btn-xs" title="edit_user" routerLink="/home/users/edit/{{user.id}}"> <i class="fa fa-edit"></i> </a>
                             <a *ngIf="sim.in_group.admin" class="tip btn btn-danger btn-xs" title="delete_user" (click)="delete(user.id)">
                               <i class="fa fa-trash-o"></i>
                             </a></div>
@@ -32,7 +32,7 @@
                         </tr>
                 </tbody>
             </table>
-            <p><a routerLink="/users/new" class="btn btn-primary">{{ lang("add_user")}}</a></p>
+            <p><a routerLink="/home/users/new" class="btn btn-primary">{{ lang("add_user")}}</a></p>
             <div class="clearfix"></div>
         </div>
         <div class="clearfix"></div>

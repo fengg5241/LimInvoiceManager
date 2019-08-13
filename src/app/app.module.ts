@@ -48,6 +48,8 @@ import { AppHeaderComponent } from './app-header/app-header.component';
 import { AppAsideComponent } from './app-aside/app-aside.component';
 import { FooterComponent } from './footer/footer.component';
 import { HomeChartComponent } from './home-chart/home-chart.component';
+import { CustomerUsersComponent } from './customers/customer-users/customer-users.component';
+import { CustomerUserDetailComponent } from './customers/customer-user-detail/customer-user-detail.component';
 
 @NgModule({
   declarations: [
@@ -90,6 +92,8 @@ import { HomeChartComponent } from './home-chart/home-chart.component';
     AppAsideComponent,
     FooterComponent,
     HomeChartComponent,
+    CustomerUsersComponent,
+    CustomerUserDetailComponent,
   ],
   imports: [
     BrowserModule,

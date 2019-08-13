@@ -34,9 +34,12 @@ export class AppComponent implements OnInit{
 
   ngOnInit() {
     let isLogin = this.userSessionService.getUserInfo();
-    // if(!isLogin){
-    //   this.router.navigate(['login']);
-    // }
-    // this.router.navigate(['home']);
+    if(!isLogin){
+      this.router.navigate(['login']);
+    }else {
+      if(window.location.pathname.indexOf("login") > -1){
+        window.location.href = "/home";
+      }
+    }
   }
 }

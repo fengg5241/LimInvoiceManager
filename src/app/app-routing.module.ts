@@ -12,6 +12,8 @@ import {SaleDetailComponent} from './sales/sale-detail/sale-detail.component'
 import {CustomersComponent} from './customers/customers.component'
 import {CustomerDetailComponent} from './customers/customer-detail/customer-detail.component'
 import {CustomerUploadComponent} from './customers/customer-upload/customer-upload.component'
+import {CustomerUsersComponent} from './customers/customer-users/customer-users.component'
+import {CustomerUserDetailComponent} from './customers/customer-user-detail/customer-user-detail.component'
 import {UsersComponent} from './users/users.component'
 import {UserDetailComponent} from './users/user-detail/user-detail.component'
 import {ReportsComponent} from './reports/reports.component'
@@ -54,6 +56,10 @@ const routes: Routes = [
     { path: 'sales/quotations/edit/:id', component: QuotationDetailComponent },
     { path: 'customers', component: CustomersComponent },
     { path: 'customers/new', component: CustomerDetailComponent },
+    { path: 'customers/edit/:id', component: CustomerDetailComponent },
+    { path: 'customers/users/:id', component: CustomerUsersComponent },
+    { path: 'customers/userdetail/new/:id', component: CustomerUserDetailComponent },
+    { path: 'customers/userdetail/edit/:id', component: CustomerUserDetailComponent },
     { path: 'customers/upload', component: CustomerUploadComponent },
     { path: 'users', component: UsersComponent },
     { path: 'users/new', component: UserDetailComponent },

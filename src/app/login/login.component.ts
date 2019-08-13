@@ -40,7 +40,8 @@ export class LoginComponent implements OnInit {
     this.http.post('/api/user/loginAuth',loginUser).subscribe(data => {
       if(data){
         this.userSessionService.setUserInfo(data);
-        this.router.navigate(['home']);
+        // this.router.navigate(['/']);
+        window.location.href = "/home"
       }else {
         this.$error = "Incorrect Login";
       }

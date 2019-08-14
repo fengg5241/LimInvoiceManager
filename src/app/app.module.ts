@@ -50,6 +50,7 @@ import { FooterComponent } from './footer/footer.component';
 import { HomeChartComponent } from './home-chart/home-chart.component';
 import { CustomerUsersComponent } from './customers/customer-users/customer-users.component';
 import { CustomerUserDetailComponent } from './customers/customer-user-detail/customer-user-detail.component';
+import { ClientComponent } from './client/client.component';
 
 @NgModule({
   declarations: [
@@ -94,6 +95,7 @@ import { CustomerUserDetailComponent } from './customers/customer-user-detail/cu
     HomeChartComponent,
     CustomerUsersComponent,
     CustomerUserDetailComponent,
+    ClientComponent,
   ],
   imports: [
     BrowserModule,

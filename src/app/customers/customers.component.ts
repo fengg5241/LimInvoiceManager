@@ -25,6 +25,8 @@ export class CustomersComponent implements OnInit {
   }
   customers:any;
   isAdmin:any;
+  tableInstance = null;
+
   constructor(private langService: LangService,
     private http: HttpClient,
     private userSessionService: UserSessionService) { }
@@ -62,6 +64,7 @@ export class CustomersComponent implements OnInit {
                 "dom": '<"text-center"<"btn-group"B>><"clear"><"row"<"col-md-6"l><"col-md-6 pr0"p>r>t<"row"<"col-md-6"i><"col-md-6"p>><"clear">',
                 "lengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
                 "order": [[1, "asc"]],
+                retrieve: true,
                 "pageLength": thisObject.$Settings.rowsPerPage,
                 buttons: [
                     { extend: 'copyHtml5', exportOptions: { columns: [0, 1, 2, 3] } },
@@ -85,6 +88,8 @@ export class CustomersComponent implements OnInit {
                     loginColumn
                 ]
             });
+
+            thisObject.tableInstance = table;
 
             $('#fileData tfoot th:not(:last-child)').each(function () {
                 var title = $(this).text();
@@ -116,7 +121,14 @@ export class CustomersComponent implements OnInit {
   }
 
   delete(id){
-
+    this.http
+        .get('/api/customer/delete/'+id )
+        .subscribe(data => {
+            this.tableInstance.clear();
+            this.initTable();
+        },
+        error => alert(error.error.message)
+        );
   }
 
 }

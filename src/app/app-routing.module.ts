@@ -57,7 +57,7 @@ const routes: Routes = [
     { path: 'customers', component: CustomersComponent },
     { path: 'customers/new', component: CustomerDetailComponent },
     { path: 'customers/edit/:id', component: CustomerDetailComponent },
-    { path: 'customers/users/:id', component: CustomerUsersComponent },
+    { path: 'customers/users/:customerId/:customerName', component: CustomerUsersComponent },
     { path: 'customers/userdetail/new/:id', component: CustomerUserDetailComponent },
     { path: 'customers/userdetail/edit/:id', component: CustomerUserDetailComponent },
     { path: 'customers/upload', component: CustomerUploadComponent },

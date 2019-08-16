@@ -1,5 +1,5 @@
 <div class="page-head">
-  <h2 class="pull-left">{{$page_title}}(customer.name) <span class="page-meta">{{lang("Please use the table below to navigate or filter the results. You can download the table as csv, excel and pdf。")}}</span> </h2>
+  <h2 class="pull-left">{{$page_title}}({{customer.name}}) <span class="page-meta">{{lang("Please use the table below to navigate or filter the results. You can download the table as csv, excel and pdf。")}}</span> </h2>
 </div>
 <div class="clearfix"></div>
 <div class="matter">
@@ -15,7 +15,7 @@
             </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let row of customers; let i=index">
+          <tr *ngFor="let row of users; let i=index">
               <td>{{ row.firstName}}</td>
               <td>{{ row.lastName}}</td>
               <td>{{ row.email}}</td>
@@ -23,7 +23,7 @@
                   <div style="text-align: center;">
                   <div class="btn-group">
                       <a class="tip btn btn-primary btn-xs" title="Edit Customer" 
-                      routerLink="/home/userdetail/edit/{{row.id}}/">
+                      routerLink="/home/customers/userdetail/edit/{{row.id}}/">
                           <i class="fa fa-edit"></i>
                       </a> 
                       <a class="tip btn btn-danger btn-xs" title="Delete Customer"

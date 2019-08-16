@@ -46,7 +46,7 @@ export class CustomerUsersComponent implements OnInit {
         this.$Settings = sysSettings1[0];
     }
 
-    this.http.get('/api/user/selectAllByCustomerId'+this.customer.id).subscribe(data => {
+    this.http.get('/api/user/selectAllByCustomerId/'+this.customer.id).subscribe(data => {
         this.users = data;
 
         let thisObject = this;

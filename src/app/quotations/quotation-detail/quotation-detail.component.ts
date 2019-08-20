@@ -535,9 +535,9 @@ export class QuotationDetailComponent implements OnInit {
           this.http
               .post('/api/quotationItem/bulkUpdate', this.updateItems)
               .subscribe(data => {
-                this.router.navigateByUrl('sales/quotations');
+                this.router.navigateByUrl('home/sales/quotations');
               });
-          this.router.navigateByUrl('sales/quotations');
+          this.router.navigateByUrl('home/sales/quotations');
         },
         error => alert(error.error.message)
         );
@@ -552,7 +552,7 @@ export class QuotationDetailComponent implements OnInit {
           this.http
               .post('/api/quotationItem/bulkUpdate', this.updateItems)
               .subscribe(data => {
-                this.router.navigateByUrl('sales/quotations');
+                this.router.navigateByUrl('home/sales/quotations');
               });
         });
     }

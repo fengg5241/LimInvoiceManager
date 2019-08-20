@@ -57,11 +57,11 @@ export class CustomerDetailComponent implements OnInit {
   save(){
     if(this.isNew){
       this.http.post('/api/customer/insert',this.curCustomer).subscribe(data => {
-        this.router.navigateByUrl("/home/customers")
+        this.router.navigateByUrl("home/customers")
       });
     }else{
       this.http.post('/api/customer/update',this.curCustomer).subscribe(data => {
-        this.router.navigateByUrl("/home/customers")
+        this.router.navigateByUrl("home/customers")
       });
     }
   }

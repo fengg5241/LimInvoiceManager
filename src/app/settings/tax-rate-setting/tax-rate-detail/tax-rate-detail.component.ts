@@ -45,11 +45,11 @@ export class TaxRateDetailComponent implements OnInit {
   saveSetting(){
     if(this.isNew){
       this.http.post('/api/taxRate/insert',this.curTaxRate).subscribe(data => {
-        this.router.navigateByUrl("settings/taxRate")
+        this.router.navigateByUrl("home/settings/taxRate")
       });
     }else{
       this.http.post('/api/taxRate/update',this.curTaxRate).subscribe(data => {
-        this.router.navigateByUrl("settings/taxRate")
+        this.router.navigateByUrl("home/settings/taxRate")
       });
     }
   }

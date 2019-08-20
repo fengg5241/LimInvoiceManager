@@ -49,11 +49,11 @@ export class ProductDetailComponent implements OnInit {
   save(){
     if(this.isNew){
       this.http.post('/api/product/insert',this.curProduct).subscribe(data => {
-        this.router.navigateByUrl("products")
+        this.router.navigateByUrl("home/products")
       });
     }else{
       this.http.post('/api/product/update',this.curProduct).subscribe(data => {
-        this.router.navigateByUrl("products")
+        this.router.navigateByUrl("home/products")
       });
     }
   }

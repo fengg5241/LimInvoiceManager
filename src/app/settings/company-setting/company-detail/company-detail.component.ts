@@ -38,13 +38,13 @@ export class CompanyDetailComponent implements OnInit {
 
   createCompany(){
     this.http.post('/api/company/insert',this.curCompany).subscribe(data => {
-      this.router.navigateByUrl("settings/companies")
+      this.router.navigateByUrl("home/settings/companies")
     });
   }
 
   updateCompany(){
     this.http.post('/api/company/update',this.curCompany).subscribe(data => {
-      this.router.navigateByUrl("/settings/companies")
+      this.router.navigateByUrl("home/settings/companies")
     });
   }
 

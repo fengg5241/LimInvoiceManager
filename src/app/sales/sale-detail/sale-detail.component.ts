@@ -528,9 +528,9 @@ export class SaleDetailComponent implements OnInit {
           this.http
             .post('/api/saleItem/bulkUpdate', this.updateItems)
             .subscribe(data => {
-              this.router.navigateByUrl('sales');
+              this.router.navigateByUrl('home/sales');
             });
-          this.router.navigateByUrl('sales');
+          this.router.navigateByUrl('home/sales');
         },
         error => alert(error.error.message)
       );
@@ -544,7 +544,7 @@ export class SaleDetailComponent implements OnInit {
           this.http
             .post('/api/saleItem/bulkUpdate', this.updateItems)
             .subscribe(data => {
-              this.router.navigateByUrl('sales');
+              this.router.navigateByUrl('home/sales');
             });
         });
     }

@@ -32,10 +32,11 @@ export class ProductsComponent implements OnInit {
     async initTable(){
         let sysSettings = localStorage.getItem("LimSysSettings");
         if(sysSettings){
-            this.$settings = sysSettings;
+            this.$settings = JSON.parse(sysSettings);
         }else {
             let sysSettings1 = await this.http.get('/api/sysSetting/selectAll').toPromise()
             this.$settings = sysSettings1[0];
+            localStorage.setItem("LimSysSettings",JSON.stringify(sysSettings1[0]));
         }
 
         this.http.get('/api/product/selectAll').subscribe(data => {

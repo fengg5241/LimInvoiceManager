@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { LangService } from '../lang.service';
 import { Chart } from 'angular-highcharts';
+import { HttpClient } from '@angular/common/http';
+import { UserSessionService } from '../user-session.service'
 import * as $ from 'jquery';
 @Component({
   selector: 'app-home-chart',
@@ -10,8 +12,10 @@ import * as $ from 'jquery';
 export class HomeChartComponent implements OnInit {
 
   $page_title = "Welcome to Invoice Manager!";
-  $name = "Admin (admin@igetpower.com)";
-  $settings = {site_name:"site name"};
+  user:any
+
+  // $settings = {site_name:"site name"};
+  $settings :any;
   total = 1;
   $paid = 1;
   $pp = 1;
@@ -21,17 +25,29 @@ export class HomeChartComponent implements OnInit {
   chart: Chart;
   options:Object;
 
-  constructor(private langService:LangService) { }
+  constructor(private langService: LangService,
+    private userSessionService: UserSessionService,
+    private http: HttpClient) { }
 
   ngOnInit() {
-    this.init();
+    this.initHome();
   }
 
   lang(word){
     return this.langService.lang(word);
   }
 
-  init() {
+  async initHome() {
+    this.user = JSON.parse(this.userSessionService.getUserInfo());
+    let sysSettings = localStorage.getItem("LimSysSettings");
+    if(sysSettings){
+        this.$settings = JSON.parse(sysSettings);
+    }else {
+        let sysSettings1 = await this.http.get('/api/sysSetting/selectAll').toPromise()
+        this.$settings = sysSettings1[0];
+        localStorage.setItem("LimSysSettings",JSON.stringify(sysSettings1[0]));
+    }
+
     this.options = {
       
       chart: {

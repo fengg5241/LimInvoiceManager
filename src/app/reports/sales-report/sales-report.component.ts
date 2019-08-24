@@ -57,14 +57,13 @@ export class SalesReportComponent implements OnInit {
 
   async initUI() {
     let sysSettings = localStorage.getItem('LimSysSettings');
-    if (sysSettings) {
-      this.$settings = sysSettings;
-    } else {
-      let sysSettings1 = await this.http
-        .get('/api/sysSetting/selectAll')
-        .toPromise();
+    if(sysSettings){
+      this.$settings = JSON.parse(sysSettings);
+  }else {
+      let sysSettings1 = await this.http.get('/api/sysSetting/selectAll').toPromise()
       this.$settings = sysSettings1[0];
-    }
+      localStorage.setItem("LimSysSettings",JSON.stringify(sysSettings1[0]));
+  }
 
     this.http.get('/api/user/selectAll').subscribe(data => {
       this.$users = data;

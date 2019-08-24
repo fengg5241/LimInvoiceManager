@@ -92,14 +92,13 @@ export class QuotationView implements OnInit {
 
   async initModal() {
     let sysSettings = localStorage.getItem('LimSysSettings');
-    if (sysSettings) {
-      this.$settings = sysSettings;
-    } else {
-      let sysSettings1 = await this.http
-        .get('/api/sysSetting/selectAll')
-        .toPromise();
+    if(sysSettings){
+      this.$settings = JSON.parse(sysSettings);
+  }else {
+      let sysSettings1 = await this.http.get('/api/sysSetting/selectAll').toPromise()
       this.$settings = sysSettings1[0];
-    }
+      localStorage.setItem("LimSysSettings",JSON.stringify(sysSettings1[0]));
+  }
 
     this.$inv = await this.http.get('/api/quotation/selectById/' + this.quoteId).toPromise();
     this.$inv.date = this.$inv.date.split('T')[0];

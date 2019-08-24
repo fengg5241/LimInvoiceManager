@@ -40,10 +40,11 @@ export class CustomerUsersComponent implements OnInit {
   async initTable(){
     let sysSettings = localStorage.getItem("LimSysSettings");
     if(sysSettings){
-        this.$Settings = sysSettings;
+        this.$Settings = JSON.parse(sysSettings);
     }else {
         let sysSettings1 = await this.http.get('/api/sysSetting/selectAll').toPromise()
         this.$Settings = sysSettings1[0];
+        localStorage.setItem("LimSysSettings",JSON.stringify(sysSettings1[0]));
     }
 
     this.http.get('/api/user/selectAllByCustomerId/'+this.customer.id).subscribe(data => {

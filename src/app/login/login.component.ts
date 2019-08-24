@@ -17,7 +17,7 @@ export class LoginComponent implements OnInit {
   $settings: any;
   $error: any;
   email: any;
-  password: any;
+  password="";
 
   constructor(
     private langService: LangService,

@@ -82,14 +82,13 @@ export class SaleDetailComponent implements OnInit {
 
   async initTable() {
     let sysSettings = localStorage.getItem('LimSysSettings');
-    if (sysSettings) {
-      this.$settings = sysSettings;
-    } else {
-      let sysSettings1 = await this.http
-        .get('/api/sysSetting/selectAll')
-        .toPromise();
+    if(sysSettings){
+      this.$settings = JSON.parse(sysSettings);
+  }else {
+      let sysSettings1 = await this.http.get('/api/sysSetting/selectAll').toPromise()
       this.$settings = sysSettings1[0];
-    }
+      localStorage.setItem("LimSysSettings",JSON.stringify(sysSettings1[0]));
+  }
     this.$tax_rates = await this.http.get('/api/taxRate/selectAll').toPromise();
 
     let id = this.route.snapshot.paramMap.get('id');

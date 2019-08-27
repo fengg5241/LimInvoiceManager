@@ -16,12 +16,12 @@ export class HomeChartComponent implements OnInit {
 
   // $settings = {site_name:"site name"};
   $settings :any;
-  total = 1;
-  $paid = 1;
-  $pp = 1;
-  $pending = 1;
-  $overdue = 1;
-  $cancelled = 1;
+  total = 0;
+  $paid = 0;
+  $pp = 0;
+  $pending = 0;
+  $overdue = 0;
+  $cancelled = 0;
   chart: Chart;
   options:Object;
 
@@ -46,6 +46,25 @@ export class HomeChartComponent implements OnInit {
         let sysSettings1 = await this.http.get('/api/sysSetting/selectAll').toPromise()
         this.$settings = sysSettings1[0];
         localStorage.setItem("LimSysSettings",JSON.stringify(sysSettings1[0]));
+    }
+
+    let reponse = await this.http.get('/api/sales/selectAll').toPromise();
+    let sales = reponse;
+    if(sales ){
+      for (const index in sales) {
+        let e = sales[index];
+        if(e.status === "paid"){
+          this.$paid += 1;
+        }else if(e.status === "partial"){
+          this.$pp += 1;
+        }else if(e.status === "pending"){
+          this.$pending += 1;
+        }else if(e.status === "overdue"){
+          this.$overdue += 1;
+        }else if(e.status === "canceled"){
+          this.$cancelled += 1;
+        }
+      }
     }
 
     this.options = {

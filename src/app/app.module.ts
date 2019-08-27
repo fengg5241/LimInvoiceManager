@@ -51,6 +51,7 @@ import { HomeChartComponent } from './home-chart/home-chart.component';
 import { CustomerUsersComponent } from './customers/customer-users/customer-users.component';
 import { CustomerUserDetailComponent } from './customers/customer-user-detail/customer-user-detail.component';
 import { ClientComponent } from './client/client.component';
+import { ChangePasswordComponent } from './change-password/change-password.component';
 
 @NgModule({
   declarations: [
@@ -96,6 +97,7 @@ import { ClientComponent } from './client/client.component';
     CustomerUsersComponent,
     CustomerUserDetailComponent,
     ClientComponent,
+    ChangePasswordComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,5 +1,5 @@
 import { Inject, Injectable } from '@angular/core';
-import { SESSION_STORAGE, StorageService } from 'angular-webstorage-service';
+import { LOCAL_STORAGE, StorageService } from 'angular-webstorage-service';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +16,7 @@ export class UserSessionService {
     4:"customer"
   }
 
-  constructor(@Inject(SESSION_STORAGE) private storage:StorageService) { }
+  constructor(@Inject(LOCAL_STORAGE) private storage:StorageService) { }
 
   getUserInfo(){
     return this.storage.get(this.STORAGE_KEY);

@@ -4,6 +4,7 @@ import { Chart } from 'angular-highcharts';
 import { HttpClient } from '@angular/common/http';
 import { UserSessionService } from '../user-session.service'
 import * as $ from 'jquery';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-home-chart',
   templateUrl: './home-chart.component.html',
@@ -27,7 +28,8 @@ export class HomeChartComponent implements OnInit {
 
   constructor(private langService: LangService,
     private userSessionService: UserSessionService,
-    private http: HttpClient) { }
+    private http: HttpClient,
+    private router: Router) { }
 
   ngOnInit() {
     this.initHome();
@@ -134,6 +136,11 @@ export class HomeChartComponent implements OnInit {
     };
 
       this.chart = new Chart(this.options);
+  }
+
+  logout(){
+    this.userSessionService.logout();
+    this.router.navigate(['login']);
   }
 
 }

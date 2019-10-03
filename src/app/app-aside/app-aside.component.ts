@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { UserSessionService } from '../user-session.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-app-aside',
@@ -7,9 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AppAsideComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router,
+    private userSessionService: UserSessionService) { }
 
   ngOnInit() {
   }
 
+  logout(){
+    this.userSessionService.logout();
+    this.router.navigate(['login']);
+  }
 }

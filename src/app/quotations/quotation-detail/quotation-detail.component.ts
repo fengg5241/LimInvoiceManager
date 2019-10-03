@@ -98,23 +98,6 @@ export class QuotationDetailComponent implements OnInit {
     // $("select").chosen({no_results_text: "No results matched", disable_search_threshold: 5, allow_single_deselect:true, width: '100%'});
   }
 
-  initQuotation() {
-    let id = this.route.snapshot.paramMap.get('id');
-    if (id) {
-      this.isNew = false;
-      this.$page_title = 'Edit Quotation';
-      this.http.get('/api/quotation/selectById/' + id).subscribe(data => {
-        this.curQuotation = data;
-        this.curQuotation.date = this.curQuotation.date.split('T')[0];
-        this.curQuotation.expiryDate = this.curQuotation.expiryDate.split(
-          'T'
-        )[0];
-      });
-    } else {
-      this.curQuotation = Object.assign({}, this.newQuotation);
-    }
-  }
-
   async initTable() {
     let sysSettings = localStorage.getItem('LimSysSettings');
     if(sysSettings){
@@ -140,6 +123,7 @@ export class QuotationDetailComponent implements OnInit {
         .get('/api/quotationItem/selectByQuoteId/' + id)
         .toPromise();
     } else {
+      this.$page_title = 'Add New Quotation';
       this.curQuotation = Object.assign({}, this.newQuotation);
       this.quoteItems = [];
     }

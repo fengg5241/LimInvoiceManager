@@ -36,10 +36,13 @@ import { PaymentReportComponent } from './reports/payment-report/payment-report.
 import { QuotationsComponent } from './quotations/quotations.component';
 import { QuotationView } from './quotations/quotation-view/quotation-view.component';
 import { QuotationDetailComponent } from './quotations/quotation-detail/quotation-detail.component';
+import {ChangePasswordComponent} from './change-password/change-password.component';
+import { ForgotPasswordComponent } from './login/forgot-password/forgot-password.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'login', component: LoginComponent},
+  { path: 'forgotpassword', component: ForgotPasswordComponent},
   { path: 'home', component: HomeComponent, children:[
     { path: '',  component: HomeChartComponent },
     { path: 'products',  component: ProductsComponent },
@@ -61,6 +64,7 @@ const routes: Routes = [
     { path: 'customers/userdetail/new/:customerId', component: CustomerUserDetailComponent },
     { path: 'customers/userdetail/edit/:customerId/:id', component: CustomerUserDetailComponent },
     { path: 'customers/upload', component: CustomerUploadComponent },
+    { path: 'changepassword', component: ChangePasswordComponent },
     { path: 'users', component: UsersComponent },
     { path: 'users/new', component: UserDetailComponent },
     { path: 'users/edit/:id', component: UserDetailComponent },

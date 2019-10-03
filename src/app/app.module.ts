@@ -52,6 +52,7 @@ import { CustomerUsersComponent } from './customers/customer-users/customer-user
 import { CustomerUserDetailComponent } from './customers/customer-user-detail/customer-user-detail.component';
 import { ClientComponent } from './client/client.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
+import { ForgotPasswordComponent } from './login/forgot-password/forgot-password.component';
 
 @NgModule({
   declarations: [
@@ -98,6 +99,7 @@ import { ChangePasswordComponent } from './change-password/change-password.compo
     CustomerUserDetailComponent,
     ClientComponent,
     ChangePasswordComponent,
+    ForgotPasswordComponent,
   ],
   imports: [
     BrowserModule,

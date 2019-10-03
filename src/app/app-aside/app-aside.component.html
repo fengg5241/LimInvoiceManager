@@ -79,7 +79,7 @@
         <ul class="treeview-menu">
           <li><a routerLink="/home/customers"><i class="fa fa-circle-o"></i> List Customers</a></li>
           <li><a routerLink="/home/customers/new"><i class="fa fa-circle-o"></i> Add Customer</a></li>
-          <li><a routerLink="/home/customers/upload"><i class="fa fa-circle-o"></i> import customers by csv</a></li>
+          <!-- <li><a routerLink="/home/customers/upload"><i class="fa fa-circle-o"></i> import customers by csv</a></li> -->
         </ul>
       </li>
       <li class="treeview">
@@ -136,8 +136,8 @@
           </span>
         </a>
         <ul class="treeview-menu">
-          <li><a href="pages/examples/invoice.html"><i class="fa fa-circle-o"></i> Change Password</a></li>
-          <li><a href="pages/examples/profile.html"><i class="fa fa-circle-o"></i> Logout</a></li>
+          <li><a href="/home/changepassword"><i class="fa fa-circle-o"></i> Change Password</a></li>
+          <li><a href="javascript:void(0)" (click)="logout()"><i class="fa fa-circle-o"></i> Logout</a></li>
         </ul>
       </li>
     </ul>

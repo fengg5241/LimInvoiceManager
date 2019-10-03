@@ -16,15 +16,15 @@
     padding: 0;
   }
   .shots li {
-    font-size:14px;
+    font-size: 14px;
     float: left;
     display: inline-block;
     width: 23%;
-    min-width:123px;
+    min-width: 145px;
     margin-bottom: 5px;
-    height:45px;
+    height: 45px;
     margin-right: 1%;
-    padding:10px;
+    padding: 10px;
   }
   /* <?php if($this->sim->in_group('admin')) { ?>
   .shots li:nth-child(11) { font-size:12px; }
@@ -34,6 +34,10 @@
   .shots li i {
     font-size:16px;
   }
+
+  .shots li:nth-child(11) {
+    font-size: 12px;
+}
   </style>
   <script src="../../assets/js/sl/highcharts.js"></script>
   <script src="../../assets/js/sl/modules/exporting.js"></script>
@@ -96,20 +100,20 @@
           <div class="widget-content">
             <div class="padd">
               <ul class="shots">
-                <li class="blightblue"> <a href="/sales"> <span style="font-size: px"><i class="fa fa-file-text"></i> {{lang("sales")}}</span> </a> </li>
-                <li class="blightblue"> <a href="/sales/add"> <span style="font-size: px"><i class="fa fa-file-text"></i> {{ lang("new_sale")}}</span> </a> </li>
-                <li class="borange"> <a href="/sales/quotes"> <span style="font-size: px"><i class="fa fa-file"></i> {{ lang("quotes")}}</span> </a> </li>
-                <li class="borange"> <a href="/sales/add_quote"> <span style="font-size: px"><i class="fa fa-file"></i> {{ lang("add_quote")}}</span> </a> </li>
-                <li class="blightblue"> <a href="/calendar"> <span style="font-size: px"><i class="fa fa-calendar"></i> {{ lang("calendar")}}</span> </a> </li>
-                <li class="bviolet"> <a href="/customers"> <span style="font-size: px"><i class="fa fa-users"></i> {{ lang("customers")}}</span> </a>
-                <li class="bviolet"> <a href="/customers/add"> <span style="font-size: px"><i class="fa fa-user"></i> {{ lang("add_customer")}}</span> </a> </li>
-                <li class="bgreen"> <a href="/reports/daily_sales"> <span style="font-size: px"><i class="fa fa-bar-chart-o"></i> {{ lang("reports")}}</span> </a> </li>
+                <li class="blightblue"> <a routerLink="/home/sales"> <span style="font-size: px"><i class="fa fa-file-text"></i> {{lang("sales")}}</span> </a> </li>
+                <li class="blightblue"> <a routerLink="/home/sales/new"> <span style="font-size: px"><i class="fa fa-file-text"></i> {{ lang("new_sale")}}</span> </a> </li>
+                <li class="borange"> <a routerLink="/home/sales/quotations"> <span style="font-size: px"><i class="fa fa-file"></i> {{ lang("quotes")}}</span> </a> </li>
+                <li class="borange"> <a routerLink="/home/sales/quotations/new"> <span style="font-size: px"><i class="fa fa-file"></i> {{ lang("add_quote")}}</span> </a> </li>
+                <li class="blightblue"> <a href="/home/calendar"> <span style="font-size: px"><i class="fa fa-calendar"></i> {{ lang("calendar")}}</span> </a> </li>
+                <li class="bviolet"> <a routerLink="/home/customers"> <span style="font-size: px"><i class="fa fa-users"></i> {{ lang("customers")}}</span> </a>
+                <li class="bviolet"> <a routerLink="/home/customers/new"> <span style="font-size: px"><i class="fa fa-user"></i> {{ lang("add_customer")}}</span> </a> </li>
+                <li class="bgreen"> <a routerLink="/home/reports/daily"> <span style="font-size: px"><i class="fa fa-bar-chart-o"></i> {{ lang("reports")}}</span> </a> </li>
                 <!-- <?php if($this->sim->in_group('admin')) { ?> -->
-                <li class="bblue"> <a href="/auth/users"> <span style="font-size: px"><i class="fa fa-users"></i> {{ lang("users")}}</span> </a> </li>
-                <li class="bblue"> <a href="/auth/create_user"> <span style="font-size: px"><i class="fa fa-user"></i> {{ lang("add_user")}}</span> </a> </li>
+                <li class="bblue"> <a routerLink="/home/users"> <span style="font-size: px"><i class="fa fa-users"></i> {{ lang("users")}}</span> </a> </li>
+                <li class="bblue"> <a routerLink="/home/users/new"> <span style="font-size: px"><i class="fa fa-user"></i> {{ lang("add_user")}}</span> </a> </li>
                 <!-- <?php } ?> -->
-                <li class="bblue"> <a href="/auth/change_password"> <span style="font-size: px"><i class="fa fa-key"></i> {{ lang("change_password")}}</span> </a> </li>
-                <li class="bred"> <a href="/auth/logout"> <span style="font-size: px"><i class="fa fa-sign-out"></i> {{ lang("logout")}}</span> </a> </li>
+                <li class="bblue"> <a routerLink="/home/changepassword"> <span style="font-size: px"><i class="fa fa-key"></i> {{ lang("change_password")}}</span> </a> </li>
+                <li class="bred"> <a href="javascript:void(0)" (click)="logout()"> <span style="font-size: px"><i class="fa fa-sign-out"></i> {{ lang("logout")}}</span> </a> </li>
               </ul>
               <div class="clearfix"></div>
             </div>

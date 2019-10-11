@@ -34,11 +34,20 @@ export class AppComponent implements OnInit{
 
   ngOnInit() {
     let isLogin = this.userSessionService.getUserInfo();
-    if(!isLogin){
-      this.router.navigate(['login']);
-    }else {
-      if(window.location.pathname.indexOf("login") > -1){
-        window.location.href = "/home";
+    let ignorePaths = ["forgotpassword","resetpassword"];
+    let ifIngore = false;
+    ignorePaths.forEach(e => {
+      if(window.location.pathname.indexOf(e) > -1){
+        ifIngore = true;
+      }
+    });
+    if(!ifIngore){
+      if(!isLogin){
+        this.router.navigate(['login']);
+      }else {
+        if(window.location.pathname.indexOf("login") > -1){
+          window.location.href = "/home";
+        }
       }
     }
   }

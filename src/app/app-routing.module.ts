@@ -38,11 +38,13 @@ import { QuotationView } from './quotations/quotation-view/quotation-view.compon
 import { QuotationDetailComponent } from './quotations/quotation-detail/quotation-detail.component';
 import {ChangePasswordComponent} from './change-password/change-password.component';
 import { ForgotPasswordComponent } from './login/forgot-password/forgot-password.component';
+import { ResetPasswordComponent } from './login/reset-password/reset-password.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'login', component: LoginComponent},
   { path: 'forgotpassword', component: ForgotPasswordComponent},
+  { path: 'resetpassword/:id', component: ResetPasswordComponent},
   { path: 'home', component: HomeComponent, children:[
     { path: '',  component: HomeChartComponent },
     { path: 'products',  component: ProductsComponent },

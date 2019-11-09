@@ -1,0 +1,108 @@
+    <div class="modal-content modal-lg" >
+        <div class="modal-body">
+        <!-- <img src="{{ $assets}}img/{{ $inv->status}}.png" alt="{{ $inv->status}}" style="float: right; position: absolute; top:0; right: 0;"/> -->
+        <div id="wrap">
+            <!-- <img src="{{ base_url()}}uploads/{{ $biller->logo ? $biller->logo : $settings->logo}}" alt="{{ $biller->company ? $biller->company : $settings->site_name ?>" /> -->
+            <!-- <img src="$biller.logo ? $biller.logo : $settings.logl"  /> -->
+            <img src="assets/img/logo.png"  />
+            <div class="row">
+                <div class="col-xs-5" *ngIf="$biller">
+                  From:
+                    <h3>{{ $biller.company}}</h3>
+                    {{ $biller.address}},<br />{{$biller.city}}, {{$biller.postalCode}}, {{$biller.state}},<br />{{$biller.country}}
+                    <br />{{lang("tel")}}: {{$biller.phone}}<br />{{lang("email")}}: {{$biller.email}}
+                    <span *ngIf="$biller.cf1 && $biller.cf1 != '-'"><br />{{lang("bcf1")}}: {{$biller.cf1}}</span>
+                    <span *ngIf="$biller.cf2 && $biller.cf2 != '-'"><br />{{lang("bcf2")}}: {{$biller.cf2}}</span>
+                    <span *ngIf="$biller.cf3 && $biller.cf3 != '-'"><br />{{lang("bcf3")}}: {{$biller.cf3}}</span>
+                    <span *ngIf="$biller.cf4 && $biller.cf4 != '-'"><br />{{lang("bcf4")}}: {{$biller.cf4}}</span>
+                    <span *ngIf="$biller.cf5 && $biller.cf5 != '-'"><br />{{lang("bcf5")}}: {{$biller.cf5}}</span>
+                    <span *ngIf="$biller.cf6 && $biller.cf6 != '-'"><br />{{lang("bcf6")}}: {{$biller.cf6}}</span>
+                </div>
+      
+                <div class="col-xs-6" *ngIf="$customer">
+                    {{ lang("To")}}:
+                    <h3>{{$customer.company != '-' ? $customer.company :$customer.name }}</h3>
+                    <p *ngIf="$customer.company != '-'">
+                      {{lang("attn")}}:{{$customer.name}}
+                    </p>
+                    <p *ngIf="$customer.address != '-'">
+                      {{lang("address")}}:{{$customer.address}},{{$customer.city}},{{$customer.postalCode}},{{$customer.state}},{{$customer.country}}
+                    </p>
+                    <br>
+                    {{ lang("tel")}}:{{$customer.phone}}<br>
+                    {{ lang("email")}}:{{$customer.email}}<br>
+                    <p *ngIf="$customer.cf1 && $customer.cf1 != '-'">
+                      {{lang("ccf1")}}:{{$customer.ccf1}}
+                    </p>
+                    <p *ngIf="$customer.cf2 && $customer.cf2 != '-'">
+                      {{lang("ccf2")}}:{{$customer.ccf2}}
+                    </p>
+                    <p *ngIf="$customer.cf3 && $customer.cf3 != '-'">
+                      {{lang("ccf3")}}:{{$customer.ccf3}}
+                    </p>
+                    <p *ngIf="$customer.cf4 && $customer.cf4 != '-'">
+                      {{lang("ccf4")}}:{{$customer.ccf4}}
+                    </p>
+                    <p *ngIf="$customer.cf5 && $customer.cf5 != '-'">
+                      {{lang("ccf5")}}:{{$customer.ccf5}}
+                    </p>
+                    <p *ngIf="$customer.cf6 && $customer.cf6 != '-'">
+                      {{lang("ccf6")}}:{{$customer.ccf6}}
+                    </p>
+                    <!-- <?php
+                    if ($customer.cf1 && $customer.cf1 != "-") { echo "<br />".lang("ccf1").": ".$customer.cf1; }
+                    if ($customer.cf2 && $customer.cf2 != "-") { echo "<br />".lang("ccf2").": ".$customer.cf2; }
+                    if ($customer.cf3 && $customer.cf3 != "-") { echo "<br />".lang("ccf3").": ".$customer.cf3; }
+                    if ($customer.cf4 && $customer.cf4 != "-") { echo "<br />".lang("ccf4").": ".$customer.cf4; }
+                    if ($customer.cf5 && $customer.cf5 != "-") { echo "<br />".lang("ccf5").": ".$customer.cf5; }
+                    if ($customer.cf6 && $customer.cf6 != "-") { echo "<br />".lang("ccf6").": ".$customer.cf6; }
+                    ?> -->
+      
+                </div>
+            </div>
+            <div style="clear: both;"></div>
+            <p>&nbsp;</p>
+            <div class="row">
+                <div class="col-xs-6">
+                    <p style="font-weight:bold;">Date: {{dateStringFormat(paymentInfo.date)}}</p>
+        
+                </div>
+                <p>&nbsp;</p>
+                <div style="clear: both; height: 15px;"></div>
+            </div>
+
+            <div class="well">
+                <table class="table table-striped print-full" style="margin-bottom:0;">
+                    <tbody>
+                    <tr>
+                        <td><h2>Payment Received</h2></td>
+                        <td class="text-right"><h2 class="text-right">{{paymentInfo.amount}}</h2></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">{{paymentInfo.note}}</td>
+                    </tr>
+                                </tbody>
+                </table>
+            </div>
+            <div style="clear: both; height: 15px;"></div>
+            <div class="row">
+                <div class="col-xs-4 pull-left" *ngIf="$biller">
+                        
+                    <img *ngIf="$biller.ssImage" src="$biller.ssImage" alt="" />
+                    
+                    <p *ngIf="!$biller.ssImage">&nbsp;</p>
+                    <p *ngIf="!$biller.ssImage">&nbsp;</p>
+                    <p *ngIf="!$biller.ssImage">&nbsp;</p>
+                    <p *ngIf="!$biller.ssImage">&nbsp;</p>
+
+                <p style="border-bottom: 1px solid #999;">&nbsp;</p>
+                    <p>Signature &amp; Stamp</p>
+                </div>
+        
+                <div class="clearfix"></div>
+            </div>
+      </div>
+      </div>
+      </div>
+      <!-- </div> -->
+      

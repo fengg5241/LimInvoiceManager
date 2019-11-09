@@ -54,6 +54,9 @@ import { ClientComponent } from './client/client.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
 import { ForgotPasswordComponent } from './login/forgot-password/forgot-password.component';
 import { ResetPasswordComponent } from './login/reset-password/reset-password.component';
+import { PaymentDetailComponent } from './sales/payment-detail/payment-detail.component';
+import { PaymentViewComponent } from './sales/payment-view/payment-view.component';
+import { PaymentListComponent } from './sales/payment-list/payment-list.component';
 
 @NgModule({
   declarations: [
@@ -102,6 +105,9 @@ import { ResetPasswordComponent } from './login/reset-password/reset-password.co
     ChangePasswordComponent,
     ForgotPasswordComponent,
     ResetPasswordComponent,
+    PaymentDetailComponent,
+    PaymentViewComponent,
+    PaymentListComponent,
   ],
   imports: [
     BrowserModule,

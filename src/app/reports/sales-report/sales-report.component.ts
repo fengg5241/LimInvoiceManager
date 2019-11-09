@@ -32,18 +32,20 @@ export class SalesReportComponent implements OnInit {
   $customers:any;
   sales:any;
   $users:any;
-  searchUser: null;
+  searchUser = null;
   tableInstance = null;
-  $total: 0;
-  $paid: 0;
-  $pp: 0;
-  $pending: 0;
-  $overdue: 0;
-  $cancelled: 0;
+  $total = 0;
+  $paid = 0;
+  $pp = 0;
+  $pending = 0;
+  $overdue = 0;
+  $cancelled = 0;
   $tpp = {
     total: 0,
     paid: 0
   };
+
+  customerMap = {};
 
   constructor(
     private langService: LangService,
@@ -71,14 +73,51 @@ export class SalesReportComponent implements OnInit {
 
     this.http.get('/api/customer/selectAll').subscribe(data => {
       this.$customers = data;
+      for (const index in this.$customers) {
+        let e = this.$customers[index];
+        this.customerMap[e.id] = e;
+      }
     });
     // this.$tax_rates = await this.http.get('/api/taxRate/selectAll').toPromise();
   }
 
 
   searchSalesReport(){
+    this.searchUser = null;
+    
     this.http.post('/api/sales/getSalesReport',this.searchParams).subscribe(data => {
       this.sales = data;
+      this.searchUser = this.customerMap[this.searchParams.customerId];
+      this.$total = 0;
+      this.$paid = 0;
+      this.$pp = 0;
+      this.$pending = 0;
+      this.$overdue = 0;
+      this.$cancelled = 0;
+      this.$tpp = {
+        total: 0,
+        paid: 0
+      };
+
+      if(this.searchParams.customerId && this.sales ){
+        for (const index in this.sales) {
+          let e = this.sales[index];
+          if(e.status === "paid"){
+            this.$paid += 1;
+          }else if(e.status === "partial"){
+            this.$pp += 1;
+          }else if(e.status === "pending"){
+            this.$pending += 1;
+          }else if(e.status === "overdue"){
+            this.$overdue += 1;
+          }else if(e.status === "canceled"){
+            this.$cancelled += 1;
+          }
+
+          this.$tpp.total += e.grandTotal;
+          this.$tpp.paid += e.paid;
+        }
+      }
 
       function status(x) {
         switch (x) {

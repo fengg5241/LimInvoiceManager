@@ -326,11 +326,11 @@
             <td>{{ row.referenceNo }}</td>
             <td>{{ row.userName }}</td>
             <td>{{ row.customerName }}</td>
-            <td>{{ row.grandTotal }}</td>
+            <td>{{ formatMoney(row.grandTotal) }}</td>
             <!-- <td>{{ row.totalTax }}</td> -->
             <!-- <td>{{ row.shipping }}</td> -->
-            <td>{{ row.paid }}</td>
-            <td>{{ row.grandTotal - row.paid }}</td>
+            <td>{{ formatMoney(row.paid) }}</td>
+            <td>{{ formatMoney(row.grandTotal - row.paid) }}</td>
             <td>{{ row.dueDate }}</td>
             <td>{{ row.status }}</td>
           </tr>

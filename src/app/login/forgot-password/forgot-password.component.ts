@@ -33,7 +33,7 @@ export class ForgotPasswordComponent implements OnInit {
       this.http.get('/api/user/getUserByEmail/'+this.email).subscribe(data => {
         if(data){
           let userId = data["id"];
-          let encodedUserId = window.btoa(userId);
+          let encodedUserId = encodeURI(window.btoa(userId));
           let host = "http://localhost:4200";
           let emailHost = "http://localhost:8081";
           let mailObject = {
@@ -50,9 +50,9 @@ export class ForgotPasswordComponent implements OnInit {
             <p>Best regards,<br>Invoice Manager</p><br>You can paste this code below in your url if the above link not working<br><a href="${host}/resetpassword/${encodedUserId}" target="_blank">${host}/resetpassword/${encodedUserId}</a>
             </div>`
           }
-          // this.http.post(emailHost + '/api/email/sendHtml',mailObject).subscribe(data => {
-          //   this.router.navigate(['login']);
-          // });
+          this.http.post(emailHost + '/api/email/sendHtml',mailObject).subscribe(data => {
+            this.router.navigate(['login']);
+          });
         }else {
           alert("This email is not in the syetem.")
         }

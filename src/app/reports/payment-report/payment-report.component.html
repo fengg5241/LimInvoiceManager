@@ -1,3 +1,294 @@
-<p>
-  payment-report works!
-</p>
+<div class="page-head">
+  <h2 class="pull-left">
+    {{ $page_title }}
+    <span class="page-meta"
+      ><a href="#" class="btn btn-primary btn-xs show_hide">{{
+        lang('show_hide')
+      }}</a></span
+    >
+  </h2>
+</div>
+<div class="clearfix"></div>
+<div class="matter">
+  <div class="container">
+    <div class="form">
+      <p>Please customize the report below.</p>
+      <!-- <?php $attrib = array('class' => 'form-horizontal'); echo form_open("reports/sales")}} -->
+      <div class="form-group">
+        
+
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="customer">{{ lang('customer') }}</label>
+              <div class="controls">
+                <select
+                  name="customer"
+                  class="customer form-control"
+                  data-placeholder="Select customer"
+                  id="customer"
+                  [(ngModel)]="searchParams.customerId"
+                >
+                  <option value="null" disabled="true" [selected]="true"
+                    >Select Customer</option
+                  >
+                  <option *ngFor="let row of $customers" value="{{ row.id }}">{{
+                    row.company
+                  }}({{
+                    row.name
+                  }})</option>
+                </select>
+                <!-- <?php 
+							$cu[""] = lang("select")." ".lang("customer");
+							foreach($customers as $customer){
+								$cu[$customer->id] = $customer->company .' ('.$customer->name.')';
+							}
+							echo form_dropdown('customer', $cu, (isset($_POST['customer']) ? $_POST['customer'] : ""), 'class="form-control customer" data-placeholder="'.lang("select")." ".lang("customer").'" id="customer" style="width:100%;"'); 
+							?> -->
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="customFields">{{ lang('Custom Fields') }}</label>
+              <div class="controls">
+                <input
+                  name="customFields"
+                  [(ngModel)]="searchParams.customerFields"
+                  class="form-control tip"
+                  id="customFields"
+                />
+              </div>
+
+              <!-- {{ lang('cfs', 'cf') }}
+              {{
+                form_input(
+                  'cf',
+                  set_value('cf'),
+                  'class="form-control tip" id="cf"'
+                )
+              }} -->
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="start_date">{{ lang('From Date') }}</label>
+              <div class="controls">
+                <input
+                  type="date"
+                  name="start_date"
+                  [(ngModel)]="searchParams.startDate"
+                  class="form-control date"
+                  id="start_date"
+                />
+                <!-- {{ form_input('start_date', (isset($_POST['start_date']) ?
+                $_POST['start_date'] : ""), 'class="form-control date"
+                id="start_date"');?> -->
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="end_date">{{ lang('End Date') }}</label>
+              <!-- <?php $date = date($dateFormats['php_sdate'])}} -->
+              <div class="controls">
+                <!-- {{ form_input('end_date', (isset($_POST['end_date']) ?
+              $_POST['end_date'] : $date), 'class="form-control date"
+              id="end_date"');?> -->
+                <input
+                  type="date"
+                  name="end_date"
+                  [(ngModel)]="searchParams.endDate"
+                  class="form-control date"
+                  id="end_date"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="start_date">Note</label>
+          <div class="controls"> <input type="text" name="note" [(ngModel)]="searchParams.note" class="form-control" id="note">
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <div class="controls">
+            <button class="btn btn-primary btn-lg" (click)="searchPaymentReport()">
+              {{ lang('submit') }}
+            </button>
+            <!-- {{ form_submit('submit', lang("submit"), 'class="btn btn-primary"');?> -->
+          </div>
+        </div>
+        <!-- {{ form_close();?> -->
+      </div>
+      <div class="clearfix"></div>
+      <!-- <?php if($this->input->post('submit')) { ?> -->
+      <!-- <?php if($this->input->post('customer')){ ?> -->
+      <div *ngIf="searchUser" class="widget wlightblue">
+        <div class="widget-head">
+          <div class="pull-left">
+            {{ lang('name') }}:
+            <strong>{{ searchUser.name }}</strong>
+            &nbsp;&nbsp;&nbsp;&nbsp;{{ lang('email') }}:
+            <strong>{{ searchUser.email }}</strong>
+            &nbsp;&nbsp;&nbsp;&nbsp;{{ lang('phone') }}:
+            <strong>{{ searchUser.phone }}</strong>
+          </div>
+          <div class="widget-icons pull-right">
+            <a class="wminimize" href="#"><i class="icon-chevron-up"></i></a>
+            <a class="wclose" href="#"><i class="icon-remove"></i></a>
+          </div>
+          <div class="clearfix"></div>
+        </div>
+
+        <div class="widget-content">
+          <div class="padd">
+            <ul class="today-datas">
+              <li class="bviolet">
+                <span class="bold" style="font-size:24px;">
+                  <!-- <?php /* echo $Settings->currency_prefix."
+                  ".$total['total_amount']; */ ?>  -->
+                  {{ $total }}</span
+                ><br />
+                {{ lang('total') }} {{ lang('invoices') }}
+                <div class="clearfix"></div>
+              </li>
+              <li class="bgreen">
+                <span class="bold" style="font-size:24px;">
+                  <!-- <?php /* echo $Settings->currency_prefix."
+                  ".$paid['total_amount'];*/ ?> -->
+                  {{ $paid }}</span
+                ><br />
+                {{ lang('paid') }}
+                <div class="clearfix"></div>
+              </li>
+              <li class="bblue">
+                <span class="bold" style="font-size:24px;">{{ $pp }}</span
+                ><br />
+                {{ lang('partially_paid') }}
+                <div class="clearfix"></div>
+              </li>
+              <li class="borange">
+                <span class="bold" style="font-size:24px;">{{ $pending }}</span
+                ><br />
+                {{ lang('pending') }}
+                <div class="clearfix"></div>
+              </li>
+              <li class="bred">
+                <span class="bold" style="font-size:24px;">{{ $overdue }}</span
+                ><br />
+                {{ lang('overdue') }}
+                <div class="clearfix"></div>
+              </li>
+              <li class="bred" style="background:#000 !important;">
+                <span class="bold" style="font-size:24px;">{{
+                  $cancelled
+                }}</span
+                ><br />
+                {{ lang('cancelled') }}
+                <div class="clearfix"></div>
+              </li>
+            </ul>
+            <hr />
+            <ul class="today-datas t">
+              <li class="bviolet">
+                <span class="bold" style="font-size:24px;">
+                  <!-- <?php /* echo $Settings->currency_prefix."
+                  ".$total['total_amount']; */ ?> -->
+                  {{ formatMoney($tpp.total) }}</span
+                ><br />
+                {{ lang('total') }} {{ lang('amount') }}
+                <div class="clearfix"></div>
+              </li>
+              <li class="bgreen">
+                <span class="bold" style="font-size:24px;">
+                  <!-- <?php /* echo $Settings->currency_prefix."
+                  ".$paid['total_amount'];*/ ?> -->
+                  {{ formatMoney($tpp.paid) }}
+                  <!-- {{ $this->sim->formatMoney($tpp->paid)}} --> </span
+                ><br />
+                {{ lang('paid') }} {{ lang('amount') }}
+                <div class="clearfix"></div>
+              </li>
+              <li class="borange">
+                <span class="bold" style="font-size:24px;">
+                  <!-- {{ $this->sim->formatMoney(($tpp->total - $tpp->paid))}} -->
+                  {{ formatMoney($tpp.total - $tpp.paid) }} </span
+                ><br />
+                {{ lang('balance') }} {{ lang('amount') }}
+                <div class="clearfix"></div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <!-- <?php }	?> -->
+
+      <table
+        id="fileData"
+        class="table table-bordered table-hover table-striped"
+        style="margin: 0 0 5px 0;"
+      >
+        <thead>
+          <tr class="active">
+            <th class="col-xs-1">{{ lang('date') }}</th>
+            <th class="col-xs-2">{{ lang('Invoce No') }}</th>
+            <th class="col-xs-1">{{ lang('Customer') }}</th>
+            <th class="col-xs-1">{{ lang('Added by') }}</th>
+            <th class="col-xs-2">{{ lang('Amount') }}</th>
+            <th class="col-xs-1">{{ lang('Note') }}</th>
+          </tr>
+        </thead>
+        <!-- <tbody>
+          <tr>
+            <td colspan="11" class="dataTables_empty">
+              {{ lang('loading_data_from_server') }}
+            </td>
+          </tr>
+        </tbody> -->
+        <tbody>
+          <tr *ngFor="let row of sales; let i = index">
+            <td>{{ row.date }}</td>
+            <td>{{ row.invoiceId }}</td>
+            <td>{{ row.customerName }}</td>
+            <td>{{ row.user }}</td>
+            <td>{{ row.amount }}</td>
+            <td>{{ row.note }}</td>
+            <!-- <td>{{ row.totalTax }}</td> -->
+            <!-- <td>{{ row.shipping }}</td> -->
+          </tr>
+        </tbody>
+        <tfoot>
+          <!-- <tr>
+            <th class="col-xs-1">{{ lang('id') }}</th>
+            <th class="col-xs-1">{{ lang('date') }}</th>
+            <th class="col-xs-2">{{ lang('billing_company') }}</th>
+            <th class="col-xs-1">{{ lang('reference_no') }}</th>
+            <th class="col-xs-1">{{ lang('created_by') }}</th>
+            <th class="col-xs-2">{{ lang('customer') }}</th>
+            <th class="col-xs-1">{{ lang('total') }}</th>
+            <th class="col-xs-1">{{ lang('paid') }}</th>
+            <th class="col-xs-1">{{ lang('balance') }}</th>
+            <th class="col-xs-1">{{ lang('due_date') }}</th>
+            <th class="col-xs-1">{{ lang('status') }}</th>
+          </tr> -->
+          <tr>
+            <td colspan="6" class="p0">
+              <input
+                type="text"
+                class="form-control b0"
+                name="search_table"
+                id="search_table"
+                placeholder="{{ lang('type_hit_enter') }}"
+                style="width:100%;"
+              />
+            </td>
+          </tr>
+        </tfoot>
+      </table>
+      <!-- <?php 
+	}
+	?> -->
+      <div class="clearfix"></div>
+    </div>
+    <div class="clearfix"></div>
+  </div>
+</div>

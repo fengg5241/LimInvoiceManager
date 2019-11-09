@@ -22,7 +22,8 @@ export class ResetPasswordComponent implements OnInit {
     private userSessionService: UserSessionService) { }
 
   ngOnInit() {
-    this.userId = this.route.snapshot.paramMap.get('id');
+    let id = this.route.snapshot.paramMap.get('id');
+    this.userId = window.atob(decodeURI(id));
 
   }
 

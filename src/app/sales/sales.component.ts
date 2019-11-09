@@ -1,6 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
+import {  NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import {SaleViewComponent} from './sale-view/sale-view.component'
+import {PaymentDetailComponent} from './payment-detail/payment-detail.component'
+import {PaymentListComponent} from './payment-list/payment-list.component'
+
 import { LangService } from '../lang.service';
 import * as $ from 'jquery';
 import 'datatables.net';
@@ -36,7 +41,8 @@ export class SalesComponent implements OnInit {
   constructor(
     private langService: LangService,
     private http: HttpClient,
-    private router: Router
+    private router: Router,
+    private modalService: NgbModal
   ) {}
 
   ngOnInit() {
@@ -218,6 +224,14 @@ export class SalesComponent implements OnInit {
 
   // }
 
+  floatFormat(floatValue){
+    if(floatValue && floatValue != 0){
+      return parseFloat(floatValue.toFixed(2));
+    }else {
+      return 0;
+    }
+  }
+
   deleteQuote(quoteId) {
     this.http.get('/api/quotation/delete/' + quoteId).subscribe(
       data => {
@@ -226,5 +240,24 @@ export class SalesComponent implements OnInit {
       },
       error => alert(error.error.message)
     );
+  }
+
+  openViewModal(saleId){
+    const modalRef = this.modalService.open(SaleViewComponent);
+    modalRef.componentInstance.name = 'World';
+    modalRef.componentInstance.saleId = saleId;
+  }
+
+  openNewPaymentModal(saleId,customerId){
+    const modalRef = this.modalService.open(PaymentDetailComponent);
+      modalRef.componentInstance.saleId = saleId;
+      modalRef.componentInstance.customerId = customerId;
+  }
+
+  openPaymentListModal(saleId,customerId,companyId){
+    const modalRef = this.modalService.open(PaymentListComponent);
+      modalRef.componentInstance.saleId = saleId;
+      modalRef.componentInstance.customerId = customerId;
+      modalRef.componentInstance.companyId = companyId;
   }
 }

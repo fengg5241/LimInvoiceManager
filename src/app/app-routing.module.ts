@@ -9,6 +9,10 @@ import {ProductDetailComponent} from './products/product-detail/product-detail.c
 import {ProductUploadComponent} from './products/product-upload/product-upload.component'
 import {SalesComponent} from './sales/sales.component'
 import {SaleDetailComponent} from './sales/sale-detail/sale-detail.component'
+import {PaymentDetailComponent} from './sales/payment-detail/payment-detail.component'
+import {PaymentViewComponent} from './sales/payment-view/payment-view.component'
+import {PaymentListComponent} from './sales/payment-list/payment-list.component'
+
 import {CustomersComponent} from './customers/customers.component'
 import {CustomerDetailComponent} from './customers/customer-detail/customer-detail.component'
 import {CustomerUploadComponent} from './customers/customer-upload/customer-upload.component'
@@ -35,6 +39,7 @@ import { SalesReportComponent } from './reports/sales-report/sales-report.compon
 import { PaymentReportComponent } from './reports/payment-report/payment-report.component';
 import { QuotationsComponent } from './quotations/quotations.component';
 import { QuotationView } from './quotations/quotation-view/quotation-view.component';
+import { SaleViewComponent } from './sales/sale-view/sale-view.component';
 import { QuotationDetailComponent } from './quotations/quotation-detail/quotation-detail.component';
 import {ChangePasswordComponent} from './change-password/change-password.component';
 import { ForgotPasswordComponent } from './login/forgot-password/forgot-password.component';
@@ -55,10 +60,14 @@ const routes: Routes = [
     { path: 'sales/new', component: SaleDetailComponent },
     { path: 'sales/new/:id', component: SaleDetailComponent },
     { path: 'sales/edit/:id', component: SaleDetailComponent },
+    { path: 'sales/view:id', component: SaleViewComponent },
     { path: 'sales/quotations', component: QuotationsComponent },
     { path: 'sales/quotations/view', component: QuotationView },
     { path: 'sales/quotations/new', component: QuotationDetailComponent },
     { path: 'sales/quotations/edit/:id', component: QuotationDetailComponent },
+    { path: 'sales/payment/edit/:id', component: PaymentDetailComponent },
+    { path: 'sales/payment/view/:id', component: PaymentViewComponent },
+    { path: 'sales/paymentList', component: PaymentListComponent },
     { path: 'customers', component: CustomersComponent },
     { path: 'customers/new', component: CustomerDetailComponent },
     { path: 'customers/edit/:id', component: CustomerDetailComponent },
@@ -73,6 +82,7 @@ const routes: Routes = [
     // { path: 'reports', component: ReportsComponent },
     { path: 'reports/daily', component: DailyReportComponent },
     { path: 'reports/sales', component: SalesReportComponent },
+    { path: 'reports/payment', component: PaymentReportComponent },
     { path: 'settings', component: SettingsComponent },
     { path: 'settings/systemSetting', component: SystemSettingComponent },
     { path: 'settings/paypalSetting', component: PaypalSettingComponent },

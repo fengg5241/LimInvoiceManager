@@ -31,6 +31,7 @@ export class TaxRateSettingComponent implements OnInit {
         "aLengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
         "aaSorting": [[1, "desc"]],
         "iDisplayLength": 10,
+        retrieve: true,
         "oTableTools": {
           // "sSwfPath": "<?= $assets; ?>media/swf/copy_csv_xls_pdf.swf",
           "aButtons": ["csv", "xls", { "sExtends": "pdf", "sPdfOrientation": "landscape", "sPdfMessage": "" }, "print"]

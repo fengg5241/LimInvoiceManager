@@ -111,8 +111,6 @@ export class SaleDetailComponent implements OnInit {
             e.id = null;
           });
         }
-        
-
       }else {
         this.isNew = false;
         this.$page_title = 'Edit Invoice';
@@ -129,10 +127,8 @@ export class SaleDetailComponent implements OnInit {
           .get('/api/saleItem/selectBySaleId/' + id)
           .toPromise();
       }
-      
-      
-      
     } else {
+      this.$page_title = 'Add Invoice';
       this.curQuotation = Object.assign({}, this.newQuotation);
       this.quoteItems = [];
     }

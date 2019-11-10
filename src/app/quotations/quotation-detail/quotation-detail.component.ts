@@ -488,6 +488,11 @@ export class QuotationDetailComponent implements OnInit {
       return;
     }
 
+    if(this.curQuotation.customerId == "" || !this.curQuotation.referenceNo ){
+      alert('The Reference No or Customer field is required.');
+      return;
+    }
+
     if(this.curQuotation.customerId == "new"){
       let newCustomerId = await this.http
       .post('/api/customer/insert',this.newCustomer)

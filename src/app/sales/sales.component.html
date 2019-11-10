@@ -96,14 +96,14 @@
                         href="javascript:void(0);"
                         class="email_inv"
                         id="{{ row.id }}"
-                        ><i class="fa fa-envelope"></i> Email Quotation</a
+                        ><i class="fa fa-envelope"></i> Email Invoice</a
                       >
                     </li>
                     <li>
                       <a
                         href="javascript:void(0);"
-                        (click)="deleteQuote(row.id)"
-                        ><i class="fa fa-trash-o"></i> Delete Quotation</a
+                        (click)="deleteSales(row.id)"
+                        ><i class="fa fa-trash-o"></i> Delete Invoice</a
                       >
                     </li>
                   </ul>
@@ -148,7 +148,7 @@
       </table>
     </div>
     <p>
-      <a routerLink="/home/sales/quotations/new" class="btn btn-primary">{{
+      <a routerLink="/home/sales/new" class="btn btn-primary">{{
         lang('add_invoice')
       }}</a>
     </p>

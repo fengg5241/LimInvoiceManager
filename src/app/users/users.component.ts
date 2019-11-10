@@ -76,6 +76,7 @@ export class UsersComponent implements OnInit {
         $('#fileData').dataTable({
           "aLengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
           "aaSorting": [[0, "asc"]],
+          retrieve: true,
           "iDisplayLength": thisObject.$settings.rowsPerPage,
           "oTableTools": {
             // "sSwfPath": "<?= $assets; ?>media/swf/copy_csv_xls_pdf.swf",

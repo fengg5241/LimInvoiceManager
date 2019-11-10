@@ -20,6 +20,7 @@ export class NotesSettingComponent implements OnInit {
           "LengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
           "ordering": [[ 0, "asc" ]],
           "Length": 10,
+          retrieve: true,
           "columns": [ { "bSortable": false }, null, null, { "bSortable": false } ]
       });
 

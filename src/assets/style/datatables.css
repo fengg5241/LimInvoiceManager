@@ -38,7 +38,7 @@ div.dataTables_paginate {
 	height: 100px;
 	margin-top: -50px;
 	margin-left: -50px;
-	//border: 1px solid #ddd;
+	border: 1px solid #ddd;
 	text-align: center;
 	color: #999;
 	font-size: 0px;

@@ -97,6 +97,7 @@ export class SalesComponent implements OnInit {
             '<"text-center"<"btn-group"B>><"clear"><"row"<"col-md-6"l><"col-md-6 pr0"p>r>t<"row"<"col-md-6"i><"col-md-6"p>><"clear">',
           lengthMenu: [[10, 25, 50, 100, -1], [10, 25, 50, 100, 'All']],
           order: [[1, 'asc']],
+          retrieve: true,
           pageLength: thisObject.$settings.rowsPerPage,
           buttons: [
             {
@@ -232,8 +233,8 @@ export class SalesComponent implements OnInit {
     }
   }
 
-  deleteQuote(quoteId) {
-    this.http.get('/api/quotation/delete/' + quoteId).subscribe(
+  deleteSales(salesId) {
+    this.http.get('/api/sales/delete/' + salesId).subscribe(
       data => {
         this.tableInstance.clear();
         this.initTable();

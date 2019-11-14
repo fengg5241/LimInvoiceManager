@@ -249,6 +249,10 @@ export class SalesComponent implements OnInit {
     modalRef.componentInstance.saleId = saleId;
   }
 
+  openEmailModal(emailModal){
+    const modalRef = this.modalService.open(emailModal);
+  }
+
   openNewPaymentModal(saleId,customerId){
     const modalRef = this.modalService.open(PaymentDetailComponent);
       modalRef.componentInstance.saleId = saleId;

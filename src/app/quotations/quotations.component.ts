@@ -7,13 +7,18 @@ import { LangService } from '../lang.service';
 import {QuotationView} from './quotation-view/quotation-view.component'
 import * as $ from 'jquery';
 import * as jspdf from 'jspdf'; 
+import html2canvas from 'html2canvas';
+(window as any).html2canvas = html2canvas;
 import 'datatables.net';
 import 'datatables.net-bs';
 import 'datatables.net-buttons';
 import 'datatables.net-buttons/js/buttons.html5';
 import 'datatables.net-buttons/js/buttons.html5';
-import 'bootstrap'
+import 'bootstrap';
+import {QuotationEmailModalComponent} from './quotation-email-modal/quotation-email-modal.component'
 
+
+declare var xepOnline: any;
 @Component({
   selector: 'app-quotations',
   templateUrl: './quotations.component.html',
@@ -33,6 +38,15 @@ export class QuotationsComponent implements OnInit {
   $inv:any;
   quoteItems: any;
   $cols = 4;
+  showExtra = false;
+  emailModal = {
+    quoteId:5,
+    customerEmail:"test@123.com",
+    cc:null,
+    bcc:null,
+    subject:null,
+    message:null
+  };
 
   constructor(private langService: LangService,
     private http: HttpClient,
@@ -133,20 +147,22 @@ export class QuotationsComponent implements OnInit {
                 }
             });
 
-            $('#fileData').on('click', '.email_inv', function() {
-                // var id = $(this).attr('id');
-                // var cid = $(this).attr('data-customer');
-                // var bid = $(this).attr('data-company');
-                // $.getJSON( "<?=site_url('sales/getCE');?>", { cid: cid, bid: bid, <?=$this->security->get_csrf_token_name();?>: '<?=$this->security->get_csrf_hash()?>' }).done(function( json ) {
-                //     $('#customer_email').val(json.ce);
-                //     $('#subject').val('<?=lang("invoice_from");?> '+json.com);
-                // });
-                // $('#emailModalLabel').text('<?=lang("email") . " " . lang("invoice") . " " . lang("no");?> '+id);
-                // $('#subject').val('<id?=lang("invoice") . " from " . $Settings->site_name;?>');
-                // $('#inv_id').val();
-                $('#emailModal').modal();
-                return false;
-            });
+            // $('#fileData').on('click', '.email_inv', function() {
+            //     // var id = $(this).attr('id');
+            //     // var cid = $(this).attr('data-customer');
+            //     // var bid = $(this).attr('data-company');
+            //     // $.getJSON( "<?=site_url('sales/getCE');?>", { cid: cid, bid: bid, <?=$this->security->get_csrf_token_name();?>: '<?=$this->security->get_csrf_hash()?>' }).done(function( json ) {
+            //     //     $('#customer_email').val(json.ce);
+            //     //     $('#subject').val('<?=lang("invoice_from");?> '+json.com);
+            //     // });
+            //     // $('#emailModalLabel').text('<?=lang("email") . " " . lang("invoice") . " " . lang("no");?> '+id);
+            //     // $('#subject').val('<id?=lang("invoice") . " from " . $Settings->site_name;?>');
+            //     // $('#inv_id').val();
+
+            //     thisObject.modalService.open(emailModal
+            //     $('#emailModal').modal();
+            //     return false;
+            // });
 
             table.columns().every(function () {
                 var self = this;
@@ -212,46 +228,20 @@ openViewModal(quoteId){
     modalRef.componentInstance.quoteId = quoteId;
 }
 
-downloadPDF(quoteId){
+openEmailModal(emailModal,customerId,quoteId){
+    this.http
+        .get('/api/customer/selectById/'+customerId )
+        .subscribe(data => {
+            const modalRef = this.modalService.open(QuotationEmailModalComponent);
+            modalRef.componentInstance.emailModalObj = {
+                quoteId,
+                customerEmail:data["email"]
+            }
+        },
+        error => alert(error.error.message)
+        );
+
     
-
-    this.initPDF(quoteId);
-
-  
-}
-
-async initPDF(quoteId){
-    this.$inv = await this.http.get('/api/quotation/selectById/' + quoteId).toPromise();
-    this.$inv.date = this.$inv.date.split('T')[0];
-    this.$inv.expiryDate = this.$inv.expiryDate ? this.$inv.expiryDate.split(
-        'T'
-      )[0] : null;
-    
-    let companyId = this.$inv.companyId ? this.$inv.companyId : 1;
-    this.http.get('/api/company/selectById/'+ companyId).subscribe(data => {
-      this.$biller = data;
-    });
-
-    this.http.get('/api/customer/selectById/'+ this.$inv.customerId).subscribe(data => {
-      this.$customer = data;
-    });
-    this.quoteItems = await this.http
-        .get('/api/quotationItem/selectByQuoteId/' + quoteId)
-        .toPromise();
-
-        let doc = new jspdf();
-
-    let specialElementHandlers = {
-        '#editor':function(){
-            return true;
-        }
-    }
-        let content = this.content.nativeElement;
-        doc.fromHTML(content.innerHTML,10,10,{
-            'width':900,
-            'elementHandlers':specialElementHandlers
-        });
-        doc.save("test.pdf");
 }
 
 formatMoney(x, symbol) {

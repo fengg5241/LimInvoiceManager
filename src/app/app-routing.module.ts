@@ -39,6 +39,7 @@ import { SalesReportComponent } from './reports/sales-report/sales-report.compon
 import { PaymentReportComponent } from './reports/payment-report/payment-report.component';
 import { QuotationsComponent } from './quotations/quotations.component';
 import { QuotationView } from './quotations/quotation-view/quotation-view.component';
+import { QuotationEmailModalComponent } from './quotations/quotation-email-modal/quotation-email-modal.component';
 import { SaleViewComponent } from './sales/sale-view/sale-view.component';
 import { QuotationDetailComponent } from './quotations/quotation-detail/quotation-detail.component';
 import {ChangePasswordComponent} from './change-password/change-password.component';
@@ -63,6 +64,7 @@ const routes: Routes = [
     { path: 'sales/view:id', component: SaleViewComponent },
     { path: 'sales/quotations', component: QuotationsComponent },
     { path: 'sales/quotations/view', component: QuotationView },
+    { path: 'sales/quotations/emailModal', component: QuotationEmailModalComponent },
     { path: 'sales/quotations/new', component: QuotationDetailComponent },
     { path: 'sales/quotations/edit/:id', component: QuotationDetailComponent },
     { path: 'sales/payment/edit/:id', component: PaymentDetailComponent },

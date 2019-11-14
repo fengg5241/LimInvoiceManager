@@ -43,6 +43,7 @@
     "font-awesome": "^4.7.0",
     "fullcalendar": "^3.10.0",
     "highcharts": "^7.0.3",
+    "html2canvas": "^1.0.0-rc.5",
     "inputmask": "^3.3.7",
     "ion-rangeslider": "^2.3.0",
     "ionicons": "^3.0.0",

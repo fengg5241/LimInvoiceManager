@@ -57,6 +57,7 @@ import { ResetPasswordComponent } from './login/reset-password/reset-password.co
 import { PaymentDetailComponent } from './sales/payment-detail/payment-detail.component';
 import { PaymentViewComponent } from './sales/payment-view/payment-view.component';
 import { PaymentListComponent } from './sales/payment-list/payment-list.component';
+import { QuotationEmailModalComponent } from './quotations/quotation-email-modal/quotation-email-modal.component';
 
 @NgModule({
   declarations: [
@@ -108,6 +109,7 @@ import { PaymentListComponent } from './sales/payment-list/payment-list.componen
     PaymentDetailComponent,
     PaymentViewComponent,
     PaymentListComponent,
+    QuotationEmailModalComponent
   ],
   imports: [
     BrowserModule,

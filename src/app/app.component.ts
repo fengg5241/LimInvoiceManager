@@ -4,7 +4,7 @@ import { Inject, Injectable } from '@angular/core';
 import { SESSION_STORAGE, StorageService } from 'angular-webstorage-service';
 import { LangService } from './lang.service';
 import { UserSessionService } from './user-session.service';
-
+declare var xepOnline: any;
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',

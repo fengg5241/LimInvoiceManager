@@ -58,6 +58,7 @@ import { PaymentDetailComponent } from './sales/payment-detail/payment-detail.co
 import { PaymentViewComponent } from './sales/payment-view/payment-view.component';
 import { PaymentListComponent } from './sales/payment-list/payment-list.component';
 import { QuotationEmailModalComponent } from './quotations/quotation-email-modal/quotation-email-modal.component';
+import { SaleEmailModalComponent } from './sales/sale-email-modal/sale-email-modal.component';
 
 @NgModule({
   declarations: [
@@ -109,7 +110,8 @@ import { QuotationEmailModalComponent } from './quotations/quotation-email-modal
     PaymentDetailComponent,
     PaymentViewComponent,
     PaymentListComponent,
-    QuotationEmailModalComponent
+    QuotationEmailModalComponent,
+    SaleEmailModalComponent
   ],
   imports: [
     BrowserModule,

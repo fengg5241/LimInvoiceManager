@@ -45,6 +45,7 @@ import { QuotationDetailComponent } from './quotations/quotation-detail/quotatio
 import {ChangePasswordComponent} from './change-password/change-password.component';
 import { ForgotPasswordComponent } from './login/forgot-password/forgot-password.component';
 import { ResetPasswordComponent } from './login/reset-password/reset-password.component';
+import { SaleEmailModalComponent } from './sales/sale-email-modal/sale-email-modal.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -62,6 +63,7 @@ const routes: Routes = [
     { path: 'sales/new/:id', component: SaleDetailComponent },
     { path: 'sales/edit/:id', component: SaleDetailComponent },
     { path: 'sales/view:id', component: SaleViewComponent },
+    { path: 'sales/emailModal', component: SaleEmailModalComponent },
     { path: 'sales/quotations', component: QuotationsComponent },
     { path: 'sales/quotations/view', component: QuotationView },
     { path: 'sales/quotations/emailModal', component: QuotationEmailModalComponent },

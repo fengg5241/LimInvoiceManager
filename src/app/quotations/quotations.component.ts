@@ -228,20 +228,20 @@ openViewModal(quoteId){
     modalRef.componentInstance.quoteId = quoteId;
 }
 
-openEmailModal(emailModal,customerId,quoteId){
+openEmailModal(emailModal,customerId,quoteId,companyName){
     this.http
         .get('/api/customer/selectById/'+customerId )
         .subscribe(data => {
             const modalRef = this.modalService.open(QuotationEmailModalComponent);
             modalRef.componentInstance.emailModalObj = {
                 quoteId,
-                customerEmail:data["email"]
+                companyName,
+                customerEmail:data["email"],
+
             }
         },
         error => alert(error.error.message)
         );
-
-    
 }
 
 formatMoney(x, symbol) {

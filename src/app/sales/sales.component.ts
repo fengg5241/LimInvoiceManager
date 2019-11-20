@@ -5,7 +5,7 @@ import {  NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import {SaleViewComponent} from './sale-view/sale-view.component'
 import {PaymentDetailComponent} from './payment-detail/payment-detail.component'
 import {PaymentListComponent} from './payment-list/payment-list.component'
-
+import { SaleEmailModalComponent } from './sale-email-modal/sale-email-modal.component';
 import { LangService } from '../lang.service';
 import * as $ from 'jquery';
 import 'datatables.net';
@@ -249,9 +249,21 @@ export class SalesComponent implements OnInit {
     modalRef.componentInstance.saleId = saleId;
   }
 
-  openEmailModal(emailModal){
-    const modalRef = this.modalService.open(emailModal);
-  }
+  openEmailModal(emailModal,customerId,saleId,companyName){
+    this.http
+        .get('/api/customer/selectById/'+customerId )
+        .subscribe(data => {
+            const modalRef = this.modalService.open(SaleEmailModalComponent);
+            modalRef.componentInstance.emailModalObj = {
+                saleId,
+                companyName,
+                customerEmail:data["email"],
+
+            }
+        },
+        error => alert(error.error.message)
+        );
+}
 
   openNewPaymentModal(saleId,customerId){
     const modalRef = this.modalService.open(PaymentDetailComponent);

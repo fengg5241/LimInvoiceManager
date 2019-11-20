@@ -1,7 +1,7 @@
 <!-- <ng-template #emailModal let-modal> -->
 		<div class="modal-content">
 			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+				<button type="button" class="close" (click)="activeModal.dismiss('Cross click')" aria-hidden="true">×</button>
 				<h4 class="modal-title" id="emailModalLabel">Email Quotation No {{emailModalObj.quoteId}}</h4>
 			</div>
 			<div class="modal-body">
@@ -45,7 +45,7 @@
 			</div>
 			<div class="modal-footer">
 				<button class="btn pull-left" id="sh-btn" (click)="toggleShowExtra()" >Show/Hide CC &amp; BCC</button>
-				<button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+				<button class="btn" (click)="activeModal.dismiss('Cross click')" aria-hidden="true">Close</button>
 				<button class="btn btn-primary" id="email_now" (click)="downloadPDF()">Send Email</button>
 			</div>
 	

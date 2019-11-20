@@ -10,11 +10,11 @@ import html2canvas from 'html2canvas';
 
 declare var xepOnline: any;
 @Component({
-  selector: 'app-quotation-email-modal',
-  templateUrl: './quotation-email-modal.component.html',
-  styleUrls: ['./quotation-email-modal.component.css']
+  selector: 'app-sale-email-modal',
+  templateUrl: './sale-email-modal.component.html',
+  styleUrls: ['./sale-email-modal.component.css']
 })
-export class QuotationEmailModalComponent implements OnInit {
+export class SaleEmailModalComponent implements OnInit {
   @Input() emailModalObj;
   @ViewChild('content') content: ElementRef;
   
@@ -25,14 +25,6 @@ export class QuotationEmailModalComponent implements OnInit {
   $cols = 4;
   showExtra = false;
   $settings:any;
-  emailModal = {
-    quoteId:null,
-    customerEmail:null,
-    cc:null,
-    bcc:null,
-    subject:null,
-    message:null
-  };
 
   constructor(public activeModal: NgbActiveModal,
     private langService: LangService,
@@ -83,6 +75,10 @@ export class QuotationEmailModalComponent implements OnInit {
     );
   }
 
+  getStatusPng(){
+    return "assets/img/"+this.$inv.status+".png";
+  }
+
   getDiscountCols(){
     let col = this.$cols - 2;
     if(this.$settings.productDiscount) { col += 1; }
@@ -92,24 +88,24 @@ export class QuotationEmailModalComponent implements OnInit {
   }
 
 async initPDF(){
-    let quoteId = this.emailModalObj.quoteId;
-    this.$inv = await this.http.get('/api/quotation/selectById/' + quoteId).toPromise();
-    this.$inv.date = this.$inv.date.split('T')[0];
-    this.$inv.expiryDate = this.$inv.expiryDate ? this.$inv.expiryDate.split(
-        'T'
-      )[0] : null;
-    
-    let companyId = this.$inv.companyId ? this.$inv.companyId : 1;
-    this.http.get('/api/company/selectById/'+ companyId).subscribe(data => {
-      this.$biller = data;
-    });
+  let saleId = this.emailModalObj.saleId;
+  this.$inv = await this.http.get('/api/sales/selectById/' + saleId).toPromise();
+  this.$inv.date = this.$inv.date.split('T')[0];
+  this.$inv.expiryDate = this.$inv.expiryDate ? this.$inv.expiryDate.split(
+      'T'
+    )[0] : null;
+  
+  let companyId = this.$inv.companyId ? this.$inv.companyId : 1;
+  this.http.get('/api/company/selectById/'+ companyId).subscribe(data => {
+    this.$biller = data;
+  });
 
-    this.http.get('/api/customer/selectById/'+ this.$inv.customerId).subscribe(data => {
-      this.$customer = data;
-    });
-    this.quoteItems = await this.http
-        .get('/api/quotationItem/selectByQuoteId/' + quoteId)
-        .toPromise();
+  this.http.get('/api/customer/selectById/'+ this.$inv.customerId).subscribe(data => {
+    this.$customer = data;
+  });
+  this.quoteItems = await this.http
+      .get('/api/quotationItem/selectByQuoteId/' + saleId)
+      .toPromise();
 
     let content = this.content.nativeElement;
     html2canvas(content).then( (canvas) => {
@@ -119,7 +115,6 @@ async initPDF(){
       var height = doc.internal.pageSize.getHeight();
 
       doc.addImage(img, 'JPEG', 0, 0, width, height);
-      // console.log(doc.output('datauristring'))
       this.sendEmail(doc.output('datauristring'));
 
       // doc.save('test.pdf');        
@@ -132,8 +127,8 @@ sendEmail(pdfString) {
     // to:this.emailModalObj.customerEmail,
     to:"fengg_5241@163.com",
     from:"feng5241@gmail.com",
-    subject:`Quotation from ${this.emailModalObj.companyName}`,
-    content:"Please find the attached quotation",
+    subject:`Invoice from ${this.emailModalObj.companyName}`,
+    content:"Please find the attached inovice",
     pdfString
   }
   this.http.post(emailHost + '/api/email/sendHtml',mailObject).subscribe(data => {

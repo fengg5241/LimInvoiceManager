@@ -44,7 +44,7 @@
                       <li><a href="javascript:void(0);" (click)="openViewModal(row.id)"><i class="fa fa-file-text-o"></i> View Quotation</a></li>
                       <li><a routerLink="/home/sales/new/{{row.id}}"><i class="fa fa-share"></i> Generate Invoice</a></li>
                       <li><a routerLink="/home/sales/quotations/edit/{{row.id}}"><i class="fa fa-edit"></i> Edit Quotation</a></li>
-                      <li><a href="javascript:void(0);" (click)="downloadPDF(row.id)"><i class="fa fa-file-pdf-o"></i> Download as PDF</a></li>
+                      <li><a href="javascript:void(0);" (click)="downloadPDF(row.id,row.companyName)"><i class="fa fa-file-pdf-o"></i> Download as PDF</a></li>
                       <li><a href="javascript:void(0);" class="email_inv" id="{{row.id}}" (click)="openEmailModal(emailModal,row.customerId,row.id,row.companyName)"><i class="fa fa-envelope"></i> Email Quotation</a></li>
                       <li><a href="javascript:void(0);" (click)="deleteQuote(row.id)"><i class="fa fa-trash-o"></i> Delete Quotation</a></li>
                   </ul>
@@ -105,3 +105,253 @@
 	</div>
 </div>
 
+<div id="content" title="dialog-pdf" #content  *ngIf="$inv">
+	<div class="modal-body">
+	<!-- <img src="{{ $assets}}img/{{ $inv->status}}.png" alt="{{ $inv->status}}" style="float: right; position: absolute; top:0; right: 0;"/> -->
+	<!-- <img  [attr.src]="getStatusPng()"  style="float: right; position: absolute; top:0; right: 0;"/> -->
+	<div id="wrap">
+		<!-- <img src="{{ base_url()}}uploads/{{ $biller->logo ? $biller->logo : $settings->logo}}" alt="{{ $biller->company ? $biller->company : $settings->site_name ?>" /> -->
+		<!-- <img src="$biller.logo ? $biller.logo : $settings.logl"  /> -->
+		<!-- <img src="assets/img/logo.png"  /> -->
+		<div class="row">
+			<div class="col-xs-5" *ngIf="$biller">
+				<h3>{{ $biller.company}}</h3>
+				{{ $biller.address}},<br />{{$biller.city}}, {{$biller.postalCode}}, {{$biller.state}},<br />{{$biller.country}}
+				<br />{{lang("tel")}}: {{$biller.phone}}<br />{{lang("email")}}: {{$biller.email}}
+				<span *ngIf="$biller.cf1 && $biller.cf1 != '-'"><br />{{lang("bcf1")}}: {{$biller.cf1}}</span>
+				<span *ngIf="$biller.cf2 && $biller.cf2 != '-'"><br />{{lang("bcf2")}}: {{$biller.cf2}}</span>
+				<span *ngIf="$biller.cf3 && $biller.cf3 != '-'"><br />{{lang("bcf3")}}: {{$biller.cf3}}</span>
+				<span *ngIf="$biller.cf4 && $biller.cf4 != '-'"><br />{{lang("bcf4")}}: {{$biller.cf4}}</span>
+				<span *ngIf="$biller.cf5 && $biller.cf5 != '-'"><br />{{lang("bcf5")}}: {{$biller.cf5}}</span>
+				<span *ngIf="$biller.cf6 && $biller.cf6 != '-'"><br />{{lang("bcf6")}}: {{$biller.cf6}}</span>
+			</div>
+  
+			<div class="col-xs-6" *ngIf="$customer">
+				{{ lang("quoted_to")}}:
+				<h3>{{$customer.company != '-' ? $customer.company :$customer.name }}</h3>
+				<p *ngIf="$customer.company != '-'">
+				  {{lang("attn")}}:{{$customer.name}}
+				</p>
+				<p *ngIf="$customer.address != '-'">
+				  {{lang("address")}}:{{$customer.address}},{{$customer.city}},{{$customer.postalCode}},{{$customer.state}},{{$customer.country}}
+				</p>
+				<br>
+				{{ lang("tel")}}:{{$customer.phone}}<br>
+				{{ lang("email")}}:{{$customer.email}}<br>
+				<p *ngIf="$customer.cf1 && $customer.cf1 != '-'">
+				  {{lang("ccf1")}}:{{$customer.ccf1}}
+				</p>
+				<p *ngIf="$customer.cf2 && $customer.cf2 != '-'">
+				  {{lang("ccf2")}}:{{$customer.ccf2}}
+				</p>
+				<p *ngIf="$customer.cf3 && $customer.cf3 != '-'">
+				  {{lang("ccf3")}}:{{$customer.ccf3}}
+				</p>
+				<p *ngIf="$customer.cf4 && $customer.cf4 != '-'">
+				  {{lang("ccf4")}}:{{$customer.ccf4}}
+				</p>
+				<p *ngIf="$customer.cf5 && $customer.cf5 != '-'">
+				  {{lang("ccf5")}}:{{$customer.ccf5}}
+				</p>
+				<p *ngIf="$customer.cf6 && $customer.cf6 != '-'">
+				  {{lang("ccf6")}}:{{$customer.ccf6}}
+				</p>
+				<!-- <?php
+				if ($customer.cf1 && $customer.cf1 != "-") { echo "<br />".lang("ccf1").": ".$customer.cf1; }
+				if ($customer.cf2 && $customer.cf2 != "-") { echo "<br />".lang("ccf2").": ".$customer.cf2; }
+				if ($customer.cf3 && $customer.cf3 != "-") { echo "<br />".lang("ccf3").": ".$customer.cf3; }
+				if ($customer.cf4 && $customer.cf4 != "-") { echo "<br />".lang("ccf4").": ".$customer.cf4; }
+				if ($customer.cf5 && $customer.cf5 != "-") { echo "<br />".lang("ccf5").": ".$customer.cf5; }
+				if ($customer.cf6 && $customer.cf6 != "-") { echo "<br />".lang("ccf6").": ".$customer.cf6; }
+				?> -->
+  
+			</div>
+		</div>
+		<div style="clear: both; height: 15px;"></div>
+  
+		<div class="row">
+			<div class="col-xs-5">
+				<h3 class="inv">{{ lang("quote")}} {{lang("no")}} {{$inv.id}}</h3>
+			</div>
+			<div class="col-xs-6">
+  
+				<p>
+					{{ lang("reference_no")}}:
+					{{ $inv.reference_no}}
+				</p>
+				<p>
+					{{ lang("date")}}:
+					<!-- {{ $this.sim.hrsd($inv.date)}} -->
+					{{ ($inv.date)}}
+				</p>
+  
+			</div>
+			<p>&nbsp;</p>
+			<div style="clear: both; height: 15px;"></div>
+			<div class="col-xs-12" *ngIf="$settings">
+				<div class="table-responsive">
+					<table class="table table-bordered table-hover table-striped" style="margin-bottom: 5px;">
+  
+						<thead>
+  
+							<tr>
+								<th style="max-width: 30px;">{{ lang("no")}}</th>
+								<th>{{ lang("description")}}</th>
+								<th class="col-xs-1" style="min-width:80px;padding-left:0;padding-right:0;">{{ lang("unit_price")}}</th>
+								<th class="col-xs-1" style="min-width:100px;padding-left:0;padding-right:0;">{{ lang("quantity")}}</th>
+								<th *ngIf="$settings.productDiscount" class="col-xs-1" style="min-width:100px;padding-left:0;padding-right:0;">{{ lang("discount")}}</th>
+								<th *ngIf="$settings.defaultTaxRate" class="col-xs-1" style="min-width:100px;padding-left:0;padding-right:0;">{{ lang("tax")}}</th>
+								<th class="col-xs-2">{{ lang("subtotal")}}</th>
+							</tr>
+  
+						</thead>
+  
+						<tbody>
+							<tr *ngFor="let $row of quoteItems ; let i=index">
+						  
+								<td class="text-center">{{ i+1}}</td>
+								<td *ngIf="$row.details">
+									<strong>{{$row.productName}}</strong><br>
+									{{$row.details}}
+								</td>
+								<td *ngIf="!$row.details">
+									{{$row.productName}}
+								</td>
+								<td class="text-right">{{ formatMoney($row.realUnitPrice)}}</td>
+								<td class="text-center">{{ $row.quantity}}</td>
+								<td class="text-right" *ngIf="$settings.productDiscount">
+									<small *ngIf="$row.discountAmt > 0">
+										({{$row.discount}})
+									</small>
+									{{ formatMoney($row.discountAmt)}}
+								</td>
+								<td class="text-right" *ngIf="$settings.defaultTaxRate">
+									<small *ngIf="$row.taxAmt > 0">
+										({{$row.tax}})
+									</small>
+									{{ formatMoney($row.taxAmt)}}
+								</td>
+								<td class="text-right">{{ formatMoney($row.subtotal)}}</td>
+							</tr>
+						</tbody>
+  
+						<tfoot>
+							
+							<tr class="totals">
+								<th [attr.colspan]="$cols">{{ lang('total')}}</th>
+								<th class="text-right" *ngIf="$settings.productDiscount">{{ formatMoney($inv.productDiscount)}}</th>
+								   
+								<th class="text-right" *ngIf="$settings.defaultTaxRate">{{ formatMoney($inv.productTax)}}</th>
+								<th class="text-right">{{ formatMoney($inv.total)}}</th>
+							</tr>
+  
+							<tr *ngIf="$inv.orderDiscount > 0">
+								<th class="word_text" [attr.colspan]="getDiscountCols()">
+									<!-- {{ $this.mywords.c2w($inv.order_discount)}} -->
+									{{$inv.orderDiscount}}
+								</th>
+								<th class="text-right" colspan="2">
+									{{ lang("order_discount")}} ({{ $settings.currencyPrefix}})
+								</th>
+								<th class="text-right">
+									{{ formatMoney($inv.orderDiscount)}}
+								</th>
+							</tr>
+							
+							<tr *ngIf="$inv.orderTax > 0">
+								<th class="word_text" [attr.colspan]=" getDiscountCols()">
+									<!-- {{ $this.mywords.c2w($inv.order_tax)}} -->
+									{{$inv.orderTax}}
+								</th>
+								<th class="text-right" colspan="2">
+									{{ lang("order_tax")}} ({{ $settings.currencyPrefix}})
+								</th>
+								<th class="text-right">
+									{{ formatMoney($inv.orderTax)}}
+								</th>
+							</tr>
+							   
+							<tr *ngIf="$inv.shipping > 0">
+								<th class="word_text" [attr.colspan]="getDiscountCols()">
+									<!-- {{ $this.mywords.c2w($inv.shipping)}} -->
+									{{$inv.shipping}}
+								</th>
+								<th class="text-right" colspan="2">
+									{{ lang("shipping")}} ({{ $settings.currency_prefix}})
+								</th>
+								<th class="text-right">
+									{{ formatMoney($inv.shipping)}}
+								</th>
+							</tr>
+								
+							<tr class="primary">
+								<th class="word_text text-primary" [attr.colspan]="getDiscountCols()">
+									<!-- {{ $this.mywords.c2w($inv.grand_total)}} -->
+									{{$inv.grandTotal}}
+								</th>
+								<th class="text-right text-primary" colspan="2">
+									{{ lang("grand_total")}} ({{ $settings.currencyPrefix}})
+								</th>
+								<th class="text-right text-primary">
+									{{ formatMoney($inv.grandTotal)}}
+								</th>
+							</tr>
+  
+						</tfoot>
+  
+					</table>
+				</div>
+  
+				<div style="clear: both;"></div>
+				<div class="row">
+					<div class="col-xs-12" *ngIf='$inv.note && $inv.note != "<br>" && $inv.note != " " && $inv.note != "<p></p>"'>
+					  <p>&nbsp;</p>
+					  <div class="well well-sm">
+						  <p class="lead">{{ lang("note")}}:</p>
+						  <p>{{ $inv.note}}</p>
+					  </div>
+					</div>
+  
+					<div style="clear: both;"></div>
+					<div class="col-xs-4 pull-left" *ngIf="$biller">
+						
+							<img *ngIf="$biller.ssImage" src="$biller.ssImage" alt="" />
+							
+							<p *ngIf="!$biller.ssImage">&nbsp;</p>
+							<p *ngIf="!$biller.ssImage">&nbsp;</p>
+							<p *ngIf="!$biller.ssImage">&nbsp;</p>
+							<p *ngIf="!$biller.ssImage">&nbsp;</p>
+  
+						<p style="border-bottom: 1px solid #999;">&nbsp;</p>
+						<p>{{ lang("signature")}} & {{("stamp")}}</p>
+					</div>
+  
+					<div class="col-xs-4 pull-right" *ngIf="$customer">
+						<p>&nbsp;</p>
+						<p *ngIf="$customer.company != '-'">
+							{{ lang("buyer")}}:
+							{{$customer.company}}
+						</p>
+						<p *ngIf="$customer.company === '-'">
+							{{ lang("buyer")}}:
+							{{$customer.name}}
+						</p>
+						<p>&nbsp;</p>
+						<p>&nbsp;</p>
+						<p style="border-bottom: 1px solid #999;">&nbsp;</p>
+						<p>{{ lang("signature")}} & {{lang("stamp") }}</p>
+					</div>
+					<div class="clearfix"></div>
+				</div>
+			</div>
+			<!-- <div class="col-xs-12" style="margin-top: 15px;">
+			<?php
+				if (isset($client) && !empty($client)) {
+					echo '<a class="btn btn-primary btn-block" href="'.site_url('clients/pdf_quote?id='.$inv->id).'">'.lang('download_pdf').'</a>';
+				}
+			?>
+		</div> -->
+	</div>
+  </div>
+  </div>
+  </div>

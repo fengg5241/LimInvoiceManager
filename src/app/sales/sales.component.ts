@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
+import * as accounting from 'accounting/accounting.js';
 import {  NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import {SaleViewComponent} from './sale-view/sale-view.component'
 import {PaymentDetailComponent} from './payment-detail/payment-detail.component'
@@ -8,6 +9,9 @@ import {PaymentListComponent} from './payment-list/payment-list.component'
 import { SaleEmailModalComponent } from './sale-email-modal/sale-email-modal.component';
 import { LangService } from '../lang.service';
 import * as $ from 'jquery';
+import * as jspdf from 'jspdf'; 
+import html2canvas from 'html2canvas';
+(window as any).html2canvas = html2canvas;
 import 'datatables.net';
 import 'datatables.net-bs';
 import 'datatables.net-buttons';
@@ -37,6 +41,11 @@ export class SalesComponent implements OnInit {
     amount:null,
     note:""
   }
+
+  $cols = 4;
+  $inv:any;
+  @ViewChild('content') content: ElementRef;
+
 
   constructor(
     private langService: LangService,
@@ -276,5 +285,34 @@ export class SalesComponent implements OnInit {
       modalRef.componentInstance.saleId = saleId;
       modalRef.componentInstance.customerId = customerId;
       modalRef.componentInstance.companyId = companyId;
+  }
+
+  getDiscountCols(){
+    let col = this.$cols - 2;
+    if(this.$settings.productDiscount) { col += 1; }
+    if(this.$settings.defaultTaxRate) { col += 1; }
+
+    return col;
+  }
+
+  getStatusPng(){
+    return "assets/img/"+this.$inv.status+".png";
+  }
+
+  formatMoney(x, symbol) {
+    let thisObject = this;
+    if (!symbol) {
+      symbol = '';
+    }
+    return accounting.formatMoney(
+      x,
+      symbol,
+      thisObject.$settings.decimals,
+      thisObject.$settings.thousandsSep == 0
+        ? ' '
+        : thisObject.$settings.thousandsSep,
+      thisObject.$settings.decimalsSep,
+      '%s%v'
+    );
   }
 }

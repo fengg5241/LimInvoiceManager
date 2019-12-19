@@ -222,6 +222,40 @@ deleteQuote(quoteId){
         );
 }
 
+async downloadPdf(quoteId,companyName){
+    this.$inv = await this.http.get('/api/quotation/selectById/' + quoteId).toPromise();
+    this.$inv.date = this.$inv.date.split('T')[0];
+    this.$inv.expiryDate = this.$inv.expiryDate ? this.$inv.expiryDate.split(
+        'T'
+      )[0] : null;
+    
+    let companyId = this.$inv.companyId ? this.$inv.companyId : 1;
+    this.http.get('/api/company/selectById/'+ companyId).subscribe(data => {
+      this.$biller = data;
+    });
+
+    this.http.get('/api/customer/selectById/'+ this.$inv.customerId).subscribe(data => {
+      this.$customer = data;
+    });
+    this.quoteItems = await this.http
+        .get('/api/quotationItem/selectByQuoteId/' + quoteId)
+        .toPromise();
+
+        let doc = new jspdf();
+
+    let specialElementHandlers = {
+        '#editor':function(){
+            return true;
+        }
+    }
+        let content = this.content.nativeElement;
+        doc.fromHTML(content.innerHTML,10,10,{
+            'width':900,
+            'elementHandlers':specialElementHandlers
+        });
+        doc.save("test.pdf");
+}
+
 openViewModal(quoteId){
     const modalRef = this.modalService.open(QuotationView);
     modalRef.componentInstance.name = 'World';

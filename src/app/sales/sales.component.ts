@@ -43,6 +43,9 @@ export class SalesComponent implements OnInit {
   }
 
   $cols = 4;
+  $biller:any;
+  $customer:any;
+  quoteItems: any
   $inv:any;
   @ViewChild('content') content: ElementRef;
 
@@ -272,6 +275,37 @@ export class SalesComponent implements OnInit {
         },
         error => alert(error.error.message)
         );
+}
+
+async downloadPdf(saleId,companyName){
+   
+  this.$inv = await this.http.get('/api/sales/selectById/' + saleId).toPromise();
+  this.$inv.date = this.$inv.date.split('T')[0];
+  this.$inv.expiryDate = this.$inv.expiryDate ? this.$inv.expiryDate.split(
+      'T'
+    )[0] : null;
+  
+  let companyId = this.$inv.companyId ? this.$inv.companyId : 1;
+
+  this.$biller = await this.http.get('/api/company/selectById/'+ companyId).toPromise();
+  this.$customer = await this.http.get('/api/customer/selectById/'+ this.$inv.customerId).toPromise();
+  this.quoteItems = await this.http
+    .get('/api/quotationItem/selectByQuoteId/' + saleId)
+    .toPromise();
+  
+  let content = this.content.nativeElement;
+  
+  html2canvas(content).then( (canvas) => {
+    var img = canvas.toDataURL("image/png");
+    var doc = new jspdf('p','pt','a4');
+    var width = doc.internal.pageSize.getWidth();
+    var height = doc.internal.pageSize.getHeight();
+    $("#content").hide();
+    
+    doc.addImage(img, 'JPEG', 0, 0, width, height);
+    // console.log(doc.output('datauristring'))
+    doc.save('Invoice-'+saleId+'.pdf');        
+});
 }
 
   openNewPaymentModal(saleId,customerId){

@@ -222,7 +222,8 @@ deleteQuote(quoteId){
         );
 }
 
-async downloadPdf(quoteId,companyName){
+async downloadPDF(quoteId,companyName){
+   
     this.$inv = await this.http.get('/api/quotation/selectById/' + quoteId).toPromise();
     this.$inv.date = this.$inv.date.split('T')[0];
     this.$inv.expiryDate = this.$inv.expiryDate ? this.$inv.expiryDate.split(
@@ -230,30 +231,49 @@ async downloadPdf(quoteId,companyName){
       )[0] : null;
     
     let companyId = this.$inv.companyId ? this.$inv.companyId : 1;
-    this.http.get('/api/company/selectById/'+ companyId).subscribe(data => {
-      this.$biller = data;
-    });
 
-    this.http.get('/api/customer/selectById/'+ this.$inv.customerId).subscribe(data => {
-      this.$customer = data;
-    });
+    this.$biller = await this.http.get('/api/company/selectById/'+ companyId).toPromise();
+    this.$customer = await this.http.get('/api/customer/selectById/'+ this.$inv.customerId).toPromise();
+    // this.http.get('/api/company/selectById/'+ companyId).subscribe(data => {
+    //   this.$biller = data;
+    // });
+
+    // this.http.get('/api/customer/selectById/'+ this.$inv.customerId).subscribe(data => {
+    //   this.$customer = data;
+    // });
     this.quoteItems = await this.http
         .get('/api/quotationItem/selectByQuoteId/' + quoteId)
         .toPromise();
+        $("#content").show();
+    //     let doc = new jspdf();
 
-        let doc = new jspdf();
+    // let specialElementHandlers = {
+    //     '#editor':function(){
+    //         return true;
+    //     }
+    // }
+    //     let content = this.content.nativeElement;
+    //     doc.fromHTML(content.innerHTML,10,10,{
+    //         'width':900,
+    //         'elementHandlers':specialElementHandlers
+    //     });
+    // doc.save("test.pdf");
+    
+    let content = this.content.nativeElement;
+    
+    html2canvas(content).then( (canvas) => {
+      var img = canvas.toDataURL("image/png");
+      var doc = new jspdf('p','pt','a4');
+      var width = doc.internal.pageSize.getWidth();
+      var height = doc.internal.pageSize.getHeight();
+      $("#content").hide();
+      
+      doc.addImage(img, 'JPEG', 0, 0, width, height);
+      // console.log(doc.output('datauristring'))
+      doc.save('quotation-'+quoteId+'.pdf');        
+  });
 
-    let specialElementHandlers = {
-        '#editor':function(){
-            return true;
-        }
-    }
-        let content = this.content.nativeElement;
-        doc.fromHTML(content.innerHTML,10,10,{
-            'width':900,
-            'elementHandlers':specialElementHandlers
-        });
-        doc.save("test.pdf");
+        
 }
 
 openViewModal(quoteId){

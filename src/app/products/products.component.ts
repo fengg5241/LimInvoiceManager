@@ -52,6 +52,7 @@ export class ProductsComponent implements OnInit {
                     "order": [[1, "asc"]],
                     "pageLength": thisObject.$settings.rowsPerPage,
                     retrieve: true,
+                    "bInfo" : false,
                     buttons: [
                         { extend: 'copyHtml5', exportOptions: { columns: [0, 1, 2, 3] } },
                         { extend: 'excelHtml5', 'footer': true, exportOptions: { columns: [0, 1, 2, 3] } },

@@ -65,11 +65,11 @@ export class SalesComponent implements OnInit {
     let sysSettings = localStorage.getItem('LimSysSettings');
     if(sysSettings){
       this.$settings = JSON.parse(sysSettings);
-  }else {
-      let sysSettings1 = await this.http.get('/api/sysSetting/selectAll').toPromise()
-      this.$settings = sysSettings1[0];
-      localStorage.setItem("LimSysSettings",JSON.stringify(sysSettings1[0]));
-  }
+    }else {
+        let sysSettings1 = await this.http.get('/api/sysSetting/selectAll').toPromise()
+        this.$settings = sysSettings1[0];
+        localStorage.setItem("LimSysSettings",JSON.stringify(sysSettings1[0]));
+    }
 
     let thisObject = this;
     this.http.get('/api/sales/selectAll').subscribe(data => {
@@ -110,6 +110,7 @@ export class SalesComponent implements OnInit {
           lengthMenu: [[10, 25, 50, 100, -1], [10, 25, 50, 100, 'All']],
           order: [[1, 'asc']],
           retrieve: true,
+          "bInfo" : false,
           pageLength: thisObject.$settings.rowsPerPage,
           buttons: [
             {

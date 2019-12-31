@@ -64,6 +64,7 @@ export class CustomersComponent implements OnInit {
                 "dom": '<"text-center"<"btn-group"B>><"clear"><"row"<"col-md-6"l><"col-md-6 pr0"p>r>t<"row"<"col-md-6"i><"col-md-6"p>><"clear">',
                 "lengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
                 "order": [[1, "asc"]],
+                "bInfo" : false,
                 retrieve: true,
                 "pageLength": thisObject.$Settings.rowsPerPage,
                 buttons: [

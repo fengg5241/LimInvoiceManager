@@ -46,6 +46,8 @@ export class PaymentReportComponent implements OnInit {
 
   customerMap = {};
 
+  showSearchCondition = true;
+
   constructor(
     private langService: LangService,
     private utilService: UtilService,
@@ -84,6 +86,11 @@ export class PaymentReportComponent implements OnInit {
 
 
   searchPaymentReport(){
+    
+    if(this.searchParams.customerId == "null"){
+      this.searchParams.customerId = null;
+    }
+
     if(this.searchParams.customerId){
       this.showCustomerSalesReport(this.searchParams);
     }
@@ -100,6 +107,7 @@ export class PaymentReportComponent implements OnInit {
           order: [[1, 'asc']],
           pageLength: thisObject.$settings.rowsPerPage,
           retrieve: true,
+          "bInfo" : false,
           buttons: [
             {
               extend: 'copyHtml5',
@@ -169,6 +177,8 @@ export class PaymentReportComponent implements OnInit {
           });
         });
       });
+
+      thisObject.showHide();
     });
   }
 
@@ -228,6 +238,10 @@ export class PaymentReportComponent implements OnInit {
       this.$settings.decimalsSep,
       '%s%v'
     );
+  }
+
+  showHide(){
+    this.showSearchCondition = !this.showSearchCondition;
   }
 
 }

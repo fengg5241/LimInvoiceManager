@@ -38,7 +38,7 @@
 
       <div class="col-md-4">
         <div class="form-group">
-          <label for="billing_company"> {{ lang('billing_company') }}</label>
+          <label for="billing_company"> {{ lang('billing company') }}</label>
           <select
             name="billing_company"
             class="billing_company form-control"
@@ -46,8 +46,8 @@
             id="billing_company"
             [(ngModel)]="curQuotation.companyId"
           >
-            <option value="null" disabled="true" [selected]="true"
-              >Placeholder text..</option
+            <option value="null"  [selected]="true"
+              >Select..</option
             >
             <option *ngFor="let row of $companies" value="{{ row.id }}">{{
               row.company
@@ -58,7 +58,7 @@
 
       <div class="col-md-4">
         <div class="form-group">
-          <label for="reference_no"> {{ lang('reference_no') }}</label>
+          <label for="reference_no"> {{ lang('reference no') }}</label>
           <div class="input-group">
             <input
               type="text"

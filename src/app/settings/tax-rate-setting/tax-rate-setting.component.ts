@@ -14,6 +14,7 @@ export class TaxRateSettingComponent implements OnInit {
 
   $page_title = "Tax Rates";
   $tax_rates: any;
+  $settings: any;
   
   constructor(private langService: LangService,
     private http: HttpClient,
@@ -22,15 +23,32 @@ export class TaxRateSettingComponent implements OnInit {
     private router: Router) { }
 
   ngOnInit() {
+    this.initTable();
+    
+
+  }
+
+  async initTable() {
+    let sysSettings = localStorage.getItem('LimSysSettings');
+    if(sysSettings){
+      this.$settings = JSON.parse(sysSettings);
+    }else {
+        let sysSettings1 = await this.http.get('/api/sysSetting/selectAll').toPromise()
+        this.$settings = sysSettings1[0];
+        localStorage.setItem("LimSysSettings",JSON.stringify(sysSettings1[0]));
+    }
+
     this.http.get('/api/taxRate/selectAll').subscribe(data => {
       this.$tax_rates = data;
     });
 
+    let thisObject = this;
     $(document).ready(function () {
       $('#fileData').dataTable({
         "aLengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
         "aaSorting": [[1, "desc"]],
-        "iDisplayLength": 10,
+        "iDisplayLength": thisObject.$settings.rowsPerPage,
+        "bInfo" : false,
         retrieve: true,
         "oTableTools": {
           // "sSwfPath": "<?= $assets; ?>media/swf/copy_csv_xls_pdf.swf",

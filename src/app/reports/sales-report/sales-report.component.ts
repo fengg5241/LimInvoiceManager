@@ -46,6 +46,7 @@ export class SalesReportComponent implements OnInit {
   };
 
   customerMap = {};
+  showSearchCondition = true;
 
   constructor(
     private langService: LangService,
@@ -84,7 +85,16 @@ export class SalesReportComponent implements OnInit {
 
   searchSalesReport(){
     this.searchUser = null;
-    
+    if(this.searchParams.customerId == "null"){
+      this.searchParams.customerId = null;
+    }
+    if(this.searchParams.createdBy == "null"){
+      this.searchParams.createdBy = null;
+    }
+    if(this.searchParams.status == "null"){
+      this.searchParams.status = null;
+    }
+
     this.http.post('/api/sales/getSalesReport',this.searchParams).subscribe(data => {
       this.sales = data;
       this.searchUser = this.customerMap[this.searchParams.customerId];
@@ -155,6 +165,7 @@ export class SalesReportComponent implements OnInit {
           order: [[1, 'asc']],
           pageLength: thisObject.$settings.rowsPerPage,
           retrieve: true,
+          "bInfo" : false,
           buttons: [
             {
               extend: 'copyHtml5',
@@ -230,6 +241,8 @@ export class SalesReportComponent implements OnInit {
           });
         });
       });
+
+      thisObject.showHide();
     });
   }
 
@@ -249,5 +262,9 @@ export class SalesReportComponent implements OnInit {
       this.$settings.decimalsSep,
       '%s%v'
     );
+  }
+
+  showHide(){
+   this.showSearchCondition = !this.showSearchCondition;
   }
 }

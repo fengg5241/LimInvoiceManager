@@ -2,8 +2,8 @@
   <h2 class="pull-left">
     {{ $page_title }}
     <span class="page-meta"
-      ><a href="#" class="btn btn-primary btn-xs show_hide">{{
-        lang('show_hide')
+      ><a href="javascript:void(0)" class="btn btn-primary btn-xs show_hide" (click)="showHide()">{{
+        lang('show hide')
       }}</a></span
     >
   </h2>
@@ -12,9 +12,9 @@
 <div class="matter">
   <div class="container">
     <div class="form">
-      <p>Please customize the report below.</p>
+      <p *ngIf="showSearchCondition">Please customize the report below.</p>
       <!-- <?php $attrib = array('class' => 'form-horizontal'); echo form_open("reports/sales")}} -->
-      <div class="form-group">
+      <div class="form-group" *ngIf="showSearchCondition">
         <label for="product">{{ lang('product') }}</label>
         <div class="controls">
           <input
@@ -38,7 +38,7 @@
                   id="customer"
                   [(ngModel)]="searchParams.customerId"
                 >
-                  <option value="null" disabled="true" [selected]="true"
+                  <option value="null" [selected]="true"
                     >Select Customer</option
                   >
                   <option *ngFor="let row of $customers" value="{{ row.id }}">{{
@@ -95,7 +95,7 @@
                   id="user"
                   [(ngModel)]="searchParams.createdBy"
                 >
-                  <option value="null" disabled="true" [selected]="true"
+                  <option value="null"  [selected]="true"
                     >Select User</option
                   >
                   <option *ngFor="let row of $users" value="{{ row.id }}">{{
@@ -120,7 +120,7 @@
                   style="width: 100%;"
                   [(ngModel)]="searchParams.status"
                 >
-                  <option value="null" disabled="true" [selected]="true"
+                  <option value="null" [selected]="true"
                     >Select Status</option
                   >
                   <option value="canceled">{{ lang('canceled') }}</option>
@@ -291,9 +291,10 @@
       </div>
       <!-- <?php }	?> -->
 
+      <div class="table-responsive">
       <table
         id="fileData"
-        class="table table-bordered table-hover table-striped"
+        class="table table-bordered table-hover table-striped table-responsive"
         style="margin: 0 0 5px 0;"
       >
         <thead>
@@ -363,6 +364,7 @@
           </tr>
         </tfoot>
       </table>
+    </div>
       <!-- <?php 
 	}
 	?> -->

@@ -46,9 +46,7 @@
             id="billing_company"
             [(ngModel)]="curQuotation.companyId"
           >
-            <option value="null"  [selected]="true"
-              >Select..</option
-            >
+            <option value="null"  [selected]="true">Select...</option>
             <option *ngFor="let row of $companies" value="{{ row.id }}">{{
               row.company
             }}</option>
@@ -91,9 +89,7 @@
             [(ngModel)]="curQuotation.customerId"
           >
             <!-- lang("new_customer") -->
-            <option value="null" disabled="true" [selected]="true"
-              >Select Customer</option
-            >
+            <option value=""  [selected]="true">Select...</option>
             <option value="new">Add New Customer</option>
             <option *ngFor="let row of $customers" value="{{ row.id }}"
               >{{ row.company }}({{ row.name }})</option
@@ -174,7 +170,8 @@
             style="min-width: 100px;"
             [(ngModel)]="curQuotation.orderTaxId"
           >
-            <!-- lang("new_customer") -->
+          <option value=""  [selected]="true">Select...</option>
+
             <option *ngFor="let row of $tax_rates" value="{{ row.id }}">{{
               row.name
             }}</option>
@@ -194,6 +191,7 @@
             style="min-width: 100px;"
             [(ngModel)]="curQuotation.status"
           >
+            <option value=""  [selected]="true">Select...</option>
             <option value="canceled">{{ lang('canceled') }}</option>
             <option value="overdue">{{ lang('overdue') }}</option>
             <option value="paid">{{ lang('paid') }}</option>

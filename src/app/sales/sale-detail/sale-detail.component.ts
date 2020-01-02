@@ -485,7 +485,6 @@ export class SaleDetailComponent implements OnInit {
   }
 
   async save() {
-    console.log(this.curQuotation);
     this.resetNullValueOfDropdownList();
     if (!(this.updateItems.length > 0 && this.noOfValidItems >= 1)) {
       alert('There is no products which quantity > 0');
@@ -625,5 +624,6 @@ export class SaleDetailComponent implements OnInit {
         this.curQuotation[key] = null;
       }
     }
+    console.log(this.curQuotation);
   }
 }

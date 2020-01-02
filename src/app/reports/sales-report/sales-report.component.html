@@ -3,7 +3,7 @@
     {{ $page_title }}
     <span class="page-meta"
       ><a href="javascript:void(0)" class="btn btn-primary btn-xs show_hide" (click)="showHide()">{{
-        lang('show hide')
+        lang('Show Hide')
       }}</a></span
     >
   </h2>
@@ -15,7 +15,7 @@
       <p *ngIf="showSearchCondition">Please customize the report below.</p>
       <!-- <?php $attrib = array('class' => 'form-horizontal'); echo form_open("reports/sales")}} -->
       <div class="form-group" *ngIf="showSearchCondition">
-        <label for="product">{{ lang('product') }}</label>
+        <label for="product">{{ lang('Product') }}</label>
         <div class="controls">
           <input
             name="product"
@@ -29,7 +29,7 @@
         <div class="row">
           <div class="col-md-6">
             <div class="form-group">
-              <label for="customer">{{ lang('customer') }}</label>
+              <label for="customer">{{ lang('Customer') }}</label>
               <div class="controls">
                 <select
                   name="customer"
@@ -77,7 +77,7 @@
               }} -->
             </div>
             <div class="form-group">
-              <label for="user">{{ lang('created_by') }}</label>
+              <label for="user">{{ lang('Created By') }}</label>
               <div class="controls">
                 <!-- <?php 
 							$us[""] = lang("select")." ".lang("user");
@@ -110,7 +110,7 @@
 
           <div class="col-md-6">
             <div class="form-group">
-              <label for="customer">{{ lang('status') }}</label>
+              <label for="customer">{{ lang('Status') }}</label>
               <div class="controls">
                 <select
                   name="status"
@@ -123,13 +123,13 @@
                   <option value="null" [selected]="true"
                     >Select Status</option
                   >
-                  <option value="canceled">{{ lang('canceled') }}</option>
-                  <option value="overdue">{{ lang('overdue') }}</option>
-                  <option value="paid">{{ lang('paid') }}</option>
+                  <option value="canceled">{{ lang('Canceled') }}</option>
+                  <option value="overdue">{{ lang('Overdue') }}</option>
+                  <option value="paid">{{ lang('Paid') }}</option>
                   <option value="partially_paid">{{
-                    lang('partially_paid')
+                    lang('Partially Paid')
                   }}</option>
-                  <option value="pending">{{ lang('pending') }}</option>
+                  <option value="pending">{{ lang('Pending') }}</option>
                 </select>
                 <!-- 
                 <?php 
@@ -146,7 +146,7 @@
               </div>
             </div>
             <div class="form-group">
-              <label for="start_date">{{ lang('start_date') }}</label>
+              <label for="start_date">{{ lang('Start Date') }}</label>
               <div class="controls">
                 <input
                   type="date"
@@ -161,7 +161,7 @@
               </div>
             </div>
             <div class="form-group">
-              <label for="end_date">{{ lang('end_date') }}</label>
+              <label for="end_date">{{ lang('End Date') }}</label>
               <!-- <?php $date = date($dateFormats['php_sdate'])}} -->
               <div class="controls">
                 <!-- {{ form_input('end_date', (isset($_POST['end_date']) ?
@@ -181,7 +181,7 @@
         <div class="form-group">
           <div class="controls">
             <button class="btn btn-primary btn-lg" (click)="searchSalesReport()">
-              {{ lang('submit') }}
+              {{ lang('Submit') }}
             </button>
             <!-- {{ form_submit('submit', lang("submit"), 'class="btn btn-primary"');?> -->
           </div>
@@ -194,11 +194,11 @@
       <div *ngIf="searchUser" class="widget wlightblue">
         <div class="widget-head">
           <div class="pull-left">
-            {{ lang('name') }}:
+            {{ lang('Name') }}:
             <strong>{{ searchUser.name }}</strong>
-            &nbsp;&nbsp;&nbsp;&nbsp;{{ lang('email') }}:
+            &nbsp;&nbsp;&nbsp;&nbsp;{{ lang('Email') }}:
             <strong>{{ searchUser.email }}</strong>
-            &nbsp;&nbsp;&nbsp;&nbsp;{{ lang('phone') }}:
+            &nbsp;&nbsp;&nbsp;&nbsp;{{ lang('Phone') }}:
             <strong>{{ searchUser.phone }}</strong>
           </div>
           <div class="widget-icons pull-right">
@@ -217,7 +217,7 @@
                   ".$total['total_amount']; */ ?>  -->
                   {{ $total }}</span
                 ><br />
-                {{ lang('total') }} {{ lang('invoices') }}
+                {{ lang('Total') }} {{ lang('Invoices') }}
                 <div class="clearfix"></div>
               </li>
               <li class="bgreen">
@@ -226,25 +226,25 @@
                   ".$paid['total_amount'];*/ ?> -->
                   {{ $paid }}</span
                 ><br />
-                {{ lang('paid') }}
+                {{ lang('Paid') }}
                 <div class="clearfix"></div>
               </li>
               <li class="bblue">
                 <span class="bold" style="font-size:24px;">{{ $pp }}</span
                 ><br />
-                {{ lang('partially_paid') }}
+                {{ lang('Partially Paid') }}
                 <div class="clearfix"></div>
               </li>
               <li class="borange">
                 <span class="bold" style="font-size:24px;">{{ $pending }}</span
                 ><br />
-                {{ lang('pending') }}
+                {{ lang('Pending') }}
                 <div class="clearfix"></div>
               </li>
               <li class="bred">
                 <span class="bold" style="font-size:24px;">{{ $overdue }}</span
                 ><br />
-                {{ lang('overdue') }}
+                {{ lang('Overdue') }}
                 <div class="clearfix"></div>
               </li>
               <li class="bred" style="background:#000 !important;">
@@ -252,7 +252,7 @@
                   $cancelled
                 }}</span
                 ><br />
-                {{ lang('cancelled') }}
+                {{ lang('Cancelled') }}
                 <div class="clearfix"></div>
               </li>
             </ul>
@@ -264,7 +264,7 @@
                   ".$total['total_amount']; */ ?> -->
                   {{ formatMoney($tpp.total) }}</span
                 ><br />
-                {{ lang('total') }} {{ lang('amount') }}
+                {{ lang('Total') }} {{ lang('Amount') }}
                 <div class="clearfix"></div>
               </li>
               <li class="bgreen">
@@ -274,7 +274,7 @@
                   {{ formatMoney($tpp.paid) }}
                   <!-- {{ $this->sim->formatMoney($tpp->paid)}} --> </span
                 ><br />
-                {{ lang('paid') }} {{ lang('amount') }}
+                {{ lang('Paid') }} {{ lang('Amount') }}
                 <div class="clearfix"></div>
               </li>
               <li class="borange">
@@ -282,7 +282,7 @@
                   <!-- {{ $this->sim->formatMoney(($tpp->total - $tpp->paid))}} -->
                   {{ formatMoney($tpp.total - $tpp.paid) }} </span
                 ><br />
-                {{ lang('balance') }} {{ lang('amount') }}
+                {{ lang('Balance') }} {{ lang('Amount') }}
                 <div class="clearfix"></div>
               </li>
             </ul>
@@ -299,17 +299,17 @@
       >
         <thead>
           <tr class="active">
-            <th class="col-xs-1">{{ lang('id') }}</th>
-            <th class="col-xs-1">{{ lang('date') }}</th>
-            <th class="col-xs-2">{{ lang('billing_company') }}</th>
-            <th class="col-xs-1">{{ lang('reference_no') }}</th>
-            <th class="col-xs-1">{{ lang('created_by') }}</th>
-            <th class="col-xs-2">{{ lang('customer') }}</th>
-            <th class="col-xs-1">{{ lang('total') }}</th>
-            <th class="col-xs-1">{{ lang('paid') }}</th>
-            <th class="col-xs-1">{{ lang('balance') }}</th>
-            <th class="col-xs-1">{{ lang('due_date') }}</th>
-            <th class="col-xs-1">{{ lang('status') }}</th>
+            <th class="col-xs-1">{{ lang('Id') }}</th>
+            <th class="col-xs-1">{{ lang('Date') }}</th>
+            <th class="col-xs-2">{{ lang('Billing Company') }}</th>
+            <th class="col-xs-1">{{ lang('Reference No') }}</th>
+            <th class="col-xs-1">{{ lang('Created By') }}</th>
+            <th class="col-xs-2">{{ lang('Customer') }}</th>
+            <th class="col-xs-1">{{ lang('Total') }}</th>
+            <th class="col-xs-1">{{ lang('Paid') }}</th>
+            <th class="col-xs-1">{{ lang('Balance') }}</th>
+            <th class="col-xs-1">{{ lang('Due Date') }}</th>
+            <th class="col-xs-1">{{ lang('Status') }}</th>
           </tr>
         </thead>
         <!-- <tbody>
@@ -357,7 +357,7 @@
                 class="form-control b0"
                 name="search_table"
                 id="search_table"
-                placeholder="{{ lang('type_hit_enter') }}"
+                placeholder="{{ lang('Type Hit Enter') }}"
                 style="width:100%;"
               />
             </td>

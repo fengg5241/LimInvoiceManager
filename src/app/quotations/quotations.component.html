@@ -1,5 +1,5 @@
 <div class="page-head">
-	<h2 class="pull-left">{{ $page_title}} <span class="page-meta">{{ lang("list_results")}}</span> </h2>
+	<h2 class="pull-left">{{ $page_title}} <span class="page-meta">{{ lang("List Results")}}</span> </h2>
 </div>
 <div class="clearfix"></div>
 <div class="matter">
@@ -8,20 +8,20 @@
 			<table id="fileData" class="table quotes table-bordered table-hover table-striped" style="margin-bottom: 5px;">
 				<thead>
 					<tr class="active">
-						<th style="max-width:35px; text-align:center;">{{ lang("id")}}</th>
-						<th class="col-xs-1">{{ lang("date")}}</th>
-						<th class="col-xs-2">{{ lang("billing_company")}}</th>
-						<th class="col-xs-1">{{ lang("reference_no")}}</th>
-						<th class="col-xs-1">{{ lang("created_by")}}</th>
-						<th class="col-xs-2">{{ lang("customer")}}</th>
-						<th class="col-xs-1">{{ lang("total")}}</th>
-						<th class="col-xs-1">{{ lang("total_tax")}}</th>
-						<th class="col-xs-1">{{ lang("shipping")}}</th>
-						<th class="col-xs-1">{{ lang("discount")}}</th>
-						<th class="col-xs-1">{{ lang("grand_total")}}</th>
-						<th class="col-xs-1">{{ lang("expiry_date")}}</th>
-						<th class="col-xs-1">{{ lang("status")}}</th>
-						<th style="min-width:75px; text-align:center;">{{ lang("actions")}}</th>
+						<th style="max-width:35px; text-align:center;">{{ lang("Id")}}</th>
+						<th class="col-xs-1">{{ lang("Dte")}}</th>
+						<th class="col-xs-2">{{ lang("Billing Company")}}</th>
+						<th class="col-xs-1">{{ lang("Reference No")}}</th>
+						<th class="col-xs-1">{{ lang("Created By")}}</th>
+						<th class="col-xs-2">{{ lang("Customer")}}</th>
+						<th class="col-xs-1">{{ lang("Total")}}</th>
+						<th class="col-xs-1">{{ lang("Total Tax")}}</th>
+						<th class="col-xs-1">{{ lang("Shipping")}}</th>
+						<th class="col-xs-1">{{ lang("Discount")}}</th>
+						<th class="col-xs-1">{{ lang("Grand Total")}}</th>
+						<th class="col-xs-1">{{ lang("Expiry Date")}}</th>
+						<th class="col-xs-1">{{ lang("Status")}}</th>
+						<th style="min-width:75px; text-align:center;">{{ lang("Actions")}}</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -53,28 +53,28 @@
 				</tbody>
 				<tfoot>
 					<tr>
-						<th style="max-width:35px; text-align:center;">{{ lang("id")}}</th>
-						<th class="col-xs-1">{{ lang("date")}}</th>
-						<th class="col-xs-2">{{ lang("billing_company")}}</th>
-						<th class="col-xs-1">{{ lang("reference_no")}}</th>
-						<th class="col-xs-1">{{ lang("created_by")}}</th>
-						<th class="col-xs-2">{{ lang("customer")}}</th>
-						<th class="col-xs-1">{{ lang("total")}}</th>
-						<th class="col-xs-1">{{ lang("total_tax")}}</th>
-						<th class="col-xs-1">{{ lang("shipping")}}</th>
-						<th class="col-xs-1">{{ lang("discount")}}</th>
-						<th class="col-xs-1">{{ lang("grand_total")}}</th>
-						<th class="col-xs-1">{{ lang("expiry_date")}}</th>
-						<th class="col-xs-1">{{ lang("status")}}</th>
-						<th style="min-width:75px; text-align:center;">{{ lang("actions")}}</th>
+						<th style="max-width:35px; text-align:center;">{{ lang("Id")}}</th>
+						<th class="col-xs-1">{{ lang("Dte")}}</th>
+						<th class="col-xs-2">{{ lang("Billing Company")}}</th>
+						<th class="col-xs-1">{{ lang("Reference No")}}</th>
+						<th class="col-xs-1">{{ lang("Created By")}}</th>
+						<th class="col-xs-2">{{ lang("Customer")}}</th>
+						<th class="col-xs-1">{{ lang("Total")}}</th>
+						<th class="col-xs-1">{{ lang("Total Tax")}}</th>
+						<th class="col-xs-1">{{ lang("Shipping")}}</th>
+						<th class="col-xs-1">{{ lang("Discount")}}</th>
+						<th class="col-xs-1">{{ lang("Grand Total")}}</th>
+						<th class="col-xs-1">{{ lang("Expiry Date")}}</th>
+						<th class="col-xs-1">{{ lang("Status")}}</th>
+						<th style="min-width:75px; text-align:center;">{{ lang("Actions")}}</th>
 					</tr>
 					<tr>
-						<td colspan="14" class="p0"><input type="text" class="form-control b0" name="search_table" id="search_table" placeholder="{{ lang('type_hit_enter')}}" style="width:100%;"></td>
+						<td colspan="14" class="p0"><input type="text" class="form-control b0" name="search_table" id="search_table" placeholder="{{ lang('Type Hit Enter')}}" style="width:100%;"></td>
 					</tr>
 				</tfoot>
 			</table>
 		</div>
-		<p><a routerLink="/home/sales/quotations/new" class="btn btn-primary">{{ lang("add_quote")}}</a></p>
+		<p><a routerLink="/home/sales/quotations/new" class="btn btn-primary">{{ lang("Add Quote")}}</a></p>
 	</div>
 </div>
 
@@ -87,19 +87,19 @@
 			</div>
 			<div class="modal-body">
 				<div class="control-group">
-					<label class="control-label" for="amount">{{ lang("amount_paid")}}</label>
+					<label class="control-label" for="amount">{{ lang("Amount Paid")}}</label>
 					<div class="controls"> {{ form_input('amount', '', 'class="input-block-level" id="amount"');?> </div>
 				</div>
 				<div class="control-group">
-					<label class="control-label" for="note">{{ lang("note")}}</label>
+					<label class="control-label" for="note">{{ lang("Note")}}</label>
 					<div class="controls"> {{ form_textarea('note', '', 'class="input-block-level" id="note" style="height:100px;"');?> </div>
 				</div>
 				<input type="hidden" name="cid" value="" id="cid" />
 				<input type="hidden" name="vid" value="" id="vid" />
 			</div>
 			<div class="modal-footer">
-				<button class="btn" data-dismiss="modal" aria-hidden="true">{{ lang('close')}}</button>
-				<button class="btn btn-primary" id="add-payment">{{ lang('add_payment')}}</button>
+				<button class="btn" data-dismiss="modal" aria-hidden="true">{{ lang('Close')}}</button>
+				<button class="btn btn-primary" id="add-payment">{{ lang('Add Payment')}}</button>
 			</div>
 		</div>
 	</div>
@@ -119,43 +119,43 @@
 				<h3>{{ $biller.company}}</h3>
 				{{ $biller.address}},<br />{{$biller.city}}, {{$biller.postalCode}}, {{$biller.state}},<br />{{$biller.country}}
 				<br />{{lang("tel")}}: {{$biller.phone}}<br />{{lang("email")}}: {{$biller.email}}
-				<span *ngIf="$biller.cf1 && $biller.cf1 != '-'"><br />{{lang("bcf1")}}: {{$biller.cf1}}</span>
-				<span *ngIf="$biller.cf2 && $biller.cf2 != '-'"><br />{{lang("bcf2")}}: {{$biller.cf2}}</span>
-				<span *ngIf="$biller.cf3 && $biller.cf3 != '-'"><br />{{lang("bcf3")}}: {{$biller.cf3}}</span>
-				<span *ngIf="$biller.cf4 && $biller.cf4 != '-'"><br />{{lang("bcf4")}}: {{$biller.cf4}}</span>
-				<span *ngIf="$biller.cf5 && $biller.cf5 != '-'"><br />{{lang("bcf5")}}: {{$biller.cf5}}</span>
-				<span *ngIf="$biller.cf6 && $biller.cf6 != '-'"><br />{{lang("bcf6")}}: {{$biller.cf6}}</span>
+				<span *ngIf="$biller.cf1 && $biller.cf1 != '-'"><br />{{lang("Bcf1")}}: {{$biller.cf1}}</span>
+				<span *ngIf="$biller.cf2 && $biller.cf2 != '-'"><br />{{lang("Bcf2")}}: {{$biller.cf2}}</span>
+				<span *ngIf="$biller.cf3 && $biller.cf3 != '-'"><br />{{lang("Bcf3")}}: {{$biller.cf3}}</span>
+				<span *ngIf="$biller.cf4 && $biller.cf4 != '-'"><br />{{lang("Bcf4")}}: {{$biller.cf4}}</span>
+				<span *ngIf="$biller.cf5 && $biller.cf5 != '-'"><br />{{lang("Bcf5")}}: {{$biller.cf5}}</span>
+				<span *ngIf="$biller.cf6 && $biller.cf6 != '-'"><br />{{lang("Bcf6")}}: {{$biller.cf6}}</span>
 			</div>
   
 			<div class="col-xs-6" *ngIf="$customer">
-				{{ lang("quoted_to")}}:
+				{{ lang("Quoted To")}}:
 				<h3>{{$customer.company != '-' ? $customer.company :$customer.name }}</h3>
 				<p *ngIf="$customer.company != '-'">
-				  {{lang("attn")}}:{{$customer.name}}
+				  {{lang("Attn")}}:{{$customer.name}}
 				</p>
 				<p *ngIf="$customer.address != '-'">
-				  {{lang("address")}}:{{$customer.address}},{{$customer.city}},{{$customer.postalCode}},{{$customer.state}},{{$customer.country}}
+				  {{lang("Address")}}:{{$customer.address}},{{$customer.city}},{{$customer.postalCode}},{{$customer.state}},{{$customer.country}}
 				</p>
 				<br>
-				{{ lang("tel")}}:{{$customer.phone}}<br>
-				{{ lang("email")}}:{{$customer.email}}<br>
+				{{ lang("Tel")}}:{{$customer.phone}}<br>
+				{{ lang("Email")}}:{{$customer.email}}<br>
 				<p *ngIf="$customer.cf1 && $customer.cf1 != '-'">
-				  {{lang("ccf1")}}:{{$customer.ccf1}}
+				  {{lang("Ccf1")}}:{{$customer.ccf1}}
 				</p>
 				<p *ngIf="$customer.cf2 && $customer.cf2 != '-'">
-				  {{lang("ccf2")}}:{{$customer.ccf2}}
+				  {{lang("Ccf2")}}:{{$customer.ccf2}}
 				</p>
 				<p *ngIf="$customer.cf3 && $customer.cf3 != '-'">
-				  {{lang("ccf3")}}:{{$customer.ccf3}}
+				  {{lang("Ccf3")}}:{{$customer.ccf3}}
 				</p>
 				<p *ngIf="$customer.cf4 && $customer.cf4 != '-'">
-				  {{lang("ccf4")}}:{{$customer.ccf4}}
+				  {{lang("Ccf4")}}:{{$customer.ccf4}}
 				</p>
 				<p *ngIf="$customer.cf5 && $customer.cf5 != '-'">
-				  {{lang("ccf5")}}:{{$customer.ccf5}}
+				  {{lang("Ccf5")}}:{{$customer.ccf5}}
 				</p>
 				<p *ngIf="$customer.cf6 && $customer.cf6 != '-'">
-				  {{lang("ccf6")}}:{{$customer.ccf6}}
+				  {{lang("Ccf6")}}:{{$customer.ccf6}}
 				</p>
 				<!-- <?php
 				if ($customer.cf1 && $customer.cf1 != "-") { echo "<br />".lang("ccf1").": ".$customer.cf1; }
@@ -172,16 +172,16 @@
   
 		<div class="row">
 			<div class="col-xs-5">
-				<h3 class="inv">{{ lang("quote")}} {{lang("no")}} {{$inv.id}}</h3>
+				<h3 class="inv">{{ lang("Quote")}} {{lang("No")}} {{$inv.id}}</h3>
 			</div>
 			<div class="col-xs-6">
   
 				<p>
-					{{ lang("reference_no")}}:
+					{{ lang("Reference No")}}:
 					{{ $inv.reference_no}}
 				</p>
 				<p>
-					{{ lang("date")}}:
+					{{ lang("Date")}}:
 					<!-- {{ $this.sim.hrsd($inv.date)}} -->
 					{{ ($inv.date)}}
 				</p>
@@ -196,13 +196,13 @@
 						<thead>
   
 							<tr>
-								<th style="max-width: 30px;">{{ lang("no")}}</th>
-								<th>{{ lang("description")}}</th>
-								<th class="col-xs-1" style="min-width:80px;padding-left:0;padding-right:0;">{{ lang("unit_price")}}</th>
-								<th class="col-xs-1" style="min-width:100px;padding-left:0;padding-right:0;">{{ lang("quantity")}}</th>
-								<th *ngIf="$settings.productDiscount" class="col-xs-1" style="min-width:100px;padding-left:0;padding-right:0;">{{ lang("discount")}}</th>
-								<th *ngIf="$settings.defaultTaxRate" class="col-xs-1" style="min-width:100px;padding-left:0;padding-right:0;">{{ lang("tax")}}</th>
-								<th class="col-xs-2">{{ lang("subtotal")}}</th>
+								<th style="max-width: 30px;">{{ lang("No")}}</th>
+								<th>{{ lang("Description")}}</th>
+								<th class="col-xs-1" style="min-width:80px;padding-left:0;padding-right:0;">{{ lang("Unit Price")}}</th>
+								<th class="col-xs-1" style="min-width:100px;padding-left:0;padding-right:0;">{{ lang("Quantity")}}</th>
+								<th *ngIf="$settings.productDiscount" class="col-xs-1" style="min-width:100px;padding-left:0;padding-right:0;">{{ lang("Discount")}}</th>
+								<th *ngIf="$settings.defaultTaxRate" class="col-xs-1" style="min-width:100px;padding-left:0;padding-right:0;">{{ lang("Tax")}}</th>
+								<th class="col-xs-2">{{ lang("Subtotal")}}</th>
 							</tr>
   
 						</thead>
@@ -239,7 +239,7 @@
 						<tfoot>
 							
 							<tr class="totals">
-								<th [attr.colspan]="$cols">{{ lang('total')}}</th>
+								<th [attr.colspan]="$cols">{{ lang('Total')}}</th>
 								<th class="text-right" *ngIf="$settings.productDiscount">{{ formatMoney($inv.productDiscount)}}</th>
 								   
 								<th class="text-right" *ngIf="$settings.defaultTaxRate">{{ formatMoney($inv.productTax)}}</th>
@@ -252,7 +252,7 @@
 									{{$inv.orderDiscount}}
 								</th>
 								<th class="text-right" colspan="2">
-									{{ lang("order_discount")}} ({{ $settings.currencyPrefix}})
+									{{ lang("Order Discount")}} ({{ $settings.currencyPrefix}})
 								</th>
 								<th class="text-right">
 									{{ formatMoney($inv.orderDiscount)}}
@@ -265,7 +265,7 @@
 									{{$inv.orderTax}}
 								</th>
 								<th class="text-right" colspan="2">
-									{{ lang("order_tax")}} ({{ $settings.currencyPrefix}})
+									{{ lang("Order Tax")}} ({{ $settings.currencyPrefix}})
 								</th>
 								<th class="text-right">
 									{{ formatMoney($inv.orderTax)}}
@@ -278,7 +278,7 @@
 									{{$inv.shipping}}
 								</th>
 								<th class="text-right" colspan="2">
-									{{ lang("shipping")}} ({{ $settings.currency_prefix}})
+									{{ lang("Shipping")}} ({{ $settings.currency_prefix}})
 								</th>
 								<th class="text-right">
 									{{ formatMoney($inv.shipping)}}
@@ -291,7 +291,7 @@
 									{{$inv.grandTotal}}
 								</th>
 								<th class="text-right text-primary" colspan="2">
-									{{ lang("grand_total")}} ({{ $settings.currencyPrefix}})
+									{{ lang("Grand Total")}} ({{ $settings.currencyPrefix}})
 								</th>
 								<th class="text-right text-primary">
 									{{ formatMoney($inv.grandTotal)}}
@@ -308,7 +308,7 @@
 					<div class="col-xs-12" *ngIf='$inv.note && $inv.note != "<br>" && $inv.note != " " && $inv.note != "<p></p>"'>
 					  <p>&nbsp;</p>
 					  <div class="well well-sm">
-						  <p class="lead">{{ lang("note")}}:</p>
+						  <p class="lead">{{ lang("Note")}}:</p>
 						  <p>{{ $inv.note}}</p>
 					  </div>
 					</div>
@@ -324,23 +324,23 @@
 							<p *ngIf="!$biller.ssImage">&nbsp;</p>
   
 						<p style="border-bottom: 1px solid #999;">&nbsp;</p>
-						<p>{{ lang("signature")}} & {{("stamp")}}</p>
+						<p>{{ lang("Signature")}} & {{("Stamp")}}</p>
 					</div>
   
 					<div class="col-xs-4 pull-right" *ngIf="$customer">
 						<p>&nbsp;</p>
 						<p *ngIf="$customer.company != '-'">
-							{{ lang("buyer")}}:
+							{{ lang("Buyer")}}:
 							{{$customer.company}}
 						</p>
 						<p *ngIf="$customer.company === '-'">
-							{{ lang("buyer")}}:
+							{{ lang("Buyer")}}:
 							{{$customer.name}}
 						</p>
 						<p>&nbsp;</p>
 						<p>&nbsp;</p>
 						<p style="border-bottom: 1px solid #999;">&nbsp;</p>
-						<p>{{ lang("signature")}} & {{lang("stamp") }}</p>
+						<p>{{ lang("Signature")}} & {{lang("Stamp") }}</p>
 					</div>
 					<div class="clearfix"></div>
 				</div>

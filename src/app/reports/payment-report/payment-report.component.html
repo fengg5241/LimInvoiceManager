@@ -20,7 +20,7 @@
         <div class="row">
           <div class="col-md-6">
             <div class="form-group">
-              <label for="customer">{{ lang('customer') }}</label>
+              <label for="customer">{{ lang('Customer') }}</label>
               <div class="controls">
                 <select
                   name="customer"
@@ -112,7 +112,7 @@
         <div class="form-group">
           <div class="controls">
             <button class="btn btn-primary btn-lg" (click)="searchPaymentReport()">
-              {{ lang('submit') }}
+              {{ lang('Submit') }}
             </button>
             <!-- {{ form_submit('submit', lang("submit"), 'class="btn btn-primary"');?> -->
           </div>
@@ -125,11 +125,11 @@
       <div *ngIf="searchUser" class="widget wlightblue">
         <div class="widget-head">
           <div class="pull-left">
-            {{ lang('name') }}:
+            {{ lang('Name') }}:
             <strong>{{ searchUser.name }}</strong>
-            &nbsp;&nbsp;&nbsp;&nbsp;{{ lang('email') }}:
+            &nbsp;&nbsp;&nbsp;&nbsp;{{ lang('Email') }}:
             <strong>{{ searchUser.email }}</strong>
-            &nbsp;&nbsp;&nbsp;&nbsp;{{ lang('phone') }}:
+            &nbsp;&nbsp;&nbsp;&nbsp;{{ lang('Phone') }}:
             <strong>{{ searchUser.phone }}</strong>
           </div>
           <div class="widget-icons pull-right">
@@ -148,7 +148,7 @@
                   ".$total['total_amount']; */ ?>  -->
                   {{ $total }}</span
                 ><br />
-                {{ lang('total') }} {{ lang('invoices') }}
+                {{ lang('Total') }} {{ lang('Invoices') }}
                 <div class="clearfix"></div>
               </li>
               <li class="bgreen">
@@ -157,25 +157,25 @@
                   ".$paid['total_amount'];*/ ?> -->
                   {{ $paid }}</span
                 ><br />
-                {{ lang('paid') }}
+                {{ lang('Paid') }}
                 <div class="clearfix"></div>
               </li>
               <li class="bblue">
                 <span class="bold" style="font-size:24px;">{{ $pp }}</span
                 ><br />
-                {{ lang('partially_paid') }}
+                {{ lang('Partially Paid') }}
                 <div class="clearfix"></div>
               </li>
               <li class="borange">
                 <span class="bold" style="font-size:24px;">{{ $pending }}</span
                 ><br />
-                {{ lang('pending') }}
+                {{ lang('Pending') }}
                 <div class="clearfix"></div>
               </li>
               <li class="bred">
                 <span class="bold" style="font-size:24px;">{{ $overdue }}</span
                 ><br />
-                {{ lang('overdue') }}
+                {{ lang('Overdue') }}
                 <div class="clearfix"></div>
               </li>
               <li class="bred" style="background:#000 !important;">
@@ -183,7 +183,7 @@
                   $cancelled
                 }}</span
                 ><br />
-                {{ lang('cancelled') }}
+                {{ lang('Cancelled') }}
                 <div class="clearfix"></div>
               </li>
             </ul>
@@ -195,7 +195,7 @@
                   ".$total['total_amount']; */ ?> -->
                   {{ formatMoney($tpp.total) }}</span
                 ><br />
-                {{ lang('total') }} {{ lang('amount') }}
+                {{ lang('Total') }} {{ lang('Amount') }}
                 <div class="clearfix"></div>
               </li>
               <li class="bgreen">
@@ -205,7 +205,7 @@
                   {{ formatMoney($tpp.paid) }}
                   <!-- {{ $this->sim->formatMoney($tpp->paid)}} --> </span
                 ><br />
-                {{ lang('paid') }} {{ lang('amount') }}
+                {{ lang('Paid') }} {{ lang('Amount') }}
                 <div class="clearfix"></div>
               </li>
               <li class="borange">
@@ -213,7 +213,7 @@
                   <!-- {{ $this->sim->formatMoney(($tpp->total - $tpp->paid))}} -->
                   {{ formatMoney($tpp.total - $tpp.paid) }} </span
                 ><br />
-                {{ lang('balance') }} {{ lang('amount') }}
+                {{ lang('Balance') }} {{ lang('Amount') }}
                 <div class="clearfix"></div>
               </li>
             </ul>
@@ -229,7 +229,7 @@
       >
         <thead>
           <tr class="active">
-            <th class="col-xs-1">{{ lang('date') }}</th>
+            <th class="col-xs-1">{{ lang('Date') }}</th>
             <th class="col-xs-2">{{ lang('Invoce No') }}</th>
             <th class="col-xs-1">{{ lang('Customer') }}</th>
             <th class="col-xs-1">{{ lang('Added by') }}</th>
@@ -277,7 +277,7 @@
                 class="form-control b0"
                 name="search_table"
                 id="search_table"
-                placeholder="{{ lang('type_hit_enter') }}"
+                placeholder="{{ lang('Type Hit Enter') }}"
                 style="width:100%;"
               />
             </td>

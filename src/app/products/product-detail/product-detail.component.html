@@ -11,23 +11,23 @@
       ?> -->
 
       <div class="form-group">
-          <label for="name">{{lang("name")}}</label>
+          <label for="name">{{lang("Name")}}</label>
           <div class="controls"><input class="form-control" id="name" maxlength="80" [(ngModel)]="curProduct.name" /><br>  
           </div>
       </div>
       <div class="form-group">
-          <label for="details">{{ lang("details")}}</label>
+          <label for="details">{{ lang("Details")}}</label>
           <div class="controls"><textarea class="form-control" id="details" maxlength="255" style="height:60px;" [(ngModel)]="curProduct.details">
             </textarea>
           </div>
       </div>
       <div class="form-group">
-          <label for="price">{{ lang("price")}}</label>
+          <label for="price">{{ lang("Price")}}</label>
           <div class="controls"><input class="form-control" id="price"  [(ngModel)]="curProduct.price" />
           </div>
       </div>
       <div *ngIf="$Settings.default_tax_rate" class="form-group">
-          <label for="tax_rate">{{lang("tax_rate")}}</label>
+          <label for="tax_rate">{{lang("Tax Rate")}}</label>
           <div class="controls">
             <select  id="tax_rate" name="tax_rates" class='form-control' [(ngModel)]="curProduct.taxRate">
                 <option *ngFor="let rate of $tax_rates" value="{{rate.id}}">{{rate.name}}</option>
@@ -36,15 +36,15 @@
       </div>
 
       <div *ngIf="$Settings.default_tax_rate" class="form-group">
-            <label for="tax_method">{{lang("tax_method")}}</label>
+            <label for="tax_method">{{lang("Tax Method")}}</label>
             <select id='tax_method' name="tax_method" class='form-control' [(ngModel)]="curProduct.taxMethod">
-                <option value="exclusive">{{lang('exclusive')}}</option>
-                <option value="inclusive">{{lang('inclusive')}}</option>
+                <option value="exclusive">{{lang('Exclusive')}}</option>
+                <option value="inclusive">{{lang('Inclusive')}}</option>
             </select>
       </div>
 
       <div class="form-group controls">
-            <button class="btn btn-primary" (click)="save()">{{lang("save_product")}}</button>
+            <button class="btn btn-primary" (click)="save()">{{lang("Save Product")}}</button>
       </div>
 
       <div class="clearfix"></div>

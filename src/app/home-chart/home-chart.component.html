@@ -62,28 +62,28 @@
               <ul class="today-datas">
                 <li class="bviolet"> <span class="bold" style="font-size:24px;">
                   {{total}}</span><br>
-                  {{lang('$total')}}{{lang('invoices')}}
+                  {{lang('$total')}}{{lang('Invoices')}}
                   <div class="clearfix"></div>
                 </li>
                 <li class="bgreen"> <span class="bold" style="font-size:24px;">
                   {{$paid}}</span><br>
-                  {{lang('paid')}}
+                  {{lang('Paid')}}
                   <div class="clearfix"></div>
                 </li>
                 <li class="bblue"> <span class="bold" style="font-size:24px;">{{$pp}}</span><br>
-                  {{lang('partially_paid')}}
+                  {{lang('Partially Paid')}}
                   <div class="clearfix"></div>
                 </li>
                 <li class="borange"> <span class="bold" style="font-size:24px;">{{$pending}}</span><br>
-                  {{lang('pending')}}
+                  {{lang('Pending')}}
                   <div class="clearfix"></div>
                 </li>
                 <li class="bred"> <span class="bold" style="font-size:24px;">{{$overdue}}</span><br>
-                  {{lang('overdue')}}
+                  {{lang('Overdue')}}
                   <div class="clearfix"></div>
                 </li>
                 <li class="bred" style="background:#000 !important;"> <span class="bold" style="font-size:24px;">{{$cancelled}}</span><br>
-                 {{ lang('cancelled')}}
+                 {{ lang('Cancelled')}}
                   <div class="clearfix"></div>
                 </li>
               </ul>
@@ -100,20 +100,20 @@
           <div class="widget-content">
             <div class="padd">
               <ul class="shots">
-                <li class="blightblue"> <a routerLink="/home/sales"> <span style="font-size: px"><i class="fa fa-file-text"></i> {{lang("sales")}}</span> </a> </li>
-                <li class="blightblue"> <a routerLink="/home/sales/new"> <span style="font-size: px"><i class="fa fa-file-text"></i> {{ lang("new_sale")}}</span> </a> </li>
-                <li class="borange"> <a routerLink="/home/sales/quotations"> <span style="font-size: px"><i class="fa fa-file"></i> {{ lang("quotes")}}</span> </a> </li>
-                <li class="borange"> <a routerLink="/home/sales/quotations/new"> <span style="font-size: px"><i class="fa fa-file"></i> {{ lang("add_quote")}}</span> </a> </li>
-                <li class="blightblue"> <a href="/home/calendar"> <span style="font-size: px"><i class="fa fa-calendar"></i> {{ lang("calendar")}}</span> </a> </li>
-                <li class="bviolet"> <a routerLink="/home/customers"> <span style="font-size: px"><i class="fa fa-users"></i> {{ lang("customers")}}</span> </a>
-                <li class="bviolet"> <a routerLink="/home/customers/new"> <span style="font-size: px"><i class="fa fa-user"></i> {{ lang("add_customer")}}</span> </a> </li>
-                <li class="bgreen"> <a routerLink="/home/reports/daily"> <span style="font-size: px"><i class="fa fa-bar-chart-o"></i> {{ lang("reports")}}</span> </a> </li>
+                <li class="blightblue"> <a routerLink="/home/sales"> <span style="font-size: px"><i class="fa fa-file-text"></i> {{lang("Sales")}}</span> </a> </li>
+                <li class="blightblue"> <a routerLink="/home/sales/new"> <span style="font-size: px"><i class="fa fa-file-text"></i> {{ lang("New Sale")}}</span> </a> </li>
+                <li class="borange"> <a routerLink="/home/sales/quotations"> <span style="font-size: px"><i class="fa fa-file"></i> {{ lang("Quotes")}}</span> </a> </li>
+                <li class="borange"> <a routerLink="/home/sales/quotations/new"> <span style="font-size: px"><i class="fa fa-file"></i> {{ lang("Add Quote")}}</span> </a> </li>
+                <li class="blightblue"> <a href="/home/calendar"> <span style="font-size: px"><i class="fa fa-calendar"></i> {{ lang("Calendar")}}</span> </a> </li>
+                <li class="bviolet"> <a routerLink="/home/customers"> <span style="font-size: px"><i class="fa fa-users"></i> {{ lang("Customers")}}</span> </a>
+                <li class="bviolet"> <a routerLink="/home/customers/new"> <span style="font-size: px"><i class="fa fa-user"></i> {{ lang("Add Customer")}}</span> </a> </li>
+                <li class="bgreen"> <a routerLink="/home/reports/daily"> <span style="font-size: px"><i class="fa fa-bar-chart-o"></i> {{ lang("Reports")}}</span> </a> </li>
                 <!-- <?php if($this->sim->in_group('admin')) { ?> -->
-                <li class="bblue"> <a routerLink="/home/users"> <span style="font-size: px"><i class="fa fa-users"></i> {{ lang("users")}}</span> </a> </li>
-                <li class="bblue"> <a routerLink="/home/users/new"> <span style="font-size: px"><i class="fa fa-user"></i> {{ lang("add_user")}}</span> </a> </li>
+                <li class="bblue"> <a routerLink="/home/users"> <span style="font-size: px"><i class="fa fa-users"></i> {{ lang("Users")}}</span> </a> </li>
+                <li class="bblue"> <a routerLink="/home/users/new"> <span style="font-size: px"><i class="fa fa-user"></i> {{ lang("Add User")}}</span> </a> </li>
                 <!-- <?php } ?> -->
-                <li class="bblue"> <a routerLink="/home/changepassword"> <span style="font-size: px"><i class="fa fa-key"></i> {{ lang("change_password")}}</span> </a> </li>
-                <li class="bred"> <a href="javascript:void(0)" (click)="logout()"> <span style="font-size: px"><i class="fa fa-sign-out"></i> {{ lang("logout")}}</span> </a> </li>
+                <li class="bblue"> <a routerLink="/home/changepassword"> <span style="font-size: px"><i class="fa fa-key"></i> {{ lang("Change Password")}}</span> </a> </li>
+                <li class="bred"> <a href="javascript:void(0)" (click)="logout()"> <span style="font-size: px"><i class="fa fa-sign-out"></i> {{ lang("Logout")}}</span> </a> </li>
               </ul>
               <div class="clearfix"></div>
             </div>

@@ -38,7 +38,7 @@
             {{ lang("Billing Company")}}</label>
           <select name="billing_company" class="billing_company form-control" data-placeholder="Select Billing Company" 
             id="billing_company" [(ngModel)]="curQuotation.companyId">
-              <option value="null" disabled="true" [selected]="true">Placeholder text..</option>
+              <option value="null" [selected]="true">Select...</option>
               <option *ngFor="let row of $companies" value="{{row.id}}">{{row.company}}</option>
           </select>
         </div>
@@ -66,7 +66,7 @@
             <select name="customer" class="customer form-control" data-placeholder="Select Customer" 
             id="customer" [(ngModel)]="curQuotation.customerId">
             <!-- lang("new_customer") -->
-              <option value="null" disabled="true" [selected]="true">Select Customer</option>
+              <option value=""  [selected]="true">Select...</option>
               <option value="new">Add New Customer</option>
               <option *ngFor="let row of $customers" value="{{row.id}}">{{row.company}}({{row.name}})</option>
           </select>
@@ -126,7 +126,7 @@ if (!$q) {
             {{ lang("Order Tax")}}</label>
             <select name="order_tax" class="tax form-control input-sm"  data-placeholder="Select Customer" 
             id="order_tax" style="min-width: 100px;" [(ngModel)]="curQuotation.orderTaxId">
-            <!-- lang("new_customer") -->
+              <option value=""  [selected]="true">Select...</option>
               <option *ngFor="let row of $tax_rates" value="{{row.id}}">{{row.name}}</option>
           </select>
           <!-- {{ form_dropdown('order_tax', $tr, (isset($_POST['order_tax']) ? $_POST['order_tax'] : ($inv ? $inv->order_tax_id : '')), 'id="order_tax" class="tax form-control input-sm" style="min-width: 100px;"'); -->
@@ -139,6 +139,7 @@ if (!$q) {
             {{ lang("Status")}}</label>
             <select name="status" class="status form-control" data-placeholder="Select Status" 
             id="status" style="min-width: 100px;" [(ngModel)]="curQuotation.status">
+              <option value=""  [selected]="true">Select...</option>
               <option value="canceled">{{lang('Canceled')}}</option>
               <option value="ordered">{{lang('Ordered')}}</option>
               <option value="pending">{{lang('Pending')}}</option>

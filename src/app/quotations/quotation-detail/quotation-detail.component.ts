@@ -483,6 +483,10 @@ export class QuotationDetailComponent implements OnInit {
 
   async save() {
 
+    if(this.curQuotation.companyId == "null"){
+      this.curQuotation.companyId = null;
+    }
+
     if (!(this.updateItems.length > 0 && this.noOfValidItems >= 1)) {
       alert('There is no products which quantity > 0');
       return;

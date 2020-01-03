@@ -30,7 +30,7 @@ export class NotesSettingComponent implements OnInit {
         var def = row.find('.default_sale').html() ? 1 : 0;
         var def = row.find('.default_quote').html() ? 1 : 0;
         var id = row.attr('id');
-        $('#nModalLabel').text(thisObject.lang('edit_note'));
+        $('#nModalLabel').text(thisObject.lang('Edit Note'));
         $('#description').val(desc);
         $('#default_sale').val(def);
         $('#default_sale').trigger("chosen:updated");
@@ -44,7 +44,7 @@ export class NotesSettingComponent implements OnInit {
     });
 
     $('.add').click(function() {
-        $('#nModalLabel').text(thisObject.lang('new_note'));
+        $('#nModalLabel').text(thisObject.lang('New Note'));
         $('#action').val('add');
         $('#description').val('');
         $('#nModal').modal();

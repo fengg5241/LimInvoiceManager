@@ -1,99 +1,99 @@
 <div class="page-head">
-  <h2 class="pull-left">{{ $page_title}} <span class="page-meta">{{ lang("enter_info")}}</span> </h2>
+  <h2 class="pull-left">{{ $page_title}} <span class="page-meta">{{ lang("Enter Info")}}</span> </h2>
 </div>
 <div class="clearfix"></div>
 <div class="matter">
   <div class="container">
     <!-- <?php $attrib = array('class' => 'form-horizontal'); echo form_open_multipart("settings/add_company")}} -->
     <div class="form-group">
-      <label for="company">{{ lang("company")}}</label>
+      <label for="company">{{ lang("Company")}}</label>
       <div class="controls">
           <input class="form-control" id="company" name="company" [(ngModel)]="curCompany.company" />
       </div>
     </div> 
     <div class="form-group">
-      <label for="name">{{ lang("contact_person")}}</label>
+      <label for="name">{{ lang("Contact Person")}}</label>
       <div class="controls">
           <input class="form-control" id="name" name="name" [(ngModel)]="curCompany.name" />
       </div>
     </div> 
     <div class="form-group">
-      <label for="email_address">{{ lang("email_address")}}</label>
+      <label for="email_address">{{ lang("Email Address")}}</label>
       <div class="controls"> 
           <input class="form-control" id="email" name="email" [(ngModel)]="curCompany.email" />
       </div>
     </div> 
     <div class="form-group">
-      <label for="phone">{{ lang("phone")}}</label>
+      <label for="phone">{{ lang("Phone")}}</label>
       <div class="controls"> 
           <input class="form-control" id="phone" name="phone" [(ngModel)]="curCompany.phone" />
       </div>
     </div> 
     
     <div class="form-group">
-      <label for="address">{{ lang("address")}}</label>
+      <label for="address">{{ lang("Address")}}</label>
       <div class="controls"> 
           <input class="form-control" id="address" name="address" [(ngModel)]="curCompany.address" />
       </div>
     </div>  
     <div class="form-group">
-      <label for="city">{{ lang("city")}}</label>
+      <label for="city">{{ lang("City")}}</label>
       <div class="controls">
           <input class="form-control" id="city" name="city" [(ngModel)]="curCompany.city" />
       </div>
     </div> 
     <div class="form-group">
-      <label for="state">{{ lang("state")}}</label>
+      <label for="state">{{ lang("State")}}</label>
       <div class="controls">
           <input class="form-control" id="state" name="state" [(ngModel)]="curCompany.state" />
         
       </div>
     </div> 
     <div class="form-group">
-      <label for="postal_code">{{ lang("postal_code")}}</label>
+      <label for="postal_code">{{ lang("Postal Code")}}</label>
       <div class="controls"> 
           <input class="form-control" id="postal_code" name="postal_code" [(ngModel)]="curCompany.postalCode" />
       </div>
     </div> 
     <div class="form-group">
-      <label for="country">{{ lang("country")}}</label>
+      <label for="country">{{ lang("Country")}}</label>
       <div class="controls"> 
           <input class="form-control" id="country" name="country" [(ngModel)]="curCompany.country" />
         
       </div>
     </div> 
     <div class="form-group">
-      <label for="cf1">{{ lang("bcf1")}}</label>
+      <label for="cf1">{{ lang("Bcf1")}}</label>
       <div class="controls">
           <input class="form-control" id="cf1" name="cf1" [(ngModel)]="curCompany.cf1" />
       </div>
     </div> 
     <div class="form-group">
-      <label for="cf2">{{ lang("bcf2")}}</label>
+      <label for="cf2">{{ lang("Bcf2")}}</label>
       <div class="controls"> 
           <input class="form-control" id="cf2" name="cf2" [(ngModel)]="curCompany.cf2" />
       </div>
     </div> 
     <div class="form-group">
-      <label for="cf3">{{ lang("bcf3")}}</label>
+      <label for="cf3">{{ lang("Bcf3")}}</label>
       <div class="controls"> 
           <input class="form-control" id="cf3" name="cf3" [(ngModel)]="curCompany.cf3" />
       </div>
     </div> 
     <div class="form-group">
-      <label for="cf4">{{ lang("bcf4")}}</label>
+      <label for="cf4">{{ lang("Bcf4")}}</label>
       <div class="controls"> 
           <input class="form-control" id="cf4" name="cf4" [(ngModel)]="curCompany.cf4" />
       </div>
     </div> 
     <div class="form-group">
-      <label for="cf5">{{ lang("bcf5")}}</label>
+      <label for="cf5">{{ lang("Bcf5")}}</label>
       <div class="controls"> 
           <input class="form-control" id="cf5" name="cf5" [(ngModel)]="curCompany.cf5" />
       </div>
     </div> 
     <div class="form-group">
-      <label for="cf6">{{ lang("bcf6")}}</label>
+      <label for="cf6">{{ lang("Bcf6")}}</label>
       <div class="controls"> 
           <input class="form-control" id="cf6" name="cf6" [(ngModel)]="curCompany.cf6" />
       </div>
@@ -102,38 +102,38 @@
     <div class="row">
       <div class="col-sm-6">
         <div class="control-group">
-          <label class="form-label" for="copy">{{ lang("upload_logo")}}</label>
+          <label class="form-label" for="copy">{{ lang("Upload Logo")}}</label>
           <div class="controls">
             <div class="fileupload fileupload-new" data-provides="fileupload">
               <div class="input-append">
                 <div class="uneditable-input span2"><i class="icon-file fileupload-exists"></i> <span class="fileupload-preview"></span></div>
-                <span class="btn btn-file btn-info"><span class="fileupload-new">{{ lang("select_file")}}</span><span class="fileupload-exists">{{ lang("change")}}</span>
+                <span class="btn btn-file btn-info"><span class="fileupload-new">{{ lang("Select File")}}</span><span class="fileupload-exists">{{ lang("Change")}}</span>
                 <input type="file" name="logo" />
-              </span><a href="#" class="btn fileupload-exists" data-dismiss="fileupload">{{ lang("remove")}}</a> </div>
+              </span><a href="#" class="btn fileupload-exists" data-dismiss="fileupload">{{ lang("Remove")}}</a> </div>
             </div>
-            <span class="help-block">{{ lang("invoice_logo_tip")}}</span> </div>
+            <span class="help-block">{{ lang("Invoice Logo Tip")}}</span> </div>
           </div>
         </div>
         <div class="col-sm-6">
           <div class="control-group">
-            <label class="form-label" for="copy">{{ lang("upload_stamp_sign_image")}}</label>
+            <label class="form-label" for="copy">{{ lang("Upload Stamp Sign Image")}}</label>
             <div class="controls">
               <div class="fileupload fileupload-new" data-provides="fileupload">
                 <div class="input-append">
                   <div class="uneditable-input span2"><i class="icon-file fileupload-exists"></i> <span class="fileupload-preview"></span></div>
-                  <span class="btn btn-file btn-info"><span class="fileupload-new">{{ lang("select_file")}}</span><span class="fileupload-exists">{{ lang("change")}}</span>
+                  <span class="btn btn-file btn-info"><span class="fileupload-new">{{ lang("Select File")}}</span><span class="fileupload-exists">{{ lang("Change")}}</span>
                   <input type="file" name="image" />
-                </span><a href="#" class="btn fileupload-exists" data-dismiss="fileupload">{{ lang("remove")}}</a> </div>
+                </span><a href="#" class="btn fileupload-exists" data-dismiss="fileupload">{{ lang("Remove")}}</a> </div>
               </div>
-              <span class="help-block">{{ lang("stamp_sign_image_tip")}}</span> </div>
+              <span class="help-block">{{ lang("Stamp Sign Image Tip")}}</span> </div>
             </div>
           </div>
         </div>
 
         <div class="form-group">
           <div class="controls"> 
-              <button *ngIf="isNewCompany" class="btn btn-primary" (click)="createCompany()">{{lang("add_company")}}</button>
-              <button *ngIf="!isNewCompany" class="btn btn-primary" (click)="updateCompany()">{{lang("udate_company")}}</button>
+              <button *ngIf="isNewCompany" class="btn btn-primary" (click)="createCompany()">{{lang("Add Company")}}</button>
+              <button *ngIf="!isNewCompany" class="btn btn-primary" (click)="updateCompany()">{{lang("Udate Company")}}</button>
           </div>
         </div>
         <!-- {{ form_close()}}  -->

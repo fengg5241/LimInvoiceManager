@@ -7,15 +7,15 @@
 		<table id="fileData" cellpadding=0 cellspacing=10 class="table table-bordered table-condensed table-hover table-striped" style="margin-bottom: 5px;">
 			<thead>
 				<tr>
-					<th style="width:35px;">{{ lang('no')}}</th>
-					<th>{{ lang('company')}}</th>
-					<th>{{ lang('contact_person')}}</th>
-					<th>{{ lang('email')}}</th>
-					<th>{{ lang('phone')}}</th>
-					<th>{{ lang('address')}}</th>
-					<th>{{ lang('city')}}</th>
-					<th>{{ lang('status')}}</th>
-					<th style="width:100px;">{{ lang('actions')}}</th>
+					<th style="width:35px;">{{ lang('No')}}</th>
+					<th>{{ lang('Company')}}</th>
+					<th>{{ lang('Contact Person')}}</th>
+					<th>{{ lang('Email')}}</th>
+					<th>{{ lang('Phone')}}</th>
+					<th>{{ lang('Address')}}</th>
+					<th>{{ lang('City')}}</th>
+					<th>{{ lang('Status')}}</th>
+					<th style="width:100px;">{{ lang('Actions')}}</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -27,15 +27,15 @@
 					<td>{{ row.phone}}</td>
 					<td>{{ row.address}}</td>
 					<td>{{ row.city}}</td>
-					<td>{{ row.status ? lang('active') : lang('inactive')}}</td>
+					<td>{{ row.status ? lang('Active') : lang('Inactive')}}</td>
 					<td>
-            <div class="btn-group"> <a class="tip btn btn-primary btn-xs" title="{{lang('edit_company')}}"  
+            <div class="btn-group"> <a class="tip btn btn-primary btn-xs" title="{{lang('Edit Company')}}"  
               routerLink="/home/settings/companies/edit/{{row.id}}"> <i class="fa fa-edit"></i> </a></div>
 					</td>
 				</tr>
 			</tbody>
 		</table>
-		<p><a routerLink="/home/settings/companies/new" class="btn btn-primary">{{ lang('new_company')}}</a></p>
+		<p><a routerLink="/home/settings/companies/new" class="btn btn-primary">{{ lang('New Company')}}</a></p>
 		<div class="clearfix"></div>
 	</div>
 	<div class="clearfix"></div>

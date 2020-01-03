@@ -1,7 +1,7 @@
 <div class="page-head">
   <h2 class="pull-left">
     {{ $page_title }}>
-    <span class="page-meta">{{ lang('enter_info') }}></span>
+    <span class="page-meta">{{ lang('Enter Info') }}></span>
   </h2>
 </div>
 <div class="clearfix"></div>
@@ -14,16 +14,16 @@
           <div class="col-md-8 col-sm-8">
             <ul id="myTab" class="nav nav-tabs">
               <li class="">
-                <a href="#credentials">{{ lang('new_user') }}</a>
+                <a href="#credentials">{{ lang('New User') }}</a>
               </li>
               <li class="">
-                <a href="#activate_email">{{ lang('activate_email') }}</a>
+                <a href="#activate_email">{{ lang('Activate Email') }}</a>
               </li>
               <li class="">
-                <a href="#forgot_password">{{ lang('forgot_password') }}</a>
+                <a href="#forgot_password">{{ lang('Forgot Password') }}</a>
               </li>
               <li class="">
-                <a href="#new_password">{{ lang('reset_password') }}</a>
+                <a href="#new_password">{{ lang('Reset Password') }}</a>
               </li>
             </ul>
 
@@ -46,7 +46,7 @@
                 <input
                   name="submit"
                   class="btn btn-primary"
-                  value="{{ lang('save') }}"
+                  value="{{ lang('Save') }}"
                   (click)="save('credentials')"
                   style="margin-top:15px;"
                 />
@@ -77,7 +77,7 @@
                   type="submit"
                   name="submit"
                   class="btn btn-primary"
-                  value="{{ lang('save') }}"
+                  value="{{ lang('Save') }}"
                   (click)="save('activateEmail')"
                   style="margin-top:15px;"
                 />
@@ -107,7 +107,7 @@
                   type="submit"
                   name="submit"
                   class="btn btn-primary"
-                  value="{{ lang('save') }}"
+                  value="{{ lang('Save') }}"
                   (click)="save('forgotPassword')"
                   style="margin-top:15px;"
                 />
@@ -132,7 +132,7 @@
                   type="submit"
                   name="submit"
                   class="btn btn-primary"
-                  value="{{ lang('save') }}"
+                  value="{{ lang('Save') }}"
                   (click)="save('newPassword')"
                   style="margin-top:15px;"
                 />
@@ -145,15 +145,15 @@
             <div class="margin5">
               <h3 style="font-weight: bold;">
                 <!-- {{ lang->line('short_tags')}}> -->
-                {{ lang('short_tags') }}
+                {{ lang('Short Tags') }}
               </h3>
-              <pre>{{'{'}}logo{{'}'}} {{'{'}}site_name{{'}'}} {{'{'}}site_link{{'}'}}, {{'{'}}user_name{{'}'}} {{'{'}}email{{'}'}}</pre>
+              <pre>{{'{'}}logo{{'}'}} {{'{'}}Site Name{{'}'}} {{'{'}}Site Link{{'}'}}, {{'{'}}User Name{{'}'}} {{'{'}}Email{{'}'}}</pre>
               <!-- <pre>{{shortTag}}</pre> -->
-              {{ lang('new_user') }}, {{ lang('reset_password') }}
+              {{ lang('New User') }}, {{ lang('Reset_password') }}
               <pre>{{'{'}}password{{'}'}} </pre>
-              {{ lang('forgot_password') }}
-              <pre>{{'{'}}reset_password_link{{'}'}}</pre>
-              {{ lang('activate_email') }}
+              {{ lang('Forgot Password') }}
+              <pre>{{'{'}}Reset Password Link{{'}'}}</pre>
+              {{ lang('Activate Email') }}
               <!-- <pre>{{'{'}}activation_link{{'}'}}</pre> -->
             </div>
           </div>

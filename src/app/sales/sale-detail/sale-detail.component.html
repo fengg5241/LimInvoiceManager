@@ -19,7 +19,7 @@
     <div class="row">
       <div class="col-md-4">
         <div class="form-group">
-          <label for="date"> {{ lang('date') }}</label>
+          <label for="date"> {{ lang('Date') }}</label>
           <!-- <angular2-date-picker [(ngModel)]="curQuotation.date" class="form-control" 
                style="padding:0;border:0"></angular2-date-picker> -->
           <!-- <angular2-date-picker [(ngModel)]="curQuotation.date" class="form-control" 
@@ -38,7 +38,7 @@
 
       <div class="col-md-4">
         <div class="form-group">
-          <label for="billing_company"> {{ lang('billing company') }}</label>
+          <label for="billing_company"> {{ lang('Billing Company') }}</label>
           <select
             name="billing_company"
             class="billing_company form-control"
@@ -56,7 +56,7 @@
 
       <div class="col-md-4">
         <div class="form-group">
-          <label for="reference_no"> {{ lang('reference no') }}</label>
+          <label for="reference_no"> {{ lang('Reference No') }}</label>
           <div class="input-group">
             <input
               type="text"
@@ -80,7 +80,7 @@
     <div class="row">
       <div class="col-md-4">
         <div class="form-group">
-          <label for="customer"> {{ lang('customer') }}</label>
+          <label for="customer"> {{ lang('Customer') }}</label>
           <select
             name="customer"
             class="customer form-control"
@@ -116,7 +116,7 @@
       ?>-->
       <div class="col-md-4">
         <div class="form-group">
-          <label for="due_date"> {{ lang('due_date') }}</label>
+          <label for="due_date"> {{ lang('Due Date') }}</label>
           <input
             type="date"
             name="due_date"
@@ -133,7 +133,7 @@
 
       <div class="col-md-4">
         <div class="form-group">
-          <label for="shipping"> {{ lang('shipping') }}</label>
+          <label for="shipping"> {{ lang('Shipping') }}</label>
           <input
             type="text"
             name="shipping"
@@ -148,7 +148,7 @@
     <div class="row">
       <div class="col-md-4">
         <div class="form-group">
-          <label for="order_discount"> {{ lang('order_discount') }}</label>
+          <label for="order_discount"> {{ lang('Order Discount') }}</label>
           <input
             name="order_discount"
             [(ngModel)]="curQuotation.orderDiscountId"
@@ -161,7 +161,7 @@
 
       <div class="col-md-4">
         <div class="form-group">
-          <label for="order_tax"> {{ lang('order_tax') }}</label>
+          <label for="order_tax"> {{ lang('Order Tax') }}</label>
           <select
             name="order_tax"
             class="tax form-control input-sm"
@@ -182,7 +182,7 @@
 
       <div class="col-md-4">
         <div class="form-group">
-          <label for="status"> {{ lang('status') }}</label>
+          <label for="status"> {{ lang('Status') }}</label>
           <select
             name="status"
             class="status form-control"
@@ -192,10 +192,10 @@
             [(ngModel)]="curQuotation.status"
           >
             <option value=""  [selected]="true">Select...</option>
-            <option value="canceled">{{ lang('canceled') }}</option>
-            <option value="overdue">{{ lang('overdue') }}</option>
-            <option value="paid">{{ lang('paid') }}</option>
-            <option value="pending">{{ lang('pending') }}</option>
+            <option value="canceled">{{ lang('Canceled') }}</option>
+            <option value="overdue">{{ lang('Overdue') }}</option>
+            <option value="paid">{{ lang('Paid') }}</option>
+            <option value="pending">{{ lang('Pending') }}</option>
           </select>
         </div>
       </div>
@@ -204,7 +204,7 @@
     <div class="row">
       <div class="col-md-4">
         <div class="form-group">
-          <label for="recurring"> {{ lang('recurring') }}</label>
+          <label for="recurring"> {{ lang('Recurring') }}</label>
           <select
             name="recurring"
             class="form-control"
@@ -236,12 +236,12 @@
         <div class="well well-sm">
           <div class="clearfix"></div>
           <h3>
-            {{ lang('new_customer') }}
+            {{ lang('New Customer') }}
           </h3>
           <div class="clearfix"></div>
           <div class="col-sm-4">
             <div class="form-group">
-              <label for="company"> {{ lang('company') }}</label>
+              <label for="company"> {{ lang('Company') }}</label>
               <div class="controls">
                 <input
                   name="company"
@@ -254,7 +254,7 @@
           </div>
           <div class="col-sm-4">
             <div class="form-group">
-              <label for="name"> {{ lang('contact_person') }}</label>
+              <label for="name"> {{ lang('Contact Person') }}</label>
               <div class="controls">
                 <input
                   name="name"
@@ -267,7 +267,7 @@
           </div>
           <div class="col-sm-4">
             <div class="form-group">
-              <label for="phone"> {{ lang('phone') }}</label>
+              <label for="phone"> {{ lang('Phone') }}</label>
               <div class="controls">
                 <input
                   name="phone"
@@ -280,7 +280,7 @@
           </div>
           <div class="col-sm-4">
             <div class="form-group">
-              <label for="email_address"> {{ lang('email_address') }}</label>
+              <label for="email_address"> {{ lang('Email Address') }}</label>
               <div class="controls">
                 <input
                   name="email"
@@ -293,7 +293,7 @@
           </div>
           <div class="col-sm-4">
             <div class="form-group">
-              <label for="address"> {{ lang('address') }}</label>
+              <label for="address"> {{ lang('Address') }}</label>
               <div class="controls">
                 <input
                   name="address"
@@ -306,7 +306,7 @@
           </div>
           <div class="col-sm-4">
             <div class="form-group">
-              <label for="city"> {{ lang('city') }}</label>
+              <label for="city"> {{ lang('City') }}</label>
               <div class="controls">
                 <input
                   name="city"
@@ -319,7 +319,7 @@
           </div>
           <div class="col-sm-4">
             <div class="form-group">
-              <label for="state"> {{ lang('state') }}</label>
+              <label for="state"> {{ lang('State') }}</label>
               <div class="controls">
                 <input
                   name="state"
@@ -332,7 +332,7 @@
           </div>
           <div class="col-sm-4">
             <div class="form-group">
-              <label for="postal_code"> {{ lang('postal_code') }}</label>
+              <label for="postal_code"> {{ lang('Postal Code') }}</label>
               <div class="controls">
                 <input
                   name="postal_code"
@@ -345,7 +345,7 @@
           </div>
           <div class="col-sm-4">
             <div class="form-group">
-              <label for="country"> {{ lang('country') }}</label>
+              <label for="country"> {{ lang('Country') }}</label>
               <div class="controls">
                 <input
                   name="country"
@@ -371,37 +371,37 @@
         <thead>
           <tr class="active">
             <th class="text-center">
-              {{ lang('no') }}
+              {{ lang('No') }}
             </th>
             <th class="col-sm-1 text-center">
-              {{ lang('quantity') }}
+              {{ lang('Quantity') }}
             </th>
             <th class="text-center">
-              {{ lang('product_code') }}
+              {{ lang('Product Code') }}
             </th>
             <th class="col-sm-2 text-center">
-              {{ lang('unit_price') }}
+              {{ lang('Unit Price') }}
             </th>
             <th
               *ngIf="$settings && $settings.productDiscount"
               class="col-sm-1 text-center"
             >
-              {{ lang('discount') }}
+              {{ lang('Discount') }}
             </th>
             <th
               *ngIf="$settings && $settings.defaultTaxRate"
               class="col-sm-2 text-center"
             >
-              {{ lang('tax_rate') }}
+              {{ lang('Tax Rate') }}
             </th>
             <th
               *ngIf="$settings && $settings.defaultTaxRate"
               class="col-sm-1 text-center"
             >
-              {{ lang('tax_method') }}
+              {{ lang('Tax Method') }}
             </th>
             <th class="col-sm-2 text-center">
-              {{ lang('subtotal') }}
+              {{ lang('Subtotal') }}
             </th>
           </tr>
         </thead>
@@ -501,8 +501,8 @@
                 id="tax_method-{{ i + 1 }}"
                 [(ngModel)]="row.taxMethod"
               >
-                <option value="exclusive">{{ lang('exclusive') }}</option>
-                <option value="inclusive">{{ lang('inclusive') }}</option>
+                <option value="exclusive">{{ lang('Exclusive') }}</option>
+                <option value="inclusive">{{ lang('Inclusive') }}</option>
               </select>
             </td>
             <td>
@@ -600,8 +600,8 @@
                 name="tax_method[]"
                 class="form-control tax_method"
               >
-                <option value="exclusive">{{ lang('exclusive') }}</option>
-                <option value="inclusive">{{ lang('inclusive') }}</option>
+                <option value="exclusive">{{ lang('Exclusive') }}</option>
+                <option value="inclusive">{{ lang('Inclusive') }}</option>
               </select>
             </td>
             <td>
@@ -734,7 +734,7 @@
             </button>
           </td>
           <td class="hidden-xs">
-            <h4 style="margin: 0; text-align: right;">{{ lang('total') }}:</h4>
+            <h4 style="margin: 0; text-align: right;">{{ lang('Total') }}:</h4>
           </td>
           <td class="hidden-xs">
             <h4 style="margin: 0; text-align: right;">
@@ -748,23 +748,23 @@
     <div class="well well-sm bold">
       <div class="visible-xs col-xs-12" style="border:0;">
         <h4 style="margin:0;text-align:center;">
-          {{ lang('total') }}: <span class="total_amount">0.00</span>
+          {{ lang('Total') }}: <span class="total_amount">0.00</span>
         </h4>
       </div>
       <div class="col-sm-4" style="border:0;">
         <h4 style="margin:0;text-align:center;">
-          {{ lang('order_discount') }}:
+          {{ lang('Order Discount') }}:
           <span id="order_discount_total">0.00</span>
         </h4>
       </div>
       <div class="col-sm-4" style="border:0;">
         <h4 style="margin:0;text-align:center;">
-          {{ lang('order_tax') }}: <span id="order_tax_total">0.00</span>
+          {{ lang('Order Tax') }}: <span id="order_tax_total">0.00</span>
         </h4>
       </div>
       <div class="col-sm-4" style="border:0;">
         <h4 style="margin:0;text-align:center;">
-          {{ lang('grand_total') }}:
+          {{ lang('Grand Total') }}:
           <span id="grand_total" style="font-weight:bold;">0.00</span>
         </h4>
       </div>
@@ -789,7 +789,7 @@
 
     <div class="form-group">
       <button class="btn btn-primary btn-lg" (click)="save()">
-        {{ lang('save') }}
+        {{ lang('Save') }}
       </button>
     </div>
     <div class="clearfix"></div>

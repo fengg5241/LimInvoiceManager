@@ -232,7 +232,7 @@ export class SaleDetailComponent implements OnInit {
 
       $('#removeButton').click(function() {
         if (thisObject.counter <= thisObject.$settings.noOfRows + 1) {
-          alert(thisObject.lang('not_allowed'));
+          alert(thisObject.lang('Not Allowed'));
           return false;
         }
         thisObject.counter--;

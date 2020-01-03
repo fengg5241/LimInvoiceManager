@@ -11,43 +11,43 @@
                     <h3>{{ $biller.company}}</h3>
                     {{ $biller.address}},<br />{{$biller.city}}, {{$biller.postalCode}}, {{$biller.state}},<br />{{$biller.country}}
                     <br />{{lang("tel")}}: {{$biller.phone}}<br />{{lang("email")}}: {{$biller.email}}
-                    <span *ngIf="$biller.cf1 && $biller.cf1 != '-'"><br />{{lang("bcf1")}}: {{$biller.cf1}}</span>
-                    <span *ngIf="$biller.cf2 && $biller.cf2 != '-'"><br />{{lang("bcf2")}}: {{$biller.cf2}}</span>
-                    <span *ngIf="$biller.cf3 && $biller.cf3 != '-'"><br />{{lang("bcf3")}}: {{$biller.cf3}}</span>
-                    <span *ngIf="$biller.cf4 && $biller.cf4 != '-'"><br />{{lang("bcf4")}}: {{$biller.cf4}}</span>
-                    <span *ngIf="$biller.cf5 && $biller.cf5 != '-'"><br />{{lang("bcf5")}}: {{$biller.cf5}}</span>
-                    <span *ngIf="$biller.cf6 && $biller.cf6 != '-'"><br />{{lang("bcf6")}}: {{$biller.cf6}}</span>
+                    <span *ngIf="$biller.cf1 && $biller.cf1 != '-'"><br />{{lang("Bcf1")}}: {{$biller.cf1}}</span>
+                    <span *ngIf="$biller.cf2 && $biller.cf2 != '-'"><br />{{lang("Bcf2")}}: {{$biller.cf2}}</span>
+                    <span *ngIf="$biller.cf3 && $biller.cf3 != '-'"><br />{{lang("Bcf3")}}: {{$biller.cf3}}</span>
+                    <span *ngIf="$biller.cf4 && $biller.cf4 != '-'"><br />{{lang("Bcf4")}}: {{$biller.cf4}}</span>
+                    <span *ngIf="$biller.cf5 && $biller.cf5 != '-'"><br />{{lang("Bcf5")}}: {{$biller.cf5}}</span>
+                    <span *ngIf="$biller.cf6 && $biller.cf6 != '-'"><br />{{lang("Bcf6")}}: {{$biller.cf6}}</span>
                 </div>
       
                 <div class="col-xs-6" *ngIf="$customer">
                     {{ lang("To")}}:
                     <h3>{{$customer.company != '-' ? $customer.company :$customer.name }}</h3>
                     <p *ngIf="$customer.company != '-'">
-                      {{lang("attn")}}:{{$customer.name}}
+                      {{lang("Attn")}}:{{$customer.name}}
                     </p>
                     <p *ngIf="$customer.address != '-'">
-                      {{lang("address")}}:{{$customer.address}},{{$customer.city}},{{$customer.postalCode}},{{$customer.state}},{{$customer.country}}
+                      {{lang("Address")}}:{{$customer.address}},{{$customer.city}},{{$customer.postalCode}},{{$customer.state}},{{$customer.country}}
                     </p>
                     <br>
-                    {{ lang("tel")}}:{{$customer.phone}}<br>
-                    {{ lang("email")}}:{{$customer.email}}<br>
+                    {{ lang("Tel")}}:{{$customer.phone}}<br>
+                    {{ lang("Email")}}:{{$customer.email}}<br>
                     <p *ngIf="$customer.cf1 && $customer.cf1 != '-'">
-                      {{lang("ccf1")}}:{{$customer.ccf1}}
+                      {{lang("Ccf1")}}:{{$customer.ccf1}}
                     </p>
                     <p *ngIf="$customer.cf2 && $customer.cf2 != '-'">
-                      {{lang("ccf2")}}:{{$customer.ccf2}}
+                      {{lang("Ccf2")}}:{{$customer.ccf2}}
                     </p>
                     <p *ngIf="$customer.cf3 && $customer.cf3 != '-'">
-                      {{lang("ccf3")}}:{{$customer.ccf3}}
+                      {{lang("Ccf3")}}:{{$customer.ccf3}}
                     </p>
                     <p *ngIf="$customer.cf4 && $customer.cf4 != '-'">
-                      {{lang("ccf4")}}:{{$customer.ccf4}}
+                      {{lang("Ccf4")}}:{{$customer.ccf4}}
                     </p>
                     <p *ngIf="$customer.cf5 && $customer.cf5 != '-'">
-                      {{lang("ccf5")}}:{{$customer.ccf5}}
+                      {{lang("Ccf5")}}:{{$customer.ccf5}}
                     </p>
                     <p *ngIf="$customer.cf6 && $customer.cf6 != '-'">
-                      {{lang("ccf6")}}:{{$customer.ccf6}}
+                      {{lang("Ccf6")}}:{{$customer.ccf6}}
                     </p>
                     <!-- <?php
                     if ($customer.cf1 && $customer.cf1 != "-") { echo "<br />".lang("ccf1").": ".$customer.cf1; }

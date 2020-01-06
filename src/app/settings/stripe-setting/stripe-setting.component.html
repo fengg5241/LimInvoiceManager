@@ -11,7 +11,7 @@
       <div class="row">            
           <div class="col-md-6">
               <div class="form-group">
-                  {{ lang("activate")}}
+                  {{ lang("Activate")}}
                   <select id='active' name="active" class='form-control tip' [(ngModel)]="curSetting.active"  required="required" >
                     <option value="1">Yes</option>
                     <option value="0">No</option>
@@ -19,35 +19,35 @@
               </div>
 
               <div class="form-group">
-                  {{ lang("secret_key")}}
+                  {{ lang("Secret Key")}}
                   <input class="form-control tip" id="secret_key" [(ngModel)]="curSetting.secretKey" />
               </div>
               <div class="form-group">
-                  {{ lang("publishable_key")}}
+                  {{ lang("Publishable Key")}}
                   <input class="form-control tip" id="publishable_key" [(ngModel)]="curSetting.publishableKey" />
               </div>
 
               <div class="form-group">
-                  {{ lang("fixed_charges")}}
+                  {{ lang("Fixed Charges")}}
                   <input class="form-control tip" id="fixed_charges" [(ngModel)]="curSetting.fixedCharges" />
-                  <small class="help-block">{{lang("fixed_charges_tip")}}</small>
+                  <small class="help-block">{{lang("Fixed Charges Tip")}}</small>
               </div>
               <div class="form-group">
-                  {{ lang("extra_charges_my")}}
+                  {{ lang("Extra Charges My")}}
                   <input class="form-control tip" id="extra_charges_my" [(ngModel)]="curSetting.extraChargesMy" />
-                  <small class="help-block">{{lang("extra_charges_my_tip")}}</small>
+                  <small class="help-block">{{lang("Extra Charges My Tip")}}</small>
               </div>
               <div class="form-group">
-                  {{ lang("extra_charges_others")}}
+                  {{ lang("Extra Charges Others")}}
                   <input class="form-control tip" id="extra_charges" [(ngModel)]="curSetting.extraChargesOther" />
-                  <small class="help-block">{{lang("extra_charges_others_tip")}}</small>
+                  <small class="help-block">{{lang("Extra Charges Others Tip")}}</small>
               </div>
 
           </div>
       </div>
       <div style="clear: both; height: 10px;"></div>
       <div class="form-group">
-        <button class="btn btn-primary" (click)="updateSysSetting()">{{lang("update_settings")}}</button>
+        <button class="btn btn-primary" (click)="updateSysSetting()">{{lang("Update Settings")}}</button>
       </div>
   </div>
   <!-- {{ form_close()}}  -->

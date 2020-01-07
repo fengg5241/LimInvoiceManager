@@ -54,15 +54,50 @@ export class CustomerDetailComponent implements OnInit {
     return this.langService.lang(word);
   }
 
+  checkRequiredFields(){
+    let requiredFields = [];
+    let customer = this.curCustomer;
+    if(customer.name == ""){
+      requiredFields.push("Name");
+    }
+
+    if(customer.email == ""){
+      requiredFields.push("Email Address");
+    }
+
+    if(customer.company == ""){
+      requiredFields.push("Company");
+    }
+
+    if(customer.address == ""){
+      requiredFields.push("Address");
+    }
+
+    if(customer.city == ""){
+      requiredFields.push("City");
+    }
+
+    if(customer.phone == ""){
+      requiredFields.push("Phone");
+    }
+
+    return requiredFields;
+  }
+
   save(){
-    if(this.isNew){
-      this.http.post('/api/customer/insert',this.curCustomer).subscribe(data => {
-        this.router.navigateByUrl("home/customers")
-      });
-    }else{
-      this.http.post('/api/customer/update',this.curCustomer).subscribe(data => {
-        this.router.navigateByUrl("home/customers")
-      });
+    let requiredFields = this.checkRequiredFields();
+    if(requiredFields.length > 0){
+      alert(requiredFields.join() + " are required.");
+    }else {
+      if(this.isNew){
+        this.http.post('/api/customer/insert',this.curCustomer).subscribe(data => {
+          this.router.navigateByUrl("home/customers")
+        });
+      }else{
+        this.http.post('/api/customer/update',this.curCustomer).subscribe(data => {
+          this.router.navigateByUrl("home/customers")
+        });
+      }
     }
   }
 

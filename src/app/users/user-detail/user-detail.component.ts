@@ -69,16 +69,57 @@ export class UserDetailComponent implements OnInit {
     
     //TODO
     this.curUser.ipAddress = this.stringToByte("localhost");
-    if(this.isNew){
-      this.curUser.createdOn = Math.floor(Date.now() / 1000)
-      this.http.post('/api/user/insert',this.curUser).subscribe(data => {
-        this.router.navigateByUrl("home/users")
-      });
-    }else{
-      this.http.post('/api/user/update',this.curUser).subscribe(data => {
-        this.router.navigateByUrl("home/users")
-      });
+
+    let requiredFields = this.checkRequiredFields();
+    if(requiredFields.length > 0){
+      alert(requiredFields.join() + " are required.");
+    }else {
+
+      if(this.isNew){
+        this.curUser.createdOn = Math.floor(Date.now() / 1000)
+        this.http.post('/api/user/insert',this.curUser).subscribe(data => {
+          this.router.navigateByUrl("home/users")
+        });
+      }else{
+        this.http.post('/api/user/update',this.curUser).subscribe(data => {
+          this.router.navigateByUrl("home/users")
+        });
+      }
     }
+  }
+
+  checkRequiredFields(){
+    let requiredFields = [];
+    let user = this.curUser;
+    if(user.firstName == ""){
+      requiredFields.push("First Name");
+    }
+
+    if(user.lastName == ""){
+      requiredFields.push("Last Name");
+    }
+
+    if(user.email == ""){
+      requiredFields.push("Email Address");
+    }
+
+    if(user.phone == ""){
+      requiredFields.push("Phone");
+    }
+
+    if(user.company == ""){
+      requiredFields.push("Company");
+    }
+
+    if(user.password == ""){
+      requiredFields.push("Password");
+    }
+
+    if(user.passwordConfirm == ""){
+      requiredFields.push("Confirm Password");
+    }
+
+    return requiredFields;
   }
 
 

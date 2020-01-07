@@ -47,15 +47,34 @@ export class ProductDetailComponent implements OnInit {
   }
 
   save(){
-    if(this.isNew){
-      this.http.post('/api/product/insert',this.curProduct).subscribe(data => {
-        this.router.navigateByUrl("home/products")
-      });
-    }else{
-      this.http.post('/api/product/update',this.curProduct).subscribe(data => {
-        this.router.navigateByUrl("home/products")
-      });
+    let requiredFields = this.checkRequiredFields();
+    if(requiredFields.length > 0){
+      alert(requiredFields.join() + " are required.");
+    }else {
+      if(this.isNew){
+        this.http.post('/api/product/insert',this.curProduct).subscribe(data => {
+          this.router.navigateByUrl("home/products")
+        });
+      }else{
+        this.http.post('/api/product/update',this.curProduct).subscribe(data => {
+          this.router.navigateByUrl("home/products")
+        });
+      }
     }
+  }
+
+  checkRequiredFields(){
+    let requiredFields = [];
+    let product = this.curProduct;
+    if(!(product.price > 0)){
+      requiredFields.push("Price");
+    }
+
+    if(product.name == ""){
+      requiredFields.push("Name");
+    }
+
+    return requiredFields;
   }
 
   lang(word){

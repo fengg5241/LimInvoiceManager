@@ -47,19 +47,20 @@ export class ProductDetailComponent implements OnInit {
   }
 
   save(){
+    console.log(this.curProduct);
     let requiredFields = this.checkRequiredFields();
     if(requiredFields.length > 0){
       alert(requiredFields.join() + " are required.");
     }else {
-      if(this.isNew){
-        this.http.post('/api/product/insert',this.curProduct).subscribe(data => {
-          this.router.navigateByUrl("home/products")
-        });
-      }else{
-        this.http.post('/api/product/update',this.curProduct).subscribe(data => {
-          this.router.navigateByUrl("home/products")
-        });
-      }
+      // if(this.isNew){
+      //   this.http.post('/api/product/insert',this.curProduct).subscribe(data => {
+      //     this.router.navigateByUrl("home/products")
+      //   });
+      // }else{
+      //   this.http.post('/api/product/update',this.curProduct).subscribe(data => {
+      //     this.router.navigateByUrl("home/products")
+      //   });
+      // }
     }
   }
 

@@ -1,6 +1,6 @@
 {
     "/api": {
-      "target": "http://34.87.112.137:8080/InvoiceManagement",
+      "target": "http://34.87.112.137/InvoiceManagement",
       "secure": false
     }
   }

@@ -59,6 +59,7 @@ import { PaymentViewComponent } from './sales/payment-view/payment-view.componen
 import { PaymentListComponent } from './sales/payment-list/payment-list.component';
 import { QuotationEmailModalComponent } from './quotations/quotation-email-modal/quotation-email-modal.component';
 import { SaleEmailModalComponent } from './sales/sale-email-modal/sale-email-modal.component';
+import { PapaParseModule } from 'ngx-papaparse';
 
 @NgModule({
   declarations: [
@@ -121,7 +122,8 @@ import { SaleEmailModalComponent } from './sales/sale-email-modal/sale-email-mod
     FormsModule,
     HttpClientModule,
     AngularDateTimePickerModule,
-    StorageServiceModule
+    StorageServiceModule,
+    PapaParseModule
   ],
   providers: [],
   bootstrap: [AppComponent]

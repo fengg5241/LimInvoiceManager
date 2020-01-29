@@ -16,12 +16,12 @@
       <div class="controls">
         <div class="fileupload fileupload-new" data-provides="fileupload"> <span class="btn btn-file btn-info"><span class="fileupload-new">{{ lang("select_file")}}</span><span class="fileupload-exists">{{ lang("change")}}</span>
           <!-- <input type="file" name="userfile" id="csv_file" onchange="checkfile(this);" required="required" data-error={{lang("select_file")}}{{lang("is_required")}} /> -->
-          <input type="file" name="userfile" id="csv_file" onchange="checkfile(this);" required="required" data-error="select file is required"/>
+          <input type="file" name="userfile" id="csv_file" (change)="parse($event.target.files)" required="required" data-error="select file is required"/>
           </span> <span class="fileupload-preview"></span> <a href="#" class="close fileupload-exists" data-dismiss="fileupload" style="float: none">×</a> </div>
       </div>
     </div>
     <div class="control-group">
-      <div class="controls"> <button class="btn btn-primary">{{lang("add_product")}}</button> </div>
+      <div class="controls"> <button id="saveButton" class="btn btn-primary" (click)="save()">{{lang("Add Product")}}</button> </div>
     </div>
     <div class="clearfix"></div>
   </div>
